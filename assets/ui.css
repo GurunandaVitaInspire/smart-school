@@ -1,0 +1,243 @@
+/* =====================================================================
+   Smart School — shared UI theme for the tool pages
+   ---------------------------------------------------------------------
+   * Applies only when <html> has the "ss" class (teacher views).
+   * Wrapped in @media screen: printed pages and PDF templates
+     (.card, .pg, .sheet) keep their own original styling.
+   * Loaded last, so it overrides the older "flat" look with
+     !important where the old rules used !important.
+   ===================================================================== */
+@media screen {
+
+/* ---------- tokens ---------- */
+html.ss{
+  --ss-bg:#F3F6F4; --ss-surface:#FFFFFF; --ss-surface-2:#F7FAF8; --ss-sunk:#EDF2EF;
+  --ss-ink:#0C241D; --ss-ink-2:#2D463E; --ss-muted:#5D7068;
+  --ss-line:#E0E8E3; --ss-line-2:#CFDAD4; --ss-lip:#DCE5E0;
+  --ss-deep:#06281F; --ss-brand:#0F5C46; --ss-mint:#7FF0C0; --ss-sun:#FFC83D;
+  --ss-ok:#12805C; --ss-ok-soft:#E3F6EE; --ss-err:#C2362F; --ss-err-soft:#FDECEA;
+  --ss-a:#0F5C46; --ss-a-ink:#FFFFFF;
+  --ss-font:"Plus Jakarta Sans","Noto Sans Telugu",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --ss-shadow:0 1px 2px rgba(12,36,29,.06),0 8px 24px -10px rgba(12,36,29,.14);
+  --ss-r:18px;
+}
+html.ss-rc{--ss-a:#6C47FF}
+html.ss-dpc{--ss-a:#2F80ED}
+html.ss-rank{--ss-a:#0F5C46}
+html.ss-sa{--ss-a:#D93D42}
+html.ss-tt,html.ss-ew{--ss-a:#C2410C}
+
+@media (prefers-color-scheme: dark){
+  html.ss:not([data-theme="light"]){
+    --ss-bg:#06150F; --ss-surface:#0C2119; --ss-surface-2:#0F281F; --ss-sunk:#0A1C15;
+    --ss-ink:#E6F4EE; --ss-ink-2:#C2D9CF; --ss-muted:#8FAA9E;
+    --ss-line:#1A3A2E; --ss-line-2:#24493B; --ss-lip:#030D09;
+    --ss-ok:#6EE7B7; --ss-ok-soft:#0F3427; --ss-err:#FF8A80; --ss-err-soft:#3A1614;
+    --ss-a-ink:#06150F;
+    --ss-shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -12px rgba(0,0,0,.6);
+  }
+  html.ss-rc:not([data-theme="light"]){--ss-a:#A78BFA}
+  html.ss-dpc:not([data-theme="light"]){--ss-a:#7DB3FF}
+  html.ss-rank:not([data-theme="light"]){--ss-a:#7FF0C0}
+  html.ss-sa:not([data-theme="light"]){--ss-a:#FF8A8E}
+  html.ss-tt:not([data-theme="light"]),html.ss-ew:not([data-theme="light"]){--ss-a:#FFA66B}
+}
+
+/* map each page's own variables onto the shared palette
+   (none of the printed templates read these variables) */
+html.ss-rc,html.ss-dpc,html.ss-sa{
+  --bg:var(--ss-bg); --fg:var(--ss-ink); --pn:var(--ss-surface); --bd:var(--ss-line-2);
+  --ac:var(--ss-a); --mu:var(--ss-muted); --fld:var(--ss-surface-2);
+}
+html.ss-sa{--ink:var(--ss-ink)}
+html.ss-tt,html.ss-ew{
+  --ground:var(--ss-bg); --paper:var(--ss-surface); --ink:var(--ss-ink); --muted:var(--ss-muted);
+  --line:var(--ss-line-2); --leaf:var(--ss-a); --leaf-soft:color-mix(in srgb,var(--ss-a) 12%,var(--ss-surface));
+  --on-leaf:var(--ss-a-ink);
+}
+
+/* ---------- base ---------- */
+html.ss body{background:var(--ss-bg)!important;color:var(--ss-ink);font-family:var(--ss-font);-webkit-font-smoothing:antialiased}
+html.ss :focus-visible{outline:3px solid var(--ss-a);outline-offset:2px}
+
+/* ---------- top bar (added by bridge.js) ---------- */
+html.ss a.ssat-home{
+  display:flex!important;align-items:center;gap:12px;
+  background:var(--ss-deep)!important;color:#EAFFF6!important;
+  font:700 15px/1.2 var(--ss-font)!important;letter-spacing:-.005em;
+  padding:12px max(20px,calc((100vw - 1000px)/2))!important;
+  padding-top:calc(12px + env(safe-area-inset-top,0px))!important;
+  border:0!important;border-bottom:1px solid rgba(127,240,192,.14)!important;
+  text-decoration:none!important;
+}
+html.ss a.ssat-home::before{
+  content:"";flex:none;width:34px;height:34px;border-radius:11px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306281F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 9.5 12 5l10 4.5-10 4.5z'/%3E%3Cpath d='M6 11.6V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.4'/%3E%3Cpath d='M22 9.5v5'/%3E%3C/svg%3E") center/20px no-repeat,
+    linear-gradient(160deg,#C9FFE8,#5FE0A8);
+  box-shadow:0 0 0 4px rgba(127,240,192,.12);
+}
+html.ss a.ssat-home:hover{background:#0A3A2D!important}
+
+/* ---------- page titles ---------- */
+html.ss body>header{background:transparent!important;border:0!important;padding:30px 16px 6px!important;max-width:1000px;margin:0 auto}
+html.ss body>header h1{font:800 clamp(1.5rem,3.4vw,2.1rem)/1.15 var(--ss-font);letter-spacing:-.025em;color:var(--ss-ink)}
+html.ss body>header h1::before,
+html.ss-rank #h1::before,
+html.ss .top h1::before,
+html.ss .ss-title h1::before{
+  content:"";display:block;width:36px;height:4px;border-radius:4px;background:var(--ss-a);margin-bottom:14px;
+}
+html.ss-rank #h1{font:800 clamp(1.5rem,3.4vw,2.1rem)/1.15 var(--ss-font)!important;letter-spacing:-.025em;color:var(--ss-ink)!important;margin:26px 0 6px!important}
+html.ss-rank .lead{color:var(--ss-muted)!important;font-size:1rem}
+html.ss .top{margin:12px 2px 20px!important}
+html.ss .top h1{font:800 clamp(1.5rem,3.4vw,2.1rem)/1.15 var(--ss-font)!important;letter-spacing:-.025em;color:var(--ss-ink)!important}
+html.ss .top p{color:var(--ss-muted)!important;font-size:.98rem!important}
+html.ss .ss-title{padding:28px 0 4px}
+html.ss .ss-title h1{margin:0;font:800 clamp(1.5rem,3.4vw,2.1rem)/1.15 var(--ss-font);letter-spacing:-.025em;color:var(--ss-ink)}
+html.ss .ss-title p{margin:6px 0 0;color:var(--ss-muted);font-size:.98rem}
+
+/* ---------- cards ---------- */
+html.ss .panel,
+html.ss .box,
+html.ss .ctl,
+html.ss .loadbox,
+html.ss details.roles,
+html.ss section.block{
+  background:var(--ss-surface)!important;
+  border:1px solid var(--ss-line)!important;
+  border-radius:var(--ss-r)!important;
+  box-shadow:var(--ss-shadow),0 4px 0 var(--ss-lip)!important;
+  padding:20px!important;
+}
+html.ss #setup{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+html.ss .panel{margin-bottom:16px}
+html.ss .panel>b:first-child,html.ss .box h2,html.ss section.block h2,html.ss .loadbox h3{font-weight:800;letter-spacing:-.01em;color:var(--ss-ink)}
+html.ss .box h2 i{background:var(--ss-a)!important;color:var(--ss-a-ink)!important;border-radius:9px!important}
+html.ss section.block{margin-top:18px!important}
+html.ss section.block h2{font-size:1.12rem}
+html.ss .hint{color:var(--ss-muted)!important}
+html.ss details.roles{margin-top:18px!important}
+html.ss details.roles summary{font-weight:800}
+html.ss .rolegrid>*,html.ss #dutyRows>*{border-bottom:0!important}
+html.ss .duty{background:var(--ss-surface-2)!important;border:1px solid var(--ss-line)!important;border-radius:14px!important}
+html.ss .duty+.duty{margin-top:10px}
+
+/* toolbars */
+html.ss .bar{gap:10px!important}
+html.ss .bar .grp{
+  background:var(--ss-surface)!important;border:1px solid var(--ss-line)!important;border-radius:16px!important;
+  box-shadow:var(--ss-shadow)!important;padding:10px 12px!important;gap:8px!important;
+}
+html.ss .bar .grp>b{color:var(--ss-ink-2);font-weight:800}
+html.ss-sa .bar{background:var(--ss-bg)!important;border:0!important;padding:12px 0!important}
+html.ss-sa .bar h3{font-weight:800;letter-spacing:-.01em}
+
+/* alerts */
+html.ss .msg{background:color-mix(in srgb,var(--ss-sun) 16%,var(--ss-surface))!important;border:1px solid color-mix(in srgb,var(--ss-sun) 45%,transparent)!important;border-radius:14px!important;color:var(--ss-ink)}
+html.ss .msg a{color:var(--ss-a)!important}
+html.ss #err{border-radius:12px;font-weight:600}
+html.ss #err a{color:inherit}
+html.ss #ok{color:var(--ss-ok)!important;font-weight:700}
+html.ss .status{background:var(--ss-ok-soft)!important;color:var(--ss-ink)!important;border-radius:12px!important}
+html.ss .status.err{background:var(--ss-err-soft)!important}
+html.ss .note{color:var(--ss-muted)}
+
+/* ---------- buttons ---------- */
+html.ss .btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:10px 18px!important;border-radius:12px!important;
+  font:700 .95rem/1.2 var(--ss-font)!important;cursor:pointer;
+  transition:filter .15s,transform .12s,background .15s;
+}
+html.ss .btn:active{transform:translateY(1px)}
+html.ss .btn:hover{filter:brightness(1.07)}
+/* primary on the marks tools */
+html.ss-rc .btn:not(.s):not(.lk):not(.tk):not(.sh),
+html.ss-dpc .btn:not(.s):not(.lk):not(.tk):not(.sh),
+html.ss-sa .btn:not(.s),
+html.ss-rank .btn,
+html.ss-tt .btn.primary,html.ss-ew .btn.primary{
+  background:var(--ss-a)!important;color:var(--ss-a-ink)!important;border:1px solid transparent!important;
+  box-shadow:0 3px 0 color-mix(in srgb,var(--ss-a) 60%,#000),0 10px 22px -12px color-mix(in srgb,var(--ss-a) 80%,transparent)!important;
+}
+/* secondary */
+html.ss-rc .btn.s,html.ss-dpc .btn.s,html.ss-sa .btn.s,
+html.ss-tt .btn:not(.primary),html.ss-ew .btn:not(.primary){
+  background:var(--ss-surface)!important;color:var(--ss-ink)!important;border:1px solid var(--ss-line-2)!important;box-shadow:none!important;
+}
+html.ss-rc .btn.s:hover,html.ss-dpc .btn.s:hover,html.ss-sa .btn.s:hover,
+html.ss-tt .btn:not(.primary):hover,html.ss-ew .btn:not(.primary):hover{border-color:var(--ss-a)!important;color:var(--ss-a)!important;filter:none}
+html.ss .btn.big{min-height:58px;font-size:1.08rem!important;border-radius:16px!important}
+html.ss .btn[disabled],html.ss .btn:disabled{opacity:.55;cursor:wait}
+html.ss .result-actions .btn{min-height:52px}
+/* special purpose buttons keep their colour, get the new shape */
+html.ss .btn.sh{background:#25D366!important;border-color:#1EA952!important;color:#fff!important}
+
+/* ---------- form fields ---------- */
+html.ss :is(input[type=text],input[type=number],input[type=date],input:not([type]),textarea,select):not(.sheet *,.card *,.pg *){
+  border:1px solid var(--ss-line-2)!important;border-radius:12px!important;background:var(--ss-surface)!important;
+  min-height:46px;padding:10px 14px!important;font-family:var(--ss-font);box-shadow:none!important;
+  transition:border-color .15s,box-shadow .15s;
+}
+html.ss input[type=file]{min-height:0;border:0!important;padding:0!important}
+html.ss :is(input,textarea,select):not(.sheet *,.card *,.pg *):focus{outline:none!important;border-color:var(--ss-a)!important;box-shadow:0 0 0 4px color-mix(in srgb,var(--ss-a) 16%,transparent)!important}
+html.ss label{color:var(--ss-ink-2)}
+html.ss .ctl label,html.ss label.f{font-weight:700!important;font-size:.84rem;color:var(--ss-ink-2)!important}
+html.ss #lkm textarea{min-height:120px}
+html.ss .ask input{min-height:42px}
+
+/* drop zones */
+html.ss .drop,html.ss .dz{
+  border:2px dashed var(--ss-line-2)!important;border-radius:16px!important;background:var(--ss-surface-2)!important;transition:border-color .15s,background .15s;
+}
+html.ss .drop:hover,html.ss .dz:hover,html.ss .drop.over,html.ss .dz.over{border-color:var(--ss-a)!important;background:color-mix(in srgb,var(--ss-a) 7%,var(--ss-surface))!important}
+html.ss .dz b,html.ss .drop b{color:var(--ss-ink)!important}
+
+/* ---------- report / progress: student picker ---------- */
+html.ss .pick{border:1px solid var(--ss-line)!important;border-radius:16px!important;box-shadow:0 24px 48px -18px rgba(12,36,29,.35)!important;padding:10px!important}
+html.ss #dgF{width:100%}
+html.ss #dgL{gap:0!important}
+html.ss #dgL>*{border-bottom:1px solid var(--ss-line)!important;padding:10px 4px!important}
+html.ss .dgR a,html.ss .dgR button{border-radius:10px!important;min-height:38px}
+html.ss .dgR a.w{background:#16A34A!important;border-color:#16A34A!important;color:#fff!important}
+
+/* ---------- subject analysis ---------- */
+html.ss .subs .st{border-radius:16px!important;min-height:96px!important;font-family:var(--ss-font)}
+html.ss .subs .st b{font-family:var(--ss-font)!important;font-weight:800!important;font-size:1.05rem!important;letter-spacing:-.01em}
+html.ss .clsw .cbt{border:1px solid var(--ss-line-2)!important;background:var(--ss-surface)!important;color:var(--ss-ink)!important;font-family:var(--ss-font);border-radius:999px!important}
+html.ss .clsw .cbt[aria-pressed="true"]{background:var(--ss-a)!important;border-color:var(--ss-a)!important;color:var(--ss-a-ink)!important}
+html.ss .empty{color:var(--ss-muted)!important}
+
+/* ---------- substitute / extra work ---------- */
+html.ss section.block .tiles{gap:12px!important}
+html.ss section.block .tile{
+  background:var(--ss-surface-2)!important;border:1px solid var(--ss-line)!important;border-radius:16px!important;
+  min-height:104px!important;padding:16px!important;transition:border-color .15s,transform .12s;
+}
+html.ss section.block .tile:hover{border-color:var(--ss-a)!important;transform:translateY(-1px)}
+html.ss section.block .tile svg{width:40px!important;height:40px!important;padding:8px;border-radius:12px;color:var(--ss-a);background:color-mix(in srgb,var(--ss-a) 12%,transparent)}
+html.ss .drive-help{border-radius:16px!important;border-color:var(--ss-line)!important;background:var(--ss-surface-2)!important}
+html.ss .chip{border-radius:12px!important;border-color:var(--ss-line-2)!important;font-family:var(--ss-font);transition:transform .1s}
+html.ss .chip:active{transform:scale(.97)}
+html.ss .pbtn{border-radius:10px!important;font-family:var(--ss-font)}
+html.ss .dayname{color:var(--ss-a)!important;font-weight:800}
+html.ss .selcount{color:var(--ss-muted)!important}
+html.ss .sheetwrap{border-radius:14px!important;box-shadow:var(--ss-shadow),0 0 0 1px var(--ss-line)!important}
+html.ss .toast{border-radius:14px!important;font-family:var(--ss-font);font-weight:600}
+
+/* extra-work app bar */
+html.ss-ew .ewtop{
+  background:var(--ss-deep)!important;color:#EAFFF6!important;border-bottom:1px solid rgba(127,240,192,.14)!important;
+  margin:0 -16px 10px!important;padding-left:16px!important;padding-right:16px!important;
+}
+html.ss-ew .ewtop h1{color:#fff!important;font-family:var(--ss-font);letter-spacing:-.015em}
+html.ss-ew .ewtop p{color:#A9D2C1!important}
+html.ss-ew body::before{background:var(--ss-deep)!important}
+html.ss-ew .ewtop .install{background:linear-gradient(180deg,#FFE08A,#FFC83D)!important;color:#3A2900!important;border:0!important;box-shadow:0 3px 0 #C99400!important;animation:none}
+html.ss-ew .ttline{border-radius:14px!important;border-color:var(--ss-line)!important;background:var(--ss-surface)!important}
+html.ss-ew .ttline button{border-radius:10px!important;border-color:var(--ss-a)!important;color:var(--ss-a)!important}
+
+}
+
+@media print { .ss-title{display:none!important} }
