@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#FBFAF6"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Smart School">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#FBFAF6"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Smart School">
 <title>Smart School AI Tools</title>
 <meta name="description" content="Report cards, progress cards, rank lists, grading abstracts, subject analysis and substitute time tables from one marks sheet. Turning days of work into seconds.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,8 +69,9 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent);padding-top:env(safe-area-inset-top,0px)}
 .nav .container{display:flex;align-items:center;gap:18px;min-height:66px}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);margin-right:auto}
-.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#C9FFE8;background:linear-gradient(160deg,#145F49,#06281F);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 14px -6px rgba(6,40,31,.6)}
-.logo .i{width:21px;height:21px;stroke-width:2}
+.logo{display:grid;place-items:center;color:var(--ink);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.logo .mark{width:44px;height:auto;display:block;fill:currentColor}
+.brand:hover .logo{transform:rotate(-6deg) scale(1.05)}
 .brand b{display:block;font-weight:800;font-size:1.04rem;letter-spacing:-.01em;line-height:1.1}
 .brand small{display:block;font-family:var(--te2);font-size:.8rem;font-weight:600;color:var(--muted);line-height:1.2}
 .links{display:flex;gap:2px}
@@ -366,7 +367,10 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .dk{--w:236px;--h:300px;position:absolute;left:50%;top:58%;width:var(--w);height:var(--h);margin:calc(var(--h) / -2) 0 0 calc(var(--w) / -2);
   border:0;padding:0;background:none;cursor:pointer;text-align:left;color:#fff;font:inherit;
   transform:translateX(calc(var(--d,0) * var(--gap,230px))) scale(var(--s,1));z-index:var(--z,1);opacity:var(--o,1);
-  transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .45s,filter .45s}
+  transition:transform .95s cubic-bezier(.22,.85,.25,1),opacity .6s,filter .45s}
+.deck{cursor:grab}
+.deck.dragging{cursor:grabbing}
+.deck.dragging .dk,.deck.dragging .dk .art{transition:none}
 .dk[aria-hidden=true]{pointer-events:none}
 .dk .bg{position:absolute;inset:0;border-radius:34px;background:var(--g);overflow:hidden;
   box-shadow:0 2px 4px rgba(16,32,26,.08),0 30px 50px -24px color-mix(in srgb,var(--gc) 85%,transparent);transition:background .5s,box-shadow .5s}
@@ -541,7 +545,8 @@ footer::before{content:"";position:absolute;inset:0;background:radial-gradient(7
 @media (max-width:520px){.fgrid{grid-template-columns:1fr 1fr;gap:28px 20px}.fgrid .fbrand,.fgrid .credit{grid-column:1/-1}}
 footer .brand{color:#fff}
 footer .brand small{color:#9FC9B8}
-footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep)}
+footer .logo{color:var(--mint)}
+footer .logo .mark{width:48px}
 .fbrand p{margin:16px 0 0;font-size:.94rem;line-height:1.6;color:#9FC9B8;max-width:360px}
 .fbrand .fcta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:10px 12px 10px 18px;border-radius:999px;background:#EAFFF6;color:var(--deep);font-weight:700;font-size:.92rem;text-decoration:none}
 .fbrand .fcta span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--deep);color:var(--mint)}
@@ -602,6 +607,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   <symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6h.01"/></symbol>
+  <symbol id="i-logo" viewBox="0 0 313.2 261.3"><path fill="currentColor" fill-rule="evenodd" d="M266.7 135.7 L265.0 135.5 L238.0 151.3 L236.8 177.5 L157.0 223.2 L77.3 177.3 L76.2 175.7 L75.8 152.5 L46.8 135.8 L46.5 195.0 L156.7 259.3 L266.5 194.5Z M311.2 92.5 L154.0 2.2 L2.0 93.0 L17.7 103.5 L17.5 157.8 L13.2 161.3 L10.8 166.3 L11.8 171.7 L15.3 177.3 L9.8 209.3 L15.3 207.8 L22.0 210.5 L25.8 208.5 L31.8 208.8 L25.5 176.8 L28.7 171.3 L29.3 165.7 L27.0 161.2 L23.0 158.0 L23.8 106.7 L155.7 183.2 L185.5 166.2 L61.8 92.3 L156.0 38.3 L250.3 93.2 L248.8 95.2 L219.8 111.3 L158.0 76.0 L129.3 93.0 L130.3 94.7 L219.0 146.2Z"/></symbol>
   <symbol id="i-promo" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M18.5 15V6M15.5 9l3-3 3 3"/></symbol>
   <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></symbol>
@@ -615,7 +621,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
 <header class="nav">
   <div class="container">
     <a class="brand" href="#top" aria-label="Smart School AI Tools, home">
-      <span class="logo"><svg class="i"><use href="#i-cap"/></svg></span>
+      <span class="logo"><svg class="mark" viewBox="0 0 313.2 261.3" aria-hidden="true"><use href="#i-logo"/></svg></span>
       <span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span>
     </a>
     <nav class="links" aria-label="Sections">
@@ -1141,7 +1147,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
 <footer>
   <div class="container fgrid">
     <div class="fbrand">
-      <span class="brand"><span class="logo"><svg class="i"><use href="#i-cap"/></svg></span><span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span></span>
+      <span class="brand"><span class="logo"><svg class="mark" viewBox="0 0 313.2 261.3" aria-hidden="true"><use href="#i-logo"/></svg></span><span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span></span>
       <p>Less paperwork — more teaching — better results. Report cards, progress cards, rank lists and time tables from one marks sheet.</p>
       <a class="fcta" href="#how">Start with your marks sheet<span><svg class="i"><use href="#i-arrow"/></svg></span></a>
     </div>
@@ -1184,40 +1190,100 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   var cards=[].slice.call(deck.querySelectorAll('.dk'));
   var items=[].slice.call(document.querySelectorAll('#toolList>li'));
   var chips=[].slice.call(document.querySelectorAll('.chips [data-jump]'));
-  var cur=0;
+  var cur=0,pos=0,n=cards.length;
+  var DRAG=0.6;  /* cards move at 60% of the finger: slow, controlled */
   function gap(){return innerWidth<760?150:Math.min(250,innerWidth*0.2)}
-  function set(i,focus){
-    var n=cards.length;cur=((i%n)+n)%n;
-    var g=gap();
+  function wrap(i){return((i%n)+n)%n}
+  function lerp(a,b,t){return a+(b-a)*t}
+  /* draw every card for a (possibly fractional) position p */
+  var idle=null;
+  function render(p,live){
+    var g=gap(),near=wrap(Math.round(p));
+    clearTimeout(idle);
+    if(live)idle=setTimeout(function(){if(x0===null&&pos!==Math.round(pos))set(Math.round(pos))},450);
+    deck.classList.toggle('dragging',!!live);
     cards.forEach(function(c,j){
-      var d=((j-cur)%n+n)%n;if(d>n/2)d-=n;var a=Math.abs(d);
-      var pd=+c.style.getPropertyValue("--d")||0;
-      c.style.transition=Math.abs(pd-d)>2?"none":"";
-      c.style.setProperty('--d',d);c.style.setProperty('--gap',g+'px');
-      c.style.setProperty('--s',a===0?1.22:a===1?.9:.78);
-      c.style.setProperty('--z',20-a);
-      c.style.setProperty('--o',a>3?0:a===3?.5:1);
-      c.classList.toggle('on',a===0);
-      c.setAttribute('aria-selected',a===0?'true':'false');
+      var d=((j-p)%n+n)%n;if(d>n/2)d-=n;var a=Math.abs(d);
+      var pd=parseFloat(c.style.getPropertyValue('--d'));
+      if(!live)c.style.transition=(!isNaN(pd)&&Math.abs(pd-d)>2.5)?'none':'';
+      var s=a<=1?lerp(1.22,.9,a):a<=2?lerp(.9,.78,a-1):.78;
+      var o=a<=2.5?1:a<=3.5?lerp(1,0,a-2.5):0;
+      c.style.setProperty('--d',d.toFixed(4));c.style.setProperty('--gap',g+'px');
+      c.style.setProperty('--s',s.toFixed(4));c.style.setProperty('--o',o.toFixed(3));
+      c.style.setProperty('--z',Math.round(40-a*10));
+      var on=j===near;
+      c.classList.toggle('on',on);
+      c.setAttribute('aria-selected',on?'true':'false');
       c.setAttribute('aria-hidden',a>3?'true':'false');
-      c.tabIndex=a===0?0:-1;
+      c.tabIndex=on?0:-1;
     });
-    items.forEach(function(li,j){li.classList.toggle('on',j===cur)});
-    chips.forEach(function(b){var k=+b.dataset.jump;var nx=chips[chips.indexOf(b)+1];var end=nx?+nx.dataset.jump:99;b.setAttribute('aria-pressed',cur>=k&&cur<end?'true':'false')});
-    try{sessionStorage.setItem('ss_tool',cur)}catch(e){}
-    if(focus)cards[cur].focus({preventScroll:true});
+    if(near!==cur||!live)select(near);
   }
-  cards.forEach(function(c,j){c.addEventListener('click',function(){set(j)})});
+  function select(k){
+    cur=k;
+    items.forEach(function(li,j){li.classList.toggle('on',j===cur)});
+    chips.forEach(function(b){var kk=+b.dataset.jump;var nx=chips[chips.indexOf(b)+1];var end=nx?+nx.dataset.jump:99;b.setAttribute('aria-pressed',cur>=kk&&cur<end?'true':'false')});
+    try{sessionStorage.setItem('ss_tool',cur)}catch(e){}
+  }
+  /* go to card i the short way round, with a slow glide */
+  function set(i,focus){
+    var t=wrap(i),delta=((t-wrap(Math.round(pos)))%n+n)%n;if(delta>n/2)delta-=n;
+    pos=Math.round(pos)+delta;
+    render(pos,false);
+    if(focus)cards[t].focus({preventScroll:true});
+  }
+
+  cards.forEach(function(c,j){c.addEventListener('click',function(){if(!moved)set(j)})});
   chips.forEach(function(b){b.addEventListener('click',function(){set(+b.dataset.jump)})});
   document.getElementById('dPrev').onclick=function(){set(cur-1)};
   document.getElementById('dNext').onclick=function(){set(cur+1)};
   deck.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){set(cur+1,1);e.preventDefault()}if(e.key==='ArrowLeft'){set(cur-1,1);e.preventDefault()}});
-  var x0=null;
-  deck.addEventListener('pointerdown',function(e){x0=e.clientX});
-  deck.addEventListener('pointerup',function(e){if(x0===null)return;var dx=e.clientX-x0;x0=null;if(Math.abs(dx)>40)set(cur+(dx<0?1:-1))});
-  addEventListener('resize',function(){set(cur)});
+
+  /* drag with finger or mouse: cards follow, then glide to the nearest */
+  var x0=null,y0=0,p0=0,moved=false,lastX=0,lastT=0,vel=0,axis=null;
+  deck.addEventListener('pointerdown',function(e){
+    if(e.button>0)return;
+    x0=e.clientX;y0=e.clientY;p0=pos;moved=false;axis=null;lastX=e.clientX;lastT=performance.now();vel=0;
+  });
+  deck.addEventListener('pointermove',function(e){
+    if(x0===null)return;
+    var dx=e.clientX-x0,dy=e.clientY-y0;
+    if(!axis){if(Math.abs(dx)<6&&Math.abs(dy)<6)return;axis=Math.abs(dx)>Math.abs(dy)?'x':'y';if(axis==='x'){try{deck.setPointerCapture(e.pointerId)}catch(_){}}}
+    if(axis!=='x')return;
+    moved=true;
+    var now=performance.now(),dt=Math.max(1,now-lastT);
+    vel=lerp(vel,(e.clientX-lastX)/dt,.3);lastX=e.clientX;lastT=now;
+    pos=p0-dx/gap()*DRAG;
+    render(pos,true);
+  });
+  function release(){
+    if(x0===null)return;x0=null;
+    if(!moved){axis=null;return;}
+    /* a gentle flick moves at most one extra card */
+    var fling=Math.max(-1,Math.min(1,-vel*0.9));
+    set(Math.round(pos+fling*0.6));
+    setTimeout(function(){moved=false},50);
+  }
+  addEventListener('pointerup',release);
+  addEventListener('pointercancel',release);
+  addEventListener('blur',release);
+  deck.addEventListener('lostpointercapture',release);
+
+  /* sideways trackpad / mouse-wheel scrolling, also slow */
+  var wt=null,w0=0;
+  deck.addEventListener('wheel',function(e){
+    var dx=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:(e.shiftKey?e.deltaY:0);
+    if(!dx)return;
+    e.preventDefault();
+    if(wt===null)w0=Math.round(pos);
+    pos+=dx/gap()*0.35;
+    render(pos,true);
+    clearTimeout(wt);wt=setTimeout(function(){var m=pos-w0;wt=null;set(Math.abs(m)<.2?w0:w0+(m>0?1:-1)*Math.max(1,Math.round(Math.abs(m))))},160);
+  },{passive:false});
+
+  addEventListener('resize',function(){render(pos,false)});
   var s=0;try{s=+sessionStorage.getItem('ss_tool')||0}catch(e){}
-  set(s);
+  pos=s;render(pos,false);
   [].slice.call(document.querySelectorAll("[data-tool]")).forEach(function(a){a.addEventListener("click",function(){set(+a.dataset.tool)})});
 
   var arc=document.getElementById('arc');
