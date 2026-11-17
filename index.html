@@ -3,57 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#06281F"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Smart School">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#FBFAF6"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Smart School">
 <title>Smart School AI Tools</title>
 <meta name="description" content="Report cards, progress cards, rank lists, grading abstracts, subject analysis and substitute time tables from one marks sheet. Turning days of work into seconds.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Ramabhadra&family=Baloo+Tammudu+2:wght@500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
    Smart School — design tokens
-   Evergreen + mint (calm, trustworthy) with friendly accents
    ========================================================= */
 :root{
-  --bg:#F3F6F4; --surface:#FFFFFF; --surface-2:#F7FAF8; --sunk:#EDF2EF;
-  --ink:#0C241D; --ink-2:#2D463E; --muted:#5D7068; --line:#E0E8E3; --line-2:#CFDAD4; --lip:#DCE5E0;
+  --bg:#FBFAF6; --bg-2:#F3F1EA; --surface:#FFFFFF; --surface-2:#F8F7F2; --sunk:#EFEDE5;
+  --ink:#10201A; --ink-2:#33463F; --muted:#66746E; --line:#E6E3D9; --line-2:#D6D2C5; --lip:#E4E0D4;
   --brand:#0F5C46; --brand-2:#128260; --brand-ink:#FFFFFF; --deep:#06281F; --deep-2:#0B3B2E;
-  --mint:#7FF0C0; --mint-2:#C6FBE4; --sun:#FFC83D; --sun-2:#FFE08A; --sun-ink:#3A2900;
+  --mint:#7FF0C0; --sun:#FFC83D; --sun-2:#FFE08A; --sun-ink:#3A2900;
   --ok:#12805C; --ok-soft:#E3F6EE; --err:#C2362F; --err-soft:#FDECEA; --warn:#9A6200;
   --focus:#6C47FF;
   --font:"Plus Jakarta Sans","Noto Sans Telugu",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --r-lg:22px; --r-md:16px; --r-sm:12px;
-  --shadow:0 1px 2px rgba(12,36,29,.06),0 8px 24px -10px rgba(12,36,29,.14);
-  --shadow-lg:0 2px 4px rgba(12,36,29,.05),0 24px 48px -18px rgba(12,36,29,.25);
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --te:"Ramabhadra","Noto Sans Telugu",sans-serif;
+  --te2:"Baloo Tammudu 2","Noto Sans Telugu",sans-serif;
+  --r-lg:24px; --r-md:16px; --r-sm:12px;
+  --shadow:0 1px 2px rgba(16,32,26,.05),0 10px 30px -14px rgba(16,32,26,.18);
+  --shadow-lg:0 2px 4px rgba(16,32,26,.05),0 30px 60px -24px rgba(16,32,26,.32);
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#06150F; --surface:#0C2119; --surface-2:#0F281F; --sunk:#0A1C15;
-    --ink:#E6F4EE; --ink-2:#C2D9CF; --muted:#8FAA9E; --line:#1A3A2E; --line-2:#24493B; --lip:#030D09;
+    --bg:#07130F; --bg-2:#0A1A14; --surface:#0E211A; --surface-2:#11281F; --sunk:#0B1C16;
+    --ink:#ECF5F0; --ink-2:#C6D8CF; --muted:#90A79C; --line:#1C3A2F; --line-2:#26493B; --lip:#030D09;
     --brand:#7FF0C0; --brand-2:#5FE0A8; --brand-ink:#05211A;
-    --ok:#6EE7B7; --ok-soft:#0F3427; --err:#FF8A80; --err-soft:#3A1614; --warn:#F5C26B;
-    --focus:#A78BFA;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -12px rgba(0,0,0,.6);
-    --shadow-lg:0 24px 48px -18px rgba(0,0,0,.7);
+    --ok:#6EE7B7; --ok-soft:#0F3427; --err:#FF8A80; --err-soft:#3A1614; --warn:#F5C26B; --focus:#A78BFA;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px -14px rgba(0,0,0,.7);
+    --shadow-lg:0 30px 60px -24px rgba(0,0,0,.8);
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#06150F; --surface:#0C2119; --surface-2:#0F281F; --sunk:#0A1C15;
-  --ink:#E6F4EE; --ink-2:#C2D9CF; --muted:#8FAA9E; --line:#1A3A2E; --line-2:#24493B; --lip:#030D09;
+  --bg:#07130F; --bg-2:#0A1A14; --surface:#0E211A; --surface-2:#11281F; --sunk:#0B1C16;
+  --ink:#ECF5F0; --ink-2:#C6D8CF; --muted:#90A79C; --line:#1C3A2F; --line-2:#26493B; --lip:#030D09;
   --brand:#7FF0C0; --brand-2:#5FE0A8; --brand-ink:#05211A;
-  --ok:#6EE7B7; --ok-soft:#0F3427; --err:#FF8A80; --err-soft:#3A1614; --warn:#F5C26B;
-  --focus:#A78BFA;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -12px rgba(0,0,0,.6);
-  --shadow-lg:0 24px 48px -18px rgba(0,0,0,.7);
+  --ok:#6EE7B7; --ok-soft:#0F3427; --err:#FF8A80; --err-soft:#3A1614; --warn:#F5C26B; --focus:#A78BFA;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px -14px rgba(0,0,0,.7);
+  --shadow-lg:0 30px 60px -24px rgba(0,0,0,.8);
   color-scheme:dark;
 }
 
 /* ---------- base ---------- */
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
 button,input,select{font:inherit;color:inherit}
@@ -61,117 +61,237 @@ button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:10px}
 .i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* fine paper grain over the whole page */
+body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ---------- top bar ---------- */
-.nav{position:sticky;top:0;z-index:60;background:rgba(6,40,31,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid rgba(127,240,192,.12);padding-top:env(safe-area-inset-top,0px)}
-.nav .container{display:flex;align-items:center;gap:18px;min-height:64px}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;margin-right:auto}
-.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:var(--deep);background:linear-gradient(160deg,#C9FFE8,#5FE0A8);box-shadow:0 0 0 4px rgba(127,240,192,.14),0 6px 18px -6px rgba(127,240,192,.6)}
-.logo .i{width:22px;height:22px;stroke-width:2}
-.brand b{display:block;font-weight:800;font-size:1.05rem;letter-spacing:-.01em;line-height:1.1}
-.brand small{display:block;font-size:.72rem;font-weight:600;color:#9FD9C2;letter-spacing:.06em;text-transform:uppercase}
-.links{display:flex;gap:4px}
-.links a{color:#CFEBDF;text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 12px;border-radius:10px;transition:background .15s,color .15s}
-.links a:hover{background:rgba(127,240,192,.1);color:#fff}
-.install{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:9px 16px;min-height:40px;font-weight:700;font-size:.9rem;color:var(--sun-ink);cursor:pointer;background:linear-gradient(180deg,var(--sun-2),var(--sun));box-shadow:0 3px 0 #C99400,0 8px 20px -8px rgba(255,200,61,.7);transition:transform .12s}
-.install .i{width:18px;height:18px;stroke-width:2.1}
+.nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent);padding-top:env(safe-area-inset-top,0px)}
+.nav .container{display:flex;align-items:center;gap:18px;min-height:66px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);margin-right:auto}
+.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#C9FFE8;background:linear-gradient(160deg,#145F49,#06281F);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 14px -6px rgba(6,40,31,.6)}
+.logo .i{width:21px;height:21px;stroke-width:2}
+.brand b{display:block;font-weight:800;font-size:1.04rem;letter-spacing:-.01em;line-height:1.1}
+.brand small{display:block;font-family:var(--te2);font-size:.8rem;font-weight:600;color:var(--muted);line-height:1.2}
+.links{display:flex;gap:2px}
+.links a{color:var(--ink-2);text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 13px;border-radius:999px;transition:background .15s}
+.links a:hover{background:var(--sunk)}
+.install{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:9px 16px;min-height:40px;font-weight:700;font-size:.9rem;color:#fff;cursor:pointer;background:var(--ink);transition:transform .12s}
+.install .i{width:18px;height:18px}
 .install:hover{transform:translateY(-1px)}
-.install:active{transform:translateY(2px);box-shadow:0 1px 0 #C99400}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .install{color:var(--deep)}}
 @media (max-width:860px){.links{display:none}}
 
-/* ---------- hero ---------- */
-.hero{position:relative;isolation:isolate;overflow:hidden;color:#EAFFF6;background:var(--deep)}
-.hero::before{content:"";position:absolute;inset:0;z-index:-2;
-  background:
-    radial-gradient(900px 480px at 85% 10%,rgba(95,224,168,.28),transparent 60%),
-    radial-gradient(700px 420px at 0% 100%,rgba(108,71,255,.22),transparent 60%),
-    radial-gradient(500px 300px at 50% 120%,rgba(255,200,61,.12),transparent 70%),
-    linear-gradient(180deg,#06281F 0%,#0A3A2D 100%)}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
-  background-image:radial-gradient(rgba(182,255,224,.22) 1px,transparent 1.2px);background-size:22px 22px;
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);mask-image:linear-gradient(180deg,#000 0%,transparent 85%)}
-.hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:clamp(40px,7vw,88px);padding-bottom:clamp(64px,9vw,120px)}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 8px;border-radius:999px;background:rgba(127,240,192,.1);border:1px solid rgba(127,240,192,.28);font-size:.84rem;font-weight:600;color:#CFF7E6}
-.eyebrow .dot{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--mint);color:var(--deep)}
-.eyebrow .dot .i{width:14px;height:14px;stroke-width:2.4}
-.hero h1{margin:20px 0 0;font-size:clamp(2.2rem,5.4vw,4rem);line-height:1.04;font-weight:800;letter-spacing:-.035em;color:#fff}
-.hero h1 .hl{background:linear-gradient(90deg,#7FF0C0,#FFE08A);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .lead{margin:20px 0 0;max-width:560px;font-size:clamp(1.02rem,1.6vw,1.18rem);color:#BFE3D4;line-height:1.6}
-.hero .lead b{color:#fff;font-weight:700}
-.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.cta{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:12px 22px;border-radius:14px;font-weight:700;font-size:1rem;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
-.cta .i{width:20px;height:20px;stroke-width:2.1}
-.cta.primary{background:linear-gradient(180deg,#B6FFE0,#5FE0A8);color:var(--deep);box-shadow:0 4px 0 #2FA877,0 14px 30px -12px rgba(95,224,168,.8)}
-.cta.primary:hover{transform:translateY(-2px)}
-.cta.primary:active{transform:translateY(2px);box-shadow:0 1px 0 #2FA877}
-.cta.ghost{color:#EAFFF6;background:rgba(255,255,255,.06);border:1px solid rgba(182,255,224,.28)}
-.cta.ghost:hover{background:rgba(255,255,255,.12)}
-.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin:30px 0 0;padding:0;list-style:none;font-size:.9rem;color:#A9D2C1;font-weight:600}
-.trust li{display:flex;align-items:center;gap:8px}
-.trust .i{width:18px;height:18px;color:var(--mint)}
-.quote{margin:28px 0 0;padding-left:14px;border-left:3px solid var(--sun);font-style:italic;color:#D9F3E8;max-width:520px;font-size:.98rem}
+/* =========================================================
+   HERO — an arch of real-looking school documents
+   ========================================================= */
+.hero{position:relative;overflow:hidden;isolation:isolate;
+  background:radial-gradient(60% 50% at 50% 95%,color-mix(in srgb,var(--mint) 22%,transparent),transparent 70%),
+             radial-gradient(40% 40% at 15% 20%,color-mix(in srgb,#FFC83D 12%,transparent),transparent 70%),
+             radial-gradient(40% 40% at 85% 25%,color-mix(in srgb,#8B5CF6 10%,transparent),transparent 70%),var(--bg)}
+.arc{--cw:clamp(98px,11.2vw,154px);--rx:min(45vw,640px);--ry:min(42vw,530px);--cy:650px;
+  position:relative;height:760px;max-width:1440px;margin:0 auto;perspective:1600px}
+.arc-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.ac{position:absolute;width:var(--cw);
+  left:calc(50% + cos(var(--a)) * var(--rx));top:calc(var(--cy) - sin(var(--a)) * var(--ry));
+  transform:translate(-50%,-50%) rotate(calc((90deg - var(--a)) * .5));
+  animation:fan 1.25s cubic-bezier(.16,.84,.24,1) both,bob 7s ease-in-out infinite;animation-delay:calc(var(--i) * 70ms),calc(1.3s + var(--i) * 300ms);
+  transition:scale .35s cubic-bezier(.2,.8,.2,1);z-index:1;container-type:inline-size}
+.ac:hover{scale:1.08;z-index:3}
+@keyframes fan{from{left:50%;top:var(--cy);opacity:0;scale:.45}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -7px}}
 
-/* hero illustration: a stack of product cards */
-.mock{position:relative;min-height:420px}
-.mcard{position:absolute;background:#fff;color:#0C241D;border-radius:20px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.4)}
-.mcard.main{left:6%;right:6%;top:30px;padding:20px 22px 18px;animation:floatA 7s ease-in-out infinite}
-.mc-hd{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px dashed #DCE5E0}
-.mc-av{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#EEE9FF;color:#6C47FF}
-.mc-av .i{width:24px;height:24px}
-.mc-hd b{display:block;font-weight:800;font-size:1rem}
-.mc-hd small{display:block;color:#5D7068;font-size:.8rem;font-weight:600}
-.mc-badge{margin-left:auto;font-weight:800;font-size:.85rem;padding:5px 11px;border-radius:999px;background:#E3F6EE;color:#12805C}
-.mc-rows{display:grid;gap:11px;padding:16px 0 6px}
-.mc-row{display:grid;grid-template-columns:78px 1fr 34px;align-items:center;gap:12px;font-size:.82rem;font-weight:700;color:#2D463E}
-.mc-bar{height:9px;border-radius:99px;background:#EDF2EF;overflow:hidden}
-.mc-bar i{display:block;height:100%;border-radius:99px;background:var(--c);width:var(--w);transform-origin:left;animation:grow 1.4s cubic-bezier(.2,.8,.2,1) both}
-.mc-row em{font-style:normal;text-align:right;color:#0C241D}
-.mc-ft{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:12px;border-top:1px dashed #DCE5E0;font-size:.82rem;font-weight:700;color:#5D7068}
-.mc-ft b{color:#0C241D;font-size:1rem}
-.float{position:absolute;display:flex;align-items:center;gap:11px;padding:11px 15px 11px 11px;border-radius:16px;background:rgba(255,255,255,.96);color:#0C241D;box-shadow:0 18px 40px -14px rgba(0,0,0,.55);font-size:.84rem;font-weight:700;line-height:1.25}
-.float small{display:block;font-weight:600;color:#5D7068;font-size:.75rem}
-.float .fi{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none}
-.float .fi .i{width:20px;height:20px}
-.f1{right:-2%;top:0;animation:floatB 6s ease-in-out infinite}
-.f1 .fi{background:#FFF4D1;color:#B07A00}
-.f2{left:-4%;bottom:44px;animation:floatB 8s ease-in-out infinite reverse}
-.f2 .fi{background:#E3F6EE;color:#12805C}
-.f3{right:2%;bottom:-6px;animation:floatA 9s ease-in-out infinite}
-.f3 .fi{background:#E4F0FF;color:#2F80ED}
-@keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@media (max-width:960px){
-  .hero .container{grid-template-columns:1fr;gap:20px}
-  .mock{display:none}
+/* ---------- the miniature documents (shared by hero + showcase) ---------- */
+.mini{position:relative;aspect-ratio:5/6;border-radius:clamp(14px,1.7vw,22px);overflow:hidden;font-family:var(--font);color:#16231E;
+  box-shadow:0 1px 1px rgba(16,32,26,.08),0 6px 12px -4px rgba(16,32,26,.16),0 26px 44px -18px rgba(16,32,26,.38);width:100%}
+.mini::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(155deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,0) 32%),linear-gradient(0deg,rgba(0,0,0,.06),transparent 40%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.mini .kt{font-family:var(--te);font-weight:400;line-height:1.15}
+
+/* 1 report card */
+.k-report{background:#FBFAF4;padding:7cqw}
+.k-report .frame{position:absolute;inset:4cqw;border:1.2cqw solid #1E3A8A;border-radius:5cqw;box-shadow:0 0 0 .8cqw #fff,0 0 0 1.6cqw #E9A400}
+.k-report .in{position:relative;padding:5cqw 5cqw 0}
+.k-report .rb{background:linear-gradient(120deg,#1E3A8A,#2563EB 55%,#0E7490);color:#fff;text-align:center;border-radius:3cqw;padding:3cqw 2cqw;font-family:var(--te);font-size:10.5cqw;line-height:1.2;text-shadow:0 1px 1px rgba(0,0,0,.25)}
+.k-report .rp{margin:-1.5cqw auto 0;width:66%;text-align:center;background:linear-gradient(90deg,#F5B700,#E9A400);border-radius:9cqw;font-size:4.6cqw;font-weight:800;letter-spacing:.06em;padding:.6cqw 0;position:relative}
+.k-report .ri{display:flex;gap:2.5cqw;margin:3.4cqw 0 2.6cqw}
+.k-report .ri span{flex:1;background:#fff;border:.6cqw solid #C7D6F5;border-top:1.4cqw solid #2563EB;border-radius:2cqw;padding:1cqw 2cqw;font-family:var(--te2);font-weight:700;font-size:6cqw;line-height:1.2}
+.k-report .ri i{display:block;font:700 3.6cqw/1.2 var(--font);color:#64748B;font-style:normal;letter-spacing:.05em;text-transform:uppercase}
+.k-report .row{display:grid;grid-template-columns:1fr auto auto;gap:3cqw;align-items:center;font-size:5.6cqw;padding:1.3cqw 1.5cqw;border-bottom:.5cqw solid #E2E8F5}
+.k-report .row:nth-child(even){background:#F3F7FF}
+.k-report .row span{font-family:var(--te2);font-weight:700;color:#1E3A8A}
+.k-report .row b{font-weight:800}
+.k-report .row em{font-style:normal;font-weight:800;font-size:4.4cqw;color:#fff;background:#16A34A;border-radius:9cqw;padding:.2cqw 2.2cqw}
+.k-report .row em.b{background:#2563EB}
+
+/* 2 phone with digital progress card */
+.k-phone{background:linear-gradient(160deg,#A78BFA 0%,#6C47FF 55%,#4325C9 100%);display:grid;place-items:center}
+.k-phone::before{content:"";position:absolute;width:90%;height:50%;left:5%;bottom:-18%;background:radial-gradient(closest-side,rgba(0,0,0,.35),transparent);filter:blur(4px)}
+.k-phone .ph{position:relative;width:58%;aspect-ratio:9/17;border-radius:9cqw;background:#121212;padding:2.4cqw;transform:rotate(-8deg) translateY(4cqw);box-shadow:0 0 0 .8cqw #3A3A3A,0 14cqw 18cqw -8cqw rgba(0,0,0,.6)}
+.k-phone .scr{height:100%;border-radius:7cqw;background:linear-gradient(180deg,#F4F1FF,#fff 40%);overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:6cqw 3cqw 0;text-align:center}
+.k-phone .scr::before{content:"";width:16cqw;height:3cqw;border-radius:3cqw;background:#121212;margin:-4cqw 0 4cqw}
+.k-phone .pa{width:17cqw;height:17cqw;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#FFD166,#F59E0B);font-family:var(--te);font-size:9cqw;color:#5A3300}
+.k-phone b{display:block;margin-top:2.5cqw;font-family:var(--te2);font-weight:800;font-size:7cqw;line-height:1.1}
+.k-phone small{display:block;font-size:3.8cqw;font-weight:700;color:#6B6390}
+.k-phone .ring{margin:3cqw 0;width:24cqw;height:24cqw;border-radius:50%;background:conic-gradient(#6C47FF 0 91%,#E9E4FF 0);display:grid;place-items:center}
+.k-phone .ring::before{content:"91%";display:grid;place-items:center;width:17cqw;height:17cqw;border-radius:50%;background:#fff;font-weight:800;font-size:5.4cqw}
+.k-phone .wave{display:flex;align-items:center;gap:1cqw;height:8cqw;padding:0 2cqw;border-radius:9cqw;background:#EEE9FF}
+.k-phone .wave i{width:1.2cqw;border-radius:2cqw;background:#6C47FF;height:calc(var(--h) * 1cqw);animation:eq 1.1s ease-in-out infinite;animation-delay:calc(var(--h) * -90ms)}
+@keyframes eq{50%{transform:scaleY(.45)}}
+
+/* 3 rank podium */
+.k-rank{background:radial-gradient(120% 80% at 50% 0%,#FFF3C7,#FFD24D 45%,#F0A500);display:flex;flex-direction:column;align-items:center;padding:9cqw 6cqw 0}
+.k-rank .kt{font-size:11cqw;color:#5A3A00;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+.k-rank small{font-size:4.4cqw;font-weight:800;color:#7A5300;letter-spacing:.08em;text-transform:uppercase}
+.k-rank .pod{margin-top:auto;width:100%;display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:end;gap:1.5cqw}
+.k-rank .pod>*{display:flex;flex-direction:column;align-items:center;gap:2cqw}
+.k-rank .pod i{width:100%;border-radius:3cqw 3cqw 0 0;background:linear-gradient(180deg,#fff,#FFF2CC);box-shadow:inset 0 -2cqw 0 rgba(176,122,0,.18);display:grid;place-items:start center;padding-top:2cqw;font:800 9cqw/1 var(--font);font-style:normal;color:#B07A00}
+.k-rank .p1 i{height:34cqw}.k-rank .p2 i{height:24cqw}.k-rank .p3 i{height:17cqw}
+.k-rank .md{width:14cqw;height:14cqw;border-radius:50%;display:grid;place-items:center;font-family:var(--te2);font-weight:800;font-size:5cqw;color:#fff;box-shadow:inset 0 -1cqw 0 rgba(0,0,0,.18),0 2cqw 3cqw -1cqw rgba(0,0,0,.35)}
+.k-rank .g{background:radial-gradient(circle at 35% 30%,#FFE58A,#D4A017 70%)}.k-rank .s{background:radial-gradient(circle at 35% 30%,#F1F5F9,#94A3B8 70%)}.k-rank .bz{background:radial-gradient(circle at 35% 30%,#F6C79A,#B87333 70%)}
+
+/* 4 chalkboard */
+.k-chalk{background:linear-gradient(135deg,#9A6A3A,#6B4423 50%,#8A5A2E);padding:5.5cqw}
+.k-chalk .board{position:relative;height:100%;border-radius:3cqw;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2cqw;
+  background:radial-gradient(80% 60% at 40% 35%,rgba(255,255,255,.09),transparent 70%),radial-gradient(60% 50% at 70% 80%,rgba(255,255,255,.06),transparent 70%),linear-gradient(160deg,#25563F,#173B2B);
+  box-shadow:inset 0 0 6cqw rgba(0,0,0,.45)}
+.k-chalk .board::before{content:"";position:absolute;inset:0;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.k-chalk span{position:relative;font-family:var(--te);font-size:24cqw;line-height:1;color:rgba(255,255,255,.92);letter-spacing:.04em;text-shadow:0 0 1.2cqw rgba(255,255,255,.55),.6cqw .4cqw 0 rgba(255,255,255,.15);transform:rotate(-3deg)}
+.k-chalk span.s2{font-size:15cqw;color:rgba(255,236,170,.88);transform:rotate(2deg)}
+.k-chalk .chalk{position:absolute;bottom:4cqw;right:8cqw;width:16cqw;height:4cqw;border-radius:1.5cqw;background:linear-gradient(180deg,#fff,#DADADA);transform:rotate(-12deg);box-shadow:0 1cqw 1.5cqw rgba(0,0,0,.4)}
+.k-chalk .tray{position:absolute;left:-5.5cqw;right:-5.5cqw;bottom:-5.5cqw;height:5cqw;background:linear-gradient(180deg,#7A4E28,#5B3A1C)}
+
+/* 5 grading donut */
+.k-donut{background:linear-gradient(165deg,#DFFBF0,#A6EDD2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4cqw;padding:6cqw}
+.k-donut .ring{width:62cqw;height:62cqw;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(#12A37A 0 46%,#2F80ED 0 70%,#FFC83D 0 86%,#FB923C 0 95%,#E5484D 0);box-shadow:0 3cqw 6cqw -2cqw rgba(15,92,70,.45),inset 0 0 0 .6cqw rgba(255,255,255,.4)}
+.k-donut .ring>*{width:42cqw;height:42cqw;border-radius:50%;background:#fff;display:grid;place-content:center;text-align:center;box-shadow:inset 0 1.5cqw 3cqw rgba(0,0,0,.08)}
+.k-donut .ring b{font-weight:800;font-size:12cqw;line-height:1;color:#0F5C46}
+.k-donut .ring small{font-family:var(--te2);font-weight:700;font-size:6cqw;color:#33463F}
+.k-donut .lg{display:flex;gap:2.4cqw;font-size:4.6cqw;font-weight:800;color:#24433A}
+.k-donut .lg span::before{content:"";display:inline-block;width:3.4cqw;height:3.4cqw;border-radius:50%;background:var(--c);margin-right:1cqw;vertical-align:-.3cqw}
+
+/* 6 whatsapp message to parents */
+.k-wa{background:#EFE7DD;display:flex;flex-direction:column}
+.k-wa::before{content:"";position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(150,130,100,.25) 1px,transparent 1.4px);background-size:7cqw 7cqw}
+.k-wa .wh{position:relative;display:flex;align-items:center;gap:2.6cqw;background:#075E54;color:#fff;padding:5cqw 4cqw 4cqw}
+.k-wa .wh i{width:11cqw;height:11cqw;border-radius:50%;background:linear-gradient(160deg,#FFD7A8,#E8A065);flex:none}
+.k-wa .wh b{font-family:var(--te2);font-weight:700;font-size:6.6cqw;line-height:1.1}
+.k-wa .wh small{display:block;font-size:3.8cqw;opacity:.8;font-weight:500}
+.k-wa .bub{position:relative;margin:5cqw 4cqw 0 auto;width:80%;background:#DCF8C6;border-radius:4cqw 1cqw 4cqw 4cqw;padding:2cqw;box-shadow:0 .6cqw .8cqw rgba(0,0,0,.12)}
+.k-wa .lp{background:rgba(0,0,0,.05);border-radius:2.5cqw;overflow:hidden}
+.k-wa .lp .th{height:20cqw;background:linear-gradient(120deg,#1E3A8A,#2563EB 60%,#0E7490);display:grid;place-items:center;color:#fff;font-family:var(--te);font-size:7.5cqw}
+.k-wa .lp b{display:block;padding:1.5cqw 2cqw 0;font-size:4.4cqw;font-weight:800}
+.k-wa .lp small{display:block;padding:0 2cqw 1.5cqw;font-size:3.6cqw;color:#5B6B66}
+.k-wa .tx{font-family:var(--te2);font-size:5.4cqw;font-weight:600;line-height:1.3;padding:2cqw 1cqw 0}
+.k-wa .tm{display:block;text-align:right;font-size:3.6cqw;color:#5B6B66;padding:0 1cqw}
+.k-wa .tm i{font-style:normal;color:#34B7F1;font-weight:800;letter-spacing:-.15em;margin-left:1cqw}
+
+/* 7 subject analysis chart */
+.k-chart{background:linear-gradient(160deg,#FF9AA2,#F2546A 60%,#D63655);padding:7cqw}
+.k-chart .cw{height:100%;background:#fff;border-radius:5cqw;padding:5cqw;display:flex;flex-direction:column;box-shadow:0 3cqw 6cqw -2cqw rgba(120,10,40,.45)}
+.k-chart .kt{font-size:10cqw;color:#B4183A}
+.k-chart small{font-size:4.4cqw;font-weight:700;color:#7A5560}
+.k-chart svg{margin-top:auto;width:100%;height:auto;overflow:visible}
+.k-chart .ax{display:flex;justify-content:space-between;font-size:3.6cqw;font-weight:800;color:#9A7A82;margin-top:1.5cqw}
+
+/* 8 marked answer sheet */
+.k-paper{background:#FFFDF6;background-image:linear-gradient(90deg,transparent 15cqw,#F3A3A3 15cqw,#F3A3A3 15.6cqw,transparent 15.6cqw),repeating-linear-gradient(180deg,transparent 0 8.4cqw,#C9DBF2 8.4cqw 8.9cqw);background-position:0 14cqw;padding:7cqw 7cqw 0 20cqw}
+.k-paper svg.hw{width:100%;height:auto}
+.k-paper .score{position:absolute;right:6cqw;top:6cqw;width:30cqw;height:30cqw;border-radius:50%;border:1.2cqw solid #D7263D;color:#D7263D;display:grid;place-content:center;text-align:center;transform:rotate(-12deg);font-family:"Instrument Serif",serif;font-style:italic;line-height:.85}
+.k-paper .score b{font-size:13cqw;font-weight:400;border-bottom:.8cqw solid #D7263D}
+.k-paper .score small{font-size:8cqw}
+
+/* 9 time table */
+.k-tt{background:linear-gradient(160deg,#FFB27A,#F26A1B 65%,#D5520A);padding:7cqw 6cqw;display:flex;flex-direction:column;gap:3cqw}
+.k-tt .kt{font-size:10.5cqw;color:#fff;text-shadow:0 .5cqw 1cqw rgba(120,40,0,.35)}
+.k-tt .gr{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1.4cqw;background:#fff;border-radius:4cqw;padding:2.4cqw;box-shadow:0 3cqw 6cqw -2cqw rgba(120,40,0,.5)}
+.k-tt .gr span{border-radius:1.8cqw;display:grid;place-items:center;font-size:4.4cqw;font-weight:800;color:#3A2A1E;background:#F5EFE8}
+.k-tt .gr .h{background:#FFE6D2;color:#C2410C}
+.k-tt .gr .x{background:#FDE2E2;color:#B91C1C;text-decoration:line-through}
+.k-tt .gr .n{background:#DCFCE7;color:#15803D}
+
+/* 10 certificate */
+.k-cert{background:#FFF8E7;padding:6cqw}
+.k-cert .cf{position:relative;height:100%;border:1cqw double #C59A2C;outline:.5cqw solid #E8D3A0;outline-offset:-3cqw;border-radius:2cqw;display:flex;flex-direction:column;align-items:center;padding:7cqw 4cqw 0;text-align:center;
+  background:radial-gradient(70% 50% at 50% 40%,rgba(255,255,255,.9),transparent)}
+.k-cert small{font-size:3.8cqw;font-weight:800;letter-spacing:.2em;color:#8A6A2A}
+.k-cert .kt{margin-top:2cqw;font-size:11.5cqw;color:#7A2E0E}
+.k-cert .ln{display:block;width:70%;height:.5cqw;background:#D8C69E;margin-top:5cqw;border-radius:1cqw}
+.k-cert .ln.s{width:50%;margin-top:3cqw}
+.k-cert .nm{margin-top:3cqw;font-family:"Instrument Serif",serif;font-style:italic;font-size:9cqw;color:#2B2B2B;line-height:1}
+.k-cert .seal{position:absolute;bottom:6cqw;left:50%;translate:-50% 0;width:20cqw;height:20cqw;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#FFE58A,#D4A017 60%,#9C7208);box-shadow:0 0 0 1.4cqw #F5D46A,0 2cqw 3cqw rgba(0,0,0,.25)}
+.k-cert .seal::before,.k-cert .seal::after{content:"";position:absolute;top:80%;width:7cqw;height:14cqw;background:#C0392B;z-index:-1;clip-path:polygon(0 0,100% 0,100% 100%,50% 80%,0 100%)}
+.k-cert .seal::before{left:3cqw;rotate:18deg}.k-cert .seal::after{right:3cqw;rotate:-18deg}
+
+/* 11 attendance calendar */
+.k-cal{background:linear-gradient(165deg,#D9ECFF,#9CC8FF);padding:7cqw 6cqw;display:flex;flex-direction:column;gap:3cqw}
+.k-cal .hd2{display:flex;align-items:baseline;justify-content:space-between}
+.k-cal .kt{font-size:11cqw;color:#173E7A}
+.k-cal small{font-family:var(--te2);font-weight:700;font-size:5cqw;color:#2F5E9E}
+.k-cal .gr{flex:1;display:grid;grid-template-columns:repeat(6,1fr);align-content:center;gap:2.4cqw 3.4cqw;background:#fff;border-radius:4cqw;padding:3cqw;box-shadow:0 3cqw 6cqw -2cqw rgba(23,62,122,.45)}
+.k-cal .gr i{border-radius:50%;aspect-ratio:1;width:70%;justify-self:center;background:#22C55E;opacity:.85}
+.k-cal .gr i.a{background:#EF4444}.k-cal .gr i.h{background:#E5E7EB}
+
+/* ---------- hero copy (inside the arch) ---------- */
+.hero-c{position:absolute;left:50%;top:268px;transform:translateX(-50%);width:min(600px,54vw);text-align:center;z-index:5}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--te2);font-weight:700;font-size:.98rem;color:var(--ink-2)}
+.tag b{font-family:var(--font);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--brand-2);border-radius:999px;padding:4px 9px}
+.hero h1{margin:18px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,4.6vw,4.1rem);line-height:1.02;letter-spacing:-.02em;color:var(--ink)}
+.hero h1 em{font-style:italic;color:var(--brand-2)}
+.hero .lead{margin:14px auto 0;max-width:470px;font-size:1rem;color:var(--muted)}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;min-height:50px;padding:12px 14px 12px 24px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;text-decoration:none;box-shadow:0 14px 30px -14px rgba(16,32,26,.7);transition:transform .15s}
+.cta span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--mint);color:var(--deep)}
+.cta span .i{width:16px;height:16px;stroke-width:2.4}
+.cta:hover{transform:translateY(-2px)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);margin:30px auto 0;max-width:560px}
+.feats div{padding:0 14px}
+.feats div+div{border-left:1px solid var(--line-2)}
+.feats b{display:block;font-weight:800;font-size:.9rem;color:var(--ink)}
+.feats small{display:block;font-size:.78rem;color:var(--muted);line-height:1.4;margin-top:2px}
+
+@media (max-width:1100px){.arc{--cy:620px;height:720px}.hero-c{top:250px}}
+@media (max-width:900px){.feats{display:none}}
+@media (max-width:760px){
+  .arc{--cw:82px;--rx:49vw;--ry:300px;--cy:400px;height:430px}
+  .hero-c{position:relative;left:auto;top:auto;transform:none;width:auto;margin:-190px auto 0;padding:0 20px 56px}
+  .hero h1{font-size:2.55rem}
+  .feats{display:grid;max-width:none}
+  .feats div{padding:0 8px}
 }
 
-/* ---------- section headings ---------- */
-.section{padding:clamp(48px,7vw,84px) 0 0}
+/* =========================================================
+   Section heads
+   ========================================================= */
+.section{padding:clamp(56px,8vw,96px) 0 0}
 .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-2)}
 .kicker::before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
-.h2{margin:10px 0 0;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.15;font-weight:800;letter-spacing:-.025em;color:var(--ink)}
-.sub{margin:10px 0 0;color:var(--muted);max-width:640px;font-size:1.02rem}
+.h2{margin:10px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1.05;letter-spacing:-.015em;color:var(--ink)}
+.h2 em{font-style:italic;color:var(--brand-2)}
+.h2 .te{display:block;font-family:var(--te2);font-weight:700;font-size:.42em;letter-spacing:0;color:var(--muted);margin-top:6px}
+.sub{margin:10px 0 0;color:var(--muted);max-width:620px}
 .shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px}
 
-/* ---------- steps ---------- */
+/* =========================================================
+   Steps
+   ========================================================= */
 .steps{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 @media (max-width:900px){.steps{grid-template-columns:1fr}}
 .step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;box-shadow:var(--shadow),0 4px 0 var(--lip)}
 .step-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
-.num{flex:none;width:40px;height:40px;border-radius:13px;display:grid;place-items:center;font-weight:800;font-size:1.05rem;color:var(--brand-ink);background:var(--brand);box-shadow:0 3px 0 var(--deep-2)}
+.num{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-family:var(--serif);font-size:1.6rem;color:#fff;background:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .num{color:var(--deep);background:var(--mint)}}
 .num .i{display:none;width:22px;height:22px;stroke-width:2.6}
-.step:has(.status.ok) .num{background:var(--ok)}
+.step:has(.status.ok) .num{background:var(--ok);color:#fff}
 .step:has(.status.ok) .num span{display:none}
 .step:has(.status.ok) .num .i{display:block}
-.st{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
+.st{margin:0;font-size:1.22rem;font-weight:800;letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
 .step-hd p{margin:4px 0 0;color:var(--muted);font-size:.93rem}
 
-/* action rows (labels / links / buttons) */
 .rows{display:grid;gap:10px}
 .src{position:relative;display:grid;grid-template-columns:46px 1fr auto;align-items:center;column-gap:14px;row-gap:2px;width:100%;margin:0;padding:14px 16px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface-2);color:var(--ink);text-decoration:none;text-align:left;cursor:pointer;font:inherit;transition:border-color .15s,background .15s,transform .12s,box-shadow .15s;-webkit-tap-highlight-color:transparent}
-.src:hover{border-color:color-mix(in srgb,var(--a,var(--brand-2)) 55%,var(--line));background:var(--surface);box-shadow:0 8px 20px -14px color-mix(in srgb,var(--a,var(--brand-2)) 70%,transparent)}
+.src:hover{border-color:color-mix(in srgb,var(--a,var(--brand-2)) 55%,var(--line));background:var(--surface);box-shadow:0 10px 24px -16px color-mix(in srgb,var(--a,var(--brand-2)) 80%,transparent)}
 .src:active{transform:translateY(1px)}
 .src input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .src .ic{grid-row:1/span 2;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:var(--a,var(--brand-2));background:color-mix(in srgb,var(--a,var(--brand-2)) 13%,transparent)}
@@ -190,7 +310,6 @@ button,input,select{font:inherit;color:inherit}
 #dropUdise{--a:#B07A00}
 #udDl{--a:#12805C}
 
-/* drop zone */
 .dropzone{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:26px 18px;min-height:168px;border:2px dashed var(--line-2);border-radius:var(--r-md);background:var(--surface-2);cursor:pointer;transition:border-color .15s,background .15s}
 .dropzone:hover,.dropzone.over{border-color:var(--brand-2);background:color-mix(in srgb,var(--brand-2) 7%,var(--surface))}
 .dropzone input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
@@ -200,26 +319,21 @@ button,input,select{font:inherit;color:inherit}
 .dropzone small{color:var(--muted);font-size:.88rem}
 .dropzone .pill{display:inline-flex;gap:6px;margin-top:6px}
 .dropzone .pill span{font-size:.72rem;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:7px;background:var(--sunk);color:var(--ink-2)}
-
 .or{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--muted);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
 .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
-
-/* inline link loader (google sheet) */
 .gsx,.tt1{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface-2);transition:border-color .15s,box-shadow .15s}
 .gsx:focus-within,.tt1:focus-within{border-color:var(--brand-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand-2) 16%,transparent)}
 .gsx .ic,.tt1 .ic{color:#2F80ED;display:grid;place-items:center;flex:none}
 .gsx input,.tt1 input{flex:1;min-width:0;border:0;background:transparent;outline:none;min-height:40px;font-size:16px;font-weight:500;color:var(--ink)}
 .gsx input::placeholder,.tt1 input::placeholder{color:var(--muted)}
-.tl{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 16px;border:0;border-radius:11px;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.92rem;cursor:pointer;white-space:nowrap;transition:filter .15s,transform .12s}
-.tl:hover{filter:brightness(1.1)}
+.tl{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 16px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:.92rem;cursor:pointer;white-space:nowrap;transition:filter .15s,transform .12s}
+.tl:hover{filter:brightness(1.15)}
 .tl:active{transform:translateY(1px)}
 .tl:disabled{opacity:.55;cursor:wait}
-.tl.alt{background:transparent;color:var(--brand-2);border:1px solid var(--line-2)}
+.tl.alt{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
 .tl .i{width:17px;height:17px;stroke-width:2.1}
 .help{display:flex;gap:8px;align-items:flex-start;margin:10px 2px 0;color:var(--muted);font-size:.85rem;line-height:1.45}
 .help .i{width:17px;height:17px;margin-top:1px;color:var(--brand-2)}
-
-/* status */
 .status{margin:12px 0 0;font-weight:700;font-size:.94rem;line-height:1.45;color:var(--ink-2)}
 .status:empty{display:none}
 .status.ok,.status.err{display:block;padding:12px 14px;border-radius:var(--r-sm)}
@@ -228,8 +342,6 @@ button,input,select{font:inherit;color:inherit}
 .status .udn{display:block;font-weight:500;color:var(--ink-2);font-size:.86rem;margin-top:3px}
 @keyframes pop{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
 .note{margin:14px 2px 0;color:var(--muted);font-size:.86rem;line-height:1.5}
-
-/* fields */
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;padding-top:20px;border-top:1px dashed var(--line-2)}
 @media (max-width:560px){.fields{grid-template-columns:1fr}}
 .fields label{display:block;font-weight:700;font-size:.84rem;color:var(--ink-2);margin-bottom:6px}
@@ -237,76 +349,124 @@ button,input,select{font:inherit;color:inherit}
 .field::placeholder{color:var(--muted);opacity:.85}
 .field:focus{outline:none;border-color:var(--brand-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand-2) 16%,transparent)}
 
-/* ---------- tools ---------- */
-.tools{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-@media (max-width:900px){.tools{grid-template-columns:1fr}}
-.tool{--a:#6C47FF;position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow),0 4px 0 var(--lip);transition:transform .2s,box-shadow .2s}
-.tool::before{content:"";position:absolute;left:22px;right:22px;top:-1px;height:3px;border-radius:0 0 4px 4px;background:var(--a);opacity:.9}
-.tool:hover{box-shadow:var(--shadow-lg),0 4px 0 var(--lip)}
-.tc1{--a:#6C47FF}.tc2{--a:#2F80ED}.tc3{--a:#D99A00}.tc4{--a:#12A37A}.tc5{--a:#E5484D}.tc6{--a:#EA6A1B}
+/* =========================================================
+   TOOLS — showcase deck (big centre card, art breaks out)
+   ========================================================= */
+.show{position:relative;margin-top:8px;border-radius:36px;padding:28px 0 0;
+  background:linear-gradient(180deg,var(--bg-2),color-mix(in srgb,var(--bg-2) 40%,var(--bg)));border:1px solid var(--line);overflow:hidden}
+.show-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 28px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{border:0;background:transparent;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.9rem;color:var(--muted);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.navb{display:flex;gap:8px;margin-left:auto}
+.navb button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:transform .15s}
+.navb button:hover{transform:scale(1.06)}
+.navb .i{width:20px;height:20px;stroke-width:2.2}
+.deck{position:relative;height:500px;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.dk{--w:236px;--h:300px;position:absolute;left:50%;top:58%;width:var(--w);height:var(--h);margin:calc(var(--h) / -2) 0 0 calc(var(--w) / -2);
+  border:0;padding:0;background:none;cursor:pointer;text-align:left;color:#fff;font:inherit;
+  transform:translateX(calc(var(--d,0) * var(--gap,230px))) scale(var(--s,1));z-index:var(--z,1);opacity:var(--o,1);
+  transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .45s,filter .45s}
+.dk[aria-hidden=true]{pointer-events:none}
+.dk .bg{position:absolute;inset:0;border-radius:34px;background:var(--g);overflow:hidden;
+  box-shadow:0 2px 4px rgba(16,32,26,.08),0 30px 50px -24px color-mix(in srgb,var(--gc) 85%,transparent);transition:background .5s,box-shadow .5s}
+.dk .bg::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 20% 0%,rgba(255,255,255,.38),transparent 55%)}
+.dk .bg::after{content:"";position:absolute;left:-20%;right:-20%;bottom:-40%;height:70%;background:radial-gradient(closest-side,rgba(255,255,255,.22),transparent)}
+.dk .art{position:absolute;left:50%;top:38%;width:58%;transform:translate(-50%,-50%) rotate(var(--tilt,-6deg));transition:transform .7s cubic-bezier(.2,.8,.2,1),top .7s cubic-bezier(.2,.8,.2,1),width .7s;z-index:2;filter:drop-shadow(0 18px 18px rgba(0,0,0,.25));container-type:inline-size}
+.dk .lbl{position:absolute;left:20px;right:20px;bottom:18px;z-index:3}
+.dk .lbl .kt{display:block;font-family:var(--te);font-size:1.32rem;line-height:1.15;text-shadow:0 2px 8px rgba(0,0,0,.18)}
+.dk .lbl small{display:block;font-weight:700;font-size:.8rem;opacity:.92;margin-top:3px}
+.dk .meta{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.dk .meta span{font-size:.72rem;font-weight:800;letter-spacing:.04em;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.22);backdrop-filter:blur(6px)}
+.dk .meta i{font-style:normal;font-size:.74rem;font-weight:700;opacity:.9}
+/* active card: dark, larger, art pops out over the top edge */
+.dk.on .bg{background:radial-gradient(120% 80% at 50% 0%,color-mix(in srgb,var(--gc) 45%,#0B2A21),#06190F 75%);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 40px 70px -26px color-mix(in srgb,var(--gc) 90%,transparent)}
+.dk.on .art{top:6%;width:66%;transform:translate(-50%,-50%) rotate(-4deg)}
+.dk.on .meta span{background:var(--gc);color:#fff}
+.dk.soon .bg{--g:linear-gradient(160deg,#D9DFDC,#A9B5B0)}
+.dk.soon .lbl{color:#2B3A34}
+.dk.soon.on .lbl{color:#fff}
+.g1{--g:linear-gradient(160deg,#A68BFF,#6C47FF 55%,#4A2BD8);--gc:#6C47FF}
+.g2{--g:linear-gradient(160deg,#7CC0FF,#2F80ED 55%,#1B5FC8);--gc:#2F80ED}
+.g3{--g:linear-gradient(160deg,#FFE07A,#F5B400 55%,#E09400);--gc:#E8A400}
+.g4{--g:linear-gradient(160deg,#6EEBC0,#14B385 55%,#0E8F69);--gc:#12A37A}
+.g5{--g:linear-gradient(160deg,#FF9AA2,#EF4F64 55%,#D23452);--gc:#E5484D}
+.g6{--g:linear-gradient(160deg,#FFB27A,#F26A1B 55%,#D5520A);--gc:#EA6A1B}
+.g7,.g8{--gc:#7C8A84}
+.g3 .lbl,.g3 .meta span{color:#3A2600}
+.g3.on .lbl{color:#fff}
+@media (max-width:760px){
+  .show{border-radius:26px;padding-top:18px}
+  .show-top{padding:0 16px}
+  .chips{display:none}
+  .deck{height:400px}
+  .dk{--w:190px;--h:244px}
+  .dk .bg{border-radius:28px}
+  .dk .lbl .kt{font-size:1.1rem}
+}
+
+/* stage: details + controls for the chosen tool */
+.stage{position:relative;margin:0 16px 16px;background:var(--surface);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow-lg)}
+.tools{list-style:none;margin:0;padding:0}
+.tools>li{display:none}
+.tools>li.on{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:20px 44px;padding:30px;animation:in .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+@media (max-width:860px){.tools>li.on{grid-template-columns:1fr;padding:22px}}
+@media (max-width:760px){.stage{margin:0 10px 10px;border-radius:22px}}
+.tool{--a:#6C47FF}
+.tc1{--a:#6C47FF}.tc2{--a:#2F80ED}.tc3{--a:#C98E00}.tc4{--a:#12A37A}.tc5{--a:#E5484D}.tc6{--a:#EA6A1B}.soon{--a:#7C8A84}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tc1{--a:#A78BFA}:root:not([data-theme="light"]) .tc2{--a:#7DB3FF}:root:not([data-theme="light"]) .tc3{--a:#FFC83D}:root:not([data-theme="light"]) .tc4{--a:#5EE2B4}:root:not([data-theme="light"]) .tc5{--a:#FF8A8E}:root:not([data-theme="light"]) .tc6{--a:#FFA66B}}
 :root[data-theme="dark"] .tc1{--a:#A78BFA}:root[data-theme="dark"] .tc2{--a:#7DB3FF}:root[data-theme="dark"] .tc3{--a:#FFC83D}:root[data-theme="dark"] .tc4{--a:#5EE2B4}:root[data-theme="dark"] .tc5{--a:#FF8A8E}:root[data-theme="dark"] .tc6{--a:#FFA66B}
-.tool .hd{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.tico{flex:none;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:var(--a);background:color-mix(in srgb,var(--a) 13%,transparent)}
-.tico .i{width:26px;height:26px}
-.tt{flex:1 1 160px;min-width:0}
-.tool .n{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--a)}
-.tool h3{margin:2px 0 0;font-size:1.16rem;font-weight:800;letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
-.tool .bd{display:flex;flex-direction:column;flex:1;margin-top:14px}
-.tool .bd>p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.55}
-
-/* language switch */
-.seg{display:inline-flex;flex:none;padding:4px;gap:2px;border-radius:999px;background:var(--sunk);border:1px solid var(--line)}
-.seg button{border:0;background:transparent;color:var(--ink-2);font-weight:700;font-size:.88rem;padding:6px 14px;min-height:34px;border-radius:999px;cursor:pointer;line-height:1;transition:background .15s,color .15s}
+.info .te{display:block;font-family:var(--te);font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.15;color:var(--a)}
+.info h3{margin:6px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.05;letter-spacing:-.015em;color:var(--ink)}
+.info .n{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.info .n::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--a)}
+.info p{margin:14px 0 0;color:var(--muted);font-size:1rem;max-width:460px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
+.facts li{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:.82rem;font-weight:700;color:var(--ink-2)}
+.facts .i{width:15px;height:15px;color:var(--a)}
+.ctrl{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ctrl .lab{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.seg{display:inline-flex;align-self:flex-start;padding:4px;gap:2px;border-radius:999px;background:var(--sunk);border:1px solid var(--line)}
+.seg button{border:0;background:transparent;color:var(--ink-2);font-weight:700;font-size:.92rem;padding:8px 18px;min-height:38px;border-radius:999px;cursor:pointer;line-height:1;transition:background .15s,color .15s}
 .seg button:hover{color:var(--a)}
-.seg button[aria-pressed=true]{background:var(--a);color:#fff;box-shadow:0 3px 10px -3px color-mix(in srgb,var(--a) 70%,transparent)}
+.seg button[aria-pressed=true]{background:var(--a);color:#fff;box-shadow:0 4px 12px -4px color-mix(in srgb,var(--a) 70%,transparent)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg button[aria-pressed=true]{color:#06150F}}
 :root[data-theme="dark"] .seg button[aria-pressed=true]{color:#06150F}
 .seg.blink{animation:segblink .45s ease-in-out 4}
 @keyframes segblink{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--sun) 85%,transparent)}}
-.lhint{display:flex;align-items:center;gap:8px;margin-top:12px;padding:9px 12px;border-radius:11px;font-weight:600;font-size:.86rem;color:var(--warn);background:color-mix(in srgb,var(--sun) 16%,transparent)}
+.lhint{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:11px;font-weight:600;font-size:.86rem;color:var(--warn);background:color-mix(in srgb,var(--sun) 16%,transparent)}
 .lhint::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px color-mix(in srgb,currentColor 18%,transparent)}
 .lhint.done{color:var(--ok);background:var(--ok-soft)}
 .lhint.done::before{display:none}
-
-/* class / section / exam pickers */
-.pk{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
-.pk label{display:grid;gap:5px;flex:1 1 140px;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.pk select{appearance:none;-webkit-appearance:none;min-height:46px;border:1px solid var(--line-2);border-radius:var(--r-sm);padding:8px 38px 8px 14px;font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--ink);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235D7068' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center/18px;cursor:pointer}
+.pk{display:flex;flex-wrap:wrap;gap:12px}
+.pk label{display:grid;gap:5px;flex:1 1 140px;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pk select{appearance:none;-webkit-appearance:none;min-height:46px;border:1px solid var(--line-2);border-radius:var(--r-sm);padding:8px 38px 8px 14px;font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--ink);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2366746E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center/18px;cursor:pointer}
 .pk select:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px color-mix(in srgb,var(--a) 16%,transparent)}
 .pk select:disabled{opacity:.55}
-select option{color:#0C241D;background:#fff}
-
-.acts{display:grid;gap:10px;margin-top:auto;padding-top:16px}
+select option{color:#10201A;background:#fff}
+.acts{display:grid;gap:10px}
 .needlang .go{opacity:.55}
 .needlang .go:hover{opacity:.8}
-
-/* substitute tool extras */
 .tt-drop{--a:#EA6A1B}
-.tt1{margin-top:10px}
 .tt1 .ic{color:var(--a)}
-.ewlink{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 14px;border-radius:var(--r-md);text-decoration:none;color:var(--ink);background:linear-gradient(100deg,color-mix(in srgb,var(--a) 14%,transparent),transparent);border:1px solid color-mix(in srgb,var(--a) 30%,transparent);font-weight:600;font-size:.92rem;transition:transform .15s}
+.ewlink{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-md);text-decoration:none;color:var(--ink);background:linear-gradient(100deg,color-mix(in srgb,var(--a) 14%,transparent),transparent);border:1px solid color-mix(in srgb,var(--a) 30%,transparent);font-weight:600;font-size:.92rem;transition:transform .15s}
 .ewlink:hover{transform:translateY(-1px)}
 .ewlink .i{color:var(--a);width:24px;height:24px}
 .ewlink b{color:var(--a);font-weight:800}
 .ewlink .ar{margin-left:auto}
-
-/* coming soon */
-.tool.soon{background:transparent;box-shadow:none;border-style:dashed;border-color:var(--line-2)}
-.tool.soon::before{display:none}
-.tool.soon .tico{color:var(--muted);background:var(--sunk)}
-.tool.soon .n{color:var(--muted)}
-.badge{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:800;letter-spacing:.04em;color:var(--ink-2);background:var(--sunk);border:1px solid var(--line)}
-.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sun)}
-
-/* tap feedback used by the app script */
+.badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:.84rem;font-weight:800;color:var(--ink-2);background:var(--sunk);border:1px solid var(--line)}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun)}
 .tap{animation:tapblink .42s ease-in-out 2}
 @keyframes tapblink{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 0 5px color-mix(in srgb,var(--a,var(--brand-2)) 30%,transparent)}}
 
 /* ---------- footer ---------- */
 footer{margin-top:clamp(64px,9vw,110px);background:var(--deep);color:#BFE3D4;position:relative;overflow:hidden}
-footer::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 260px at 90% 0%,rgba(95,224,168,.18),transparent 70%);pointer-events:none}
-footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;padding-top:44px;padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
+footer::before{content:"రోజుల పని, క్షణాల్లో పూర్తి";position:absolute;right:-10px;bottom:-26px;font-family:var(--te);font-size:clamp(3rem,9vw,7.5rem);line-height:1;color:rgba(127,240,192,.06);white-space:nowrap;pointer-events:none}
+footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;padding-top:48px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+footer .brand{color:#fff}
+footer .brand small{color:#9FC9B8}
+footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep)}
 .fbrand{max-width:420px}
 .fbrand p{margin:14px 0 0;font-size:.92rem;line-height:1.6;color:#9FC9B8}
 .credit{font-size:.92rem;line-height:1.7}
@@ -315,32 +475,26 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
 .fcopy{flex-basis:100%;padding-top:20px;border-top:1px solid rgba(127,240,192,.12);font-size:.82rem;color:#7FA697}
 
 /* ---------- toast ---------- */
-.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(24px);opacity:0;z-index:90;max-width:min(92vw,520px);padding:13px 20px;border-radius:14px;background:#0C241D;color:#EAFFF6;font-weight:600;font-size:.95rem;text-align:center;box-shadow:0 18px 40px -12px rgba(0,0,0,.5);border:1px solid rgba(127,240,192,.2);pointer-events:none;transition:opacity .2s,transform .2s}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(24px);opacity:0;z-index:90;max-width:min(92vw,520px);padding:13px 20px;border-radius:14px;background:#10201A;color:#EAFFF6;font-weight:600;font-size:.95rem;text-align:center;box-shadow:0 18px 40px -12px rgba(0,0,0,.5);pointer-events:none;transition:opacity .2s,transform .2s}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* entrance */
 @media (prefers-reduced-motion:no-preference){
-  .rise{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
-  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .rise{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+  .rise.d1{animation-delay:.35s}.rise.d2{animation-delay:.5s}.rise.d3{animation-delay:.65s}.rise.d4{animation-delay:.8s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 @media (max-width:520px){
   .container{padding:0 16px}
-  .step,.tool{padding:18px;border-radius:18px}
-  .tool::before{left:18px;right:18px}
+  .step{padding:18px;border-radius:20px}
   .src{grid-template-columns:42px 1fr auto;padding:12px 14px;column-gap:12px}
   .src .ic{width:42px;height:42px}
-  .tool .hd{gap:12px}
-  .tico{width:46px;height:46px;border-radius:14px}
-  .ctas .cta{flex:1 1 auto;justify-content:center}
   .gsx,.tt1{flex-wrap:wrap}
 }
 </style>
 </head>
 <body>
 
-<!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9.5 12 5l10 4.5-10 4.5z"/><path d="M6 11.6V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.4"/><path d="M22 9.5v5"/></symbol>
   <symbol id="i-school" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10.5L12 6l7 4.5V21"/><path d="M10 21v-5h4v5"/><path d="M12 6V2.5h3"/><circle cx="12" cy="11" r="1.4"/></symbol>
@@ -349,30 +503,27 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
   <symbol id="i-sheet" viewBox="0 0 24 24"><path d="M14 3H6.5A2.5 2.5 0 0 0 4 5.5v13A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h8M12 11.5v7"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4.2 4.2 0 0 0 6 0l3-3a4.2 4.2 0 0 0-6-6l-1 1"/><path d="M14 10a4.2 4.2 0 0 0-6 0l-3 3a4.2 4.2 0 0 0 6 6l1-1"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h4.5"/></symbol>
-  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/><path d="m9.2 11.3 2 2 3.8-3.8"/></symbol>
   <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 16.5V21"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5.5h2.5V7A3.5 3.5 0 0 1 17 10.4M7 5.5H4.5V7A3.5 3.5 0 0 0 7 10.4"/></symbol>
   <symbol id="i-clip" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 4V2.8h6V4"/><path d="M9 17v-2.5M12 17v-6M15 17v-4"/></symbol>
   <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3.5 3.5v17h17"/><path d="m7.5 15 4-4 3 3 5.5-5.5"/><path d="M16 8.5h4v4"/></symbol>
-  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17M8 2.5v4M16 2.5v4"/><path d="m9 15 2 2 4-4"/></symbol>
   <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M3.5 9.2h17M3.5 14.8h17M9.2 3.5v17M14.8 3.5v17"/></symbol>
-  <symbol id="i-promo" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M18.5 15V6M15.5 9l3-3 3 3"/></symbol>
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-share" viewBox="0 0 24 24"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.5 7.3L3.5 20.5l1.6-4.4a8.4 8.4 0 1 1 15.4-4.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
   <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M8.5 21h7M12 17v4"/></symbol>
   <symbol id="i-app" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M12 7v7M9.2 11.4 12 14.2l2.8-2.8"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
-  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.5 13.9 9l5.6 1.9-5.6 1.9L12 18.5l-1.9-5.7-5.6-1.9L10.1 9z"/><path d="M19 3.5v3M17.5 5h3"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   <symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6h.01"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3.5h10V8"/><rect x="3.5" y="8" width="17" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/></symbol>
 </svg>
 
 <header class="nav">
   <div class="container">
     <a class="brand" href="#top" aria-label="Smart School AI Tools, home">
       <span class="logo"><svg class="i"><use href="#i-cap"/></svg></span>
-      <span><b>Smart School</b><small>AI Tools</small></span>
+      <span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span>
     </a>
     <nav class="links" aria-label="Sections">
       <a href="#how">How it works</a>
@@ -383,44 +534,81 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
   </div>
 </header>
 
+<!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <div class="container">
-    <div class="hero-copy">
-      <span class="eyebrow rise"><span class="dot"><svg class="i"><use href="#i-spark"/></svg></span>For Teachers · Students · Parents</span>
-      <h1 class="rise d1">Turning days of work into <span class="hl">seconds.</span></h1>
-      <p class="lead rise d2">Report cards, digital progress cards, rank lists and time tables — all from one marks sheet. <b>Less paperwork. More teaching. Better results.</b></p>
-      <div class="ctas rise d3">
-        <a class="cta primary" href="#how">Get started<svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="cta ghost" href="#tools">See all tools</a>
-      </div>
-      <ul class="trust rise d3">
-        <li><svg class="i"><use href="#i-lang"/></svg>తెలుగు &amp; English</li>
-        <li><svg class="i"><use href="#i-sheet"/></svg>Excel or Google Sheets</li>
-        <li><svg class="i"><use href="#i-app"/></svg>Installs like an app</li>
-      </ul>
-      <p class="quote rise d3">“Teach a child today, and you change the world tomorrow.”</p>
-    </div>
+  <div class="arc" id="arc" aria-hidden="true">
+    <div class="arc-in">
 
-    <div class="mock" aria-hidden="true">
-      <div class="mcard main">
-        <div class="mc-hd">
-          <span class="mc-av"><svg class="i"><use href="#i-card"/></svg></span>
-          <div><b>Report Card</b><small>Class 10 · Section A · SA-1</small></div>
-          <span class="mc-badge">Grade A1</span>
-        </div>
-        <div class="mc-rows">
-          <div class="mc-row"><span>Telugu</span><span class="mc-bar"><i style="--w:94%;--c:#6C47FF"></i></span><em>94</em></div>
-          <div class="mc-row"><span>Hindi</span><span class="mc-bar"><i style="--w:88%;--c:#2F80ED;animation-delay:.1s"></i></span><em>88</em></div>
-          <div class="mc-row"><span>English</span><span class="mc-bar"><i style="--w:91%;--c:#12A37A;animation-delay:.2s"></i></span><em>91</em></div>
-          <div class="mc-row"><span>Maths</span><span class="mc-bar"><i style="--w:97%;--c:#D99A00;animation-delay:.3s"></i></span><em>97</em></div>
-          <div class="mc-row"><span>Science</span><span class="mc-bar"><i style="--w:86%;--c:#E5484D;animation-delay:.4s"></i></span><em>86</em></div>
-          <div class="mc-row"><span>Social</span><span class="mc-bar"><i style="--w:90%;--c:#EA6A1B;animation-delay:.5s"></i></span><em>90</em></div>
-        </div>
-        <div class="mc-ft"><span>Total</span><b>546 / 600</b></div>
-      </div>
-      <div class="float f1"><span class="fi"><svg class="i"><use href="#i-trophy"/></svg></span><span>Rank list<small>Ready to print on A4</small></span></div>
-      <div class="float f2"><span class="fi"><svg class="i"><use href="#i-check"/></svg></span><span>All cards in one PDF<small>Every student, one tap</small></span></div>
-      <div class="float f3"><span class="fi"><svg class="i"><use href="#i-share"/></svg></span><span>Parent links<small>Send on WhatsApp</small></span></div>
+      <div class="ac" style="--i:0;--a:170deg"><div class="mini k-paper">
+        <svg class="hw" viewBox="0 0 100 100" fill="none" stroke="#3B4C7A" stroke-width="1.6" stroke-linecap="round"><path d="M2 14c6-3 9 2 14-1s8-2 12 0 9-3 14-1"/><path d="M2 31c5-2 10 1 15-1s10 2 15 0 6-2 10 0"/><path d="M2 48c7-2 11 2 17-1s9 1 14-1"/><path d="M2 65c6-2 9 1 13 0s9-2 13 0 8 1 12-1"/><path d="M2 82c5-2 8 1 12-1s7 1 11 0"/><g stroke="#D7263D" stroke-width="2.4"><path d="M54 10l4 5 9-11"/><path d="M50 44l4 5 9-11"/><path d="M48 78l4 5 9-11"/></g></svg>
+        <div class="score"><b>98</b><small>100</small></div>
+      </div></div>
+
+      <div class="ac" style="--i:1;--a:154deg"><div class="mini k-report"><div class="frame"></div><div class="in">
+        <div class="rb">ప్రగతి పత్రం</div><div class="rp">SA-1 · 2025-26</div>
+        <div class="ri"><span><i>Name</i>కావ్య</span><span><i>Class</i>10-A</span></div>
+        <div class="row"><span>తెలుగు</span><b>94</b><em>A1</em></div>
+        <div class="row"><span>గణితం</span><b>97</b><em>A1</em></div>
+        <div class="row"><span>సైన్స్</span><b>86</b><em class="b">A2</em></div>
+        <div class="row"><span>సాంఘికం</span><b>90</b><em>A1</em></div>
+      </div></div></div>
+
+      <div class="ac" style="--i:2;--a:138deg"><div class="mini k-phone"><div class="ph"><div class="scr">
+        <span class="pa">కా</span><b>కావ్య</b><small>10-A · ప్రగతి</small>
+        <span class="ring"></span>
+        <span class="wave"><i style="--h:3"></i><i style="--h:6"></i><i style="--h:4"></i><i style="--h:7"></i><i style="--h:5"></i><i style="--h:3"></i><i style="--h:6"></i><i style="--h:4"></i><i style="--h:2"></i></span>
+      </div></div></div></div>
+
+      <div class="ac" style="--i:3;--a:122deg"><div class="mini k-rank">
+        <b class="kt">ర్యాంక్ జాబితా</b><small>Class 10 · SA-1</small>
+        <div class="pod"><div class="p2"><span class="md s">2</span><i>2</i></div><div class="p1"><span class="md g">1</span><i>1</i></div><div class="p3"><span class="md bz">3</span><i>3</i></div></div>
+      </div></div>
+
+      <div class="ac" style="--i:4;--a:106deg"><div class="mini k-chart"><div class="cw">
+        <b class="kt">గణితం</b><small>Subject analysis</small>
+        <svg viewBox="0 0 100 52"><defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F2546A" stop-opacity=".35"/><stop offset="1" stop-color="#F2546A" stop-opacity="0"/></linearGradient></defs><path d="M0 44 L20 36 L40 38 L60 22 L80 16 L100 6 L100 52 L0 52Z" fill="url(#ga)"/><path d="M0 44 L20 36 L40 38 L60 22 L80 16 L100 6" stroke="#E0344A" stroke-width="2.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/><g fill="#fff" stroke="#E0344A" stroke-width="2"><circle cx="20" cy="36" r="2.8"/><circle cx="40" cy="38" r="2.8"/><circle cx="60" cy="22" r="2.8"/><circle cx="80" cy="16" r="2.8"/><circle cx="100" cy="6" r="3.4" fill="#E0344A"/></g></svg>
+        <div class="ax"><span>FA1</span><span>FA2</span><span>SA1</span><span>FA3</span><span>SA2</span></div>
+      </div></div></div>
+
+      <div class="ac" style="--i:5;--a:90deg;--cw:clamp(108px,12.4vw,172px)"><div class="mini k-chalk"><div class="board"><span>అ ఆ</span><span class="s2">ఇ ఈ ఉ</span><i class="chalk"></i></div></div></div>
+
+      <div class="ac" style="--i:6;--a:74deg"><div class="mini k-donut">
+        <div class="ring"><div><b>92%</b><small>ఉత్తీర్ణత</small></div></div>
+        <div class="lg"><span style="--c:#12A37A">A1</span><span style="--c:#2F80ED">A2</span><span style="--c:#FFC83D">B1</span><span style="--c:#E5484D">D</span></div>
+      </div></div>
+
+      <div class="ac" style="--i:7;--a:58deg"><div class="mini k-wa">
+        <div class="wh"><i></i><div><b>కావ్య తల్లిగారు</b><small>online</small></div></div>
+        <div class="bub"><div class="lp"><div class="th">ప్రగతి పత్రం</div><b>Kavya · Class 10-A</b><small>Tap to open · with audio</small></div>
+          <div class="tx">మీ పాప ప్రగతి పత్రం చూడండి</div><span class="tm">9:41<i>✓✓</i></span></div>
+      </div></div>
+
+      <div class="ac" style="--i:8;--a:42deg"><div class="mini k-tt">
+        <b class="kt">టైమ్ టేబుల్</b>
+        <div class="gr"><span class="h">P1</span><span class="h">P2</span><span class="h">P3</span><span class="h">P4</span><span>9A</span><span class="x">10B</span><span>8A</span><span>7B</span><span class="n">10B</span><span>6A</span><span class="x">9B</span><span>8B</span><span>7A</span><span>10A</span><span class="n">9B</span><span>6B</span></div>
+      </div></div>
+
+      <div class="ac" style="--i:9;--a:26deg"><div class="mini k-cert"><div class="cf">
+        <small>ZPHS · 2025</small><b class="kt">ప్రశంసా పత్రం</b><span class="nm">First Rank</span><i class="ln"></i><i class="ln s"></i><span class="seal"></span>
+      </div></div></div>
+
+      <div class="ac" style="--i:10;--a:10deg"><div class="mini k-cal">
+        <div class="hd2"><b class="kt">హాజరు</b><small>నవంబర్</small></div>
+        <div class="gr"><i></i><i></i><i></i><i class="a"></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i class="a"></i><i></i><i></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i></i><i class="h"></i></div>
+      </div></div>
+
+    </div>
+  </div>
+
+  <div class="hero-c">
+    <span class="tag rise d1"><b>New</b>రోజుల పని, క్షణాల్లో పూర్తి</span>
+    <h1 class="rise d2">Days of school paperwork, done in <em>seconds.</em></h1>
+    <p class="lead rise d3">Report cards, digital progress cards, rank lists and time tables — all from one marks sheet, in తెలుగు and English.</p>
+    <a class="cta rise d3" href="#how">Start now<span><svg class="i"><use href="#i-arrow"/></svg></span></a>
+    <div class="feats rise d4">
+      <div><b>తెలుగు &amp; English</b><small>Every card in both languages</small></div>
+      <div><b>One marks sheet</b><small>Upload once, use everywhere</small></div>
+      <div><b>Print-ready A4</b><small>PDFs that look right on paper</small></div>
     </div>
   </div>
 </section>
@@ -431,19 +619,17 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
       <div class="shead">
         <div>
           <span class="kicker">How it works</span>
-          <h2 class="h2" id="howH">Two simple steps, then every tool is ready</h2>
-          <p class="sub">Prepare the marks sheet once. Every report, card and list below is made from it.</p>
+          <h2 class="h2" id="howH">Two simple steps, then <em>every tool</em> is ready<span class="te">మార్కుల షీట్ ఒక్కసారి — అన్ని టూల్స్ సిద్ధం</span></h2>
         </div>
       </div>
 
       <div class="steps">
-        <!-- STEP 1 -->
         <section class="step" aria-labelledby="msH">
           <div class="step-hd">
             <span class="num"><span>1</span><svg class="i"><use href="#i-check"/></svg></span>
             <div>
               <h3 class="st" id="msH">Get the Marks Entry Sheet</h3>
-              <p>Give the UDISE+ student list — we fill in every child’s name for you.</p>
+              <p>Give the UDISE+ student list — every child’s name is filled in for you.</p>
             </div>
           </div>
           <div class="rows getsheet">
@@ -465,7 +651,6 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
           <p class="note">One file for every class, with a tab for each class. Type marks in the yellow cells — grades, totals, results and ranks fill in by themselves. Open it in Excel or Google Sheets.</p>
         </section>
 
-        <!-- STEP 2 -->
         <section class="step upload" aria-labelledby="upH">
           <div class="step-hd">
             <span class="num"><span>2</span><svg class="i"><use href="#i-check"/></svg></span>
@@ -489,7 +674,6 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
           </div>
           <p class="help"><svg class="i"><use href="#i-info"/></svg><span>For a Google Sheet, tap Share and set “Anyone with the link” to Viewer, then copy the link.</span></p>
           <p class="status" id="marksStatus" role="status"></p>
-
           <div class="fields">
             <div><label for="school">School Name</label><input class="field" type="text" id="school" placeholder="e.g. Z.P.P. High School, Gurajanapalli" autocomplete="organization"></div>
             <div><label for="addr">Address</label><input class="field" type="text" id="addr" placeholder="e.g. Gurajanapalli, Karapa Mandal, Kakinada Dt." autocomplete="street-address"></div>
@@ -499,125 +683,202 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
     </div>
   </section>
 
+  <!-- ================= TOOLS SHOWCASE ================= -->
   <section class="section" id="tools" aria-labelledby="toolsH">
     <div class="container">
       <div class="shead">
         <div>
           <span class="kicker">Step 3 · Generate</span>
-          <h2 class="h2" id="toolsH">Choose a tool</h2>
-          <p class="sub">Each tool reads the marks sheet you uploaded. Pick a class and open — the rest is done for you.</p>
+          <h2 class="h2" id="toolsH">Pick a tool. <em>Watch it work.</em><span class="te">టూల్ ఎంచుకోండి — మిగతా పని మాది</span></h2>
         </div>
       </div>
 
-      <ol class="tools">
-        <li class="tool tc1 needlang" data-lang-tool="rc">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-card"/></svg></span>
-            <div class="tt"><span class="n">Tool 01</span><h3>Student Report Cards</h3></div>
-            <div class="seg" role="group" aria-label="Report card language"><button type="button" data-l="te" aria-pressed="false">తెలుగు</button><button type="button" data-l="en" aria-pressed="false">English</button></div>
+      <div class="show">
+        <div class="show-top">
+          <div class="chips" role="group" aria-label="Filter">
+            <button type="button" data-jump="0" aria-pressed="true">Marks tools</button>
+            <button type="button" data-jump="5" aria-pressed="false">Time tables</button>
+            <button type="button" data-jump="6" aria-pressed="false">Coming soon</button>
           </div>
-          <div class="bd">
-            <p>Report cards for every student from the uploaded marks.</p>
-            <div class="lhint" role="status">First choose తెలుగు or English, then download or open.</div>
-            <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Section<select data-p="sec" class="psec"></select></label></div>
-            <div class="acts lines">
-              <button type="button" class="src go" data-open="report-card.html?from=hub&go=pdf" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-download"/></svg></span><strong>Download PDF</strong><small>All cards of the chosen class in one PDF</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
-              <button type="button" class="src go" data-open="report-card.html?from=hub" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-eye"/></svg></span><strong>Open &amp; Select</strong><small>See the cards and pick the ones you need</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
-            </div>
-          </div>
-        </li>
+          <div class="navb"><button type="button" id="dPrev" aria-label="Previous tool"><svg class="i"><use href="#i-left"/></svg></button><button type="button" id="dNext" aria-label="Next tool"><svg class="i"><use href="#i-arrow"/></svg></button></div>
+        </div>
 
-        <li class="tool tc2 needlang" data-lang-tool="dpc">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-phone"/></svg></span>
-            <div class="tt"><span class="n">Tool 02</span><h3>Digital Progress Cards</h3></div>
-            <div class="seg" role="group" aria-label="Progress card language"><button type="button" data-l="te" aria-pressed="false">తెలుగు</button><button type="button" data-l="en" aria-pressed="false">English</button></div>
-          </div>
-          <div class="bd">
-            <p>A personal link for each student’s card, with audio, to send to parents on WhatsApp. Select students to download their cards.</p>
-            <div class="lhint" role="status">First choose తెలుగు or English, then open the parent links.</div>
-            <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Section<select data-p="sec" class="psec"></select></label></div>
-            <div class="acts lines">
-              <button type="button" class="src go" data-open="progress-card.html?from=hub&go=links" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-share"/></svg></span><strong>Open Parent Links</strong><small>One link per student to send on WhatsApp</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
-            </div>
-          </div>
-        </li>
+        <div class="deck" id="deck" role="tablist" aria-label="Tools">
+          <button class="dk g1" role="tab" type="button" aria-label="Student Report Cards">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:-8deg"><span class="mini k-report" style="display:block"><span class="frame"></span><span class="in" style="display:block"><span class="rb" style="display:block">ప్రగతి పత్రం</span><span class="rp" style="display:block">SA-1 · 2025-26</span><span class="ri"><span><i>Name</i>కావ్య</span><span><i>Class</i>10-A</span></span><span class="row"><span>తెలుగు</span><b>94</b><em>A1</em></span><span class="row"><span>గణితం</span><b>97</b><em>A1</em></span><span class="row"><span>సైన్స్</span><b>86</b><em class="b">A2</em></span></span></span></span>
+            <span class="lbl"><span class="kt">రిపోర్ట్ కార్డులు</span><small>Student Report Cards</small><span class="meta"><span>PDF · A4</span><i>Tool 01</i></span></span>
+          </button>
+          <button class="dk g2" role="tab" type="button" aria-label="Digital Progress Cards">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:6deg"><span class="mini k-phone" style="display:grid"><span class="ph" style="display:block"><span class="scr"><span class="pa">కా</span><b>కావ్య</b><small>10-A · ప్రగతి</small><span class="ring"></span><span class="wave"><i style="--h:3"></i><i style="--h:6"></i><i style="--h:4"></i><i style="--h:7"></i><i style="--h:5"></i><i style="--h:3"></i><i style="--h:6"></i></span></span></span></span></span>
+            <span class="lbl"><span class="kt">డిజిటల్ ప్రగతి పత్రాలు</span><small>Digital Progress Cards</small><span class="meta"><span>WhatsApp</span><i>Tool 02</i></span></span>
+          </button>
+          <button class="dk g3" role="tab" type="button" aria-label="Rank Lists">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:-5deg"><span class="mini k-rank" style="display:flex"><b class="kt">ర్యాంక్ జాబితా</b><small>Class 10 · SA-1</small><span class="pod"><span class="p2"><span class="md s">2</span><i>2</i></span><span class="p1"><span class="md g">1</span><i>1</i></span><span class="p3"><span class="md bz">3</span><i>3</i></span></span></span></span>
+            <span class="lbl"><span class="kt">ర్యాంక్ జాబితా</span><small>Rank Lists</small><span class="meta"><span>Classroom wall</span><i>Tool 03</i></span></span>
+          </button>
+          <button class="dk g4" role="tab" type="button" aria-label="Grading Abstract">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:7deg"><span class="mini k-donut" style="display:flex"><span class="ring"><span style="display:grid"><b>92%</b><small>ఉత్తీర్ణత</small></span></span><span class="lg"><span style="--c:#12A37A">A1</span><span style="--c:#2F80ED">A2</span><span style="--c:#FFC83D">B1</span></span></span></span>
+            <span class="lbl"><span class="kt">గ్రేడింగ్ సారాంశం</span><small>Grading Abstract</small><span class="meta"><span>One A4 page</span><i>Tool 04</i></span></span>
+          </button>
+          <button class="dk g5" role="tab" type="button" aria-label="Subject Analysis">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:-7deg"><span class="mini k-chart" style="display:block"><span class="cw"><b class="kt">గణితం</b><small>Subject analysis</small><svg viewBox="0 0 100 52"><path d="M0 44 L20 36 L40 38 L60 22 L80 16 L100 6" stroke="#E0344A" stroke-width="2.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/><g fill="#fff" stroke="#E0344A" stroke-width="2"><circle cx="20" cy="36" r="2.8"/><circle cx="60" cy="22" r="2.8"/><circle cx="100" cy="6" r="3.4" fill="#E0344A"/></g></svg><span class="ax"><span>FA1</span><span>SA1</span><span>SA2</span></span></span></span></span>
+            <span class="lbl"><span class="kt">విషయ విశ్లేషణ</span><small>Subject Analysis</small><span class="meta"><span>2-page PDF</span><i>Tool 05</i></span></span>
+          </button>
+          <button class="dk g6" role="tab" type="button" aria-label="Substitute Teacher Time Table">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:6deg"><span class="mini k-tt" style="display:flex"><b class="kt">టైమ్ టేబుల్</b><span class="gr"><span class="h">P1</span><span class="h">P2</span><span class="h">P3</span><span class="h">P4</span><span>9A</span><span class="x">10B</span><span>8A</span><span>7B</span><span class="n">10B</span><span>6A</span><span class="x">9B</span><span>8B</span></span></span></span>
+            <span class="lbl"><span class="kt">ప్రత్యామ్నాయ టైమ్ టేబుల్</span><small>Substitute Time Table</small><span class="meta"><span>Every morning</span><i>Tool 06</i></span></span>
+          </button>
+          <button class="dk g7 soon" role="tab" type="button" aria-label="Time Table Generator, coming soon">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:-6deg"><span class="mini k-cal" style="display:flex"><span class="hd2"><b class="kt">వారం</b><small>Mon–Sat</small></span><span class="gr"><i></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i></i><i></i></span></span></span>
+            <span class="lbl"><span class="kt">టైమ్ టేబుల్ తయారీ</span><small>Time Table Generator</small><span class="meta"><span>Coming soon</span><i>Tool 07</i></span></span>
+          </button>
+          <button class="dk g8 soon" role="tab" type="button" aria-label="Student Promotion List Generator, coming soon">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:5deg"><span class="mini k-cert" style="display:block"><span class="cf"><small>ZPHS · 2025</small><b class="kt">ప్రమోషన్</b><span class="nm">Class 9 → 10</span><i class="ln"></i><i class="ln s"></i><span class="seal"></span></span></span></span>
+            <span class="lbl"><span class="kt">ప్రమోషన్ జాబితా</span><small>Promotion Lists</small><span class="meta"><span>Coming soon</span><i>Tool 08</i></span></span>
+          </button>
+        </div>
 
-        <li class="tool tc3">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-trophy"/></svg></span>
-            <div class="tt"><span class="n">Tool 03</span><h3>Rank Lists</h3></div>
-          </div>
-          <div class="bd"><p>Class rank list for any exam, spread evenly over A4 pages to display in the classroom.</p>
-            <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Exam<select data-p="exam" class="pex"></select></label></div>
-            <div class="acts lines"><button type="button" class="src go" data-open="rank-sheets.html?mode=rank" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-trophy"/></svg></span><strong>Open Rank List</strong><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button></div>
-          </div>
-        </li>
-
-        <li class="tool tc4">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-clip"/></svg></span>
-            <div class="tt"><span class="n">Tool 04</span><h3>Grading Abstract</h3></div>
-          </div>
-          <div class="bd"><p>Subject-wise grade counts for boys, girls and total, with pass percentage, on one A4 page.</p>
-            <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Exam<select data-p="exam" class="pex"></select></label></div>
-            <div class="acts lines"><button type="button" class="src go" data-open="rank-sheets.html?mode=abstract" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-clip"/></svg></span><strong>Open Grading Abstract</strong><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button></div>
-          </div>
-        </li>
-
-        <li class="tool tc5">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-trend"/></svg></span>
-            <div class="tt"><span class="n">Tool 05</span><h3>Subject Analysis</h3></div>
-          </div>
-          <div class="bd"><p>All exams of one subject in one class, with a two-page PDF.</p>
-            <div class="pk" hidden><label>Class<select data-p="cls" class="pcls" data-noall="1"></select></label><label>Subject<select data-p="sub" class="psub"></select></label></div>
-            <div class="acts lines"><button type="button" class="src go" data-open="subject-analysis.html?from=hub" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-trend"/></svg></span><strong>Open Subject Analysis</strong><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button></div>
-          </div>
-        </li>
-
-        <li class="tool tc6">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-cal"/></svg></span>
-            <div class="tt"><span class="n">Tool 06</span><h3>Substitute Teacher Time Table</h3></div>
-          </div>
-          <div class="bd">
-            <p>Upload the time table once, mark absent teachers, and download the substitute time table as a PDF.</p>
-            <div class="acts">
-              <label class="src drop tt-drop mini" id="dropTT">
-                <input type="file" id="fileTT" accept=".xlsx,.xls,.xlsm,.ods">
-                <span class="ic" aria-hidden="true"><svg class="i"><use href="#i-grid"/></svg></span>
-                <strong>Upload Time Table (Excel)</strong>
-                <small id="ttName">Only needed the first time, or when the time table changes</small>
-                <span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-upload"/></svg></span>
-              </label>
-              <div class="gs tt1">
-                <span class="ic" aria-hidden="true"><svg class="i"><use href="#i-link"/></svg></span>
-                <input type="text" id="ttGsUrl" placeholder="Paste Google Sheet link" inputmode="url" aria-label="Google Sheet link for time table">
-                <button class="tl alt" id="ttGsGo" type="button">Load</button>
-                <button class="tl" id="ttOpen" type="button"><svg class="i"><use href="#i-screen"/></svg>Display</button>
+        <div class="stage">
+          <ol class="tools" id="toolList">
+            <li class="tool tc1 needlang on" data-lang-tool="rc">
+              <div class="info">
+                <span class="n">Tool 01 · Report cards</span>
+                <span class="te">రిపోర్ట్ కార్డులు</span>
+                <h3>Student Report Cards</h3>
+                <p>Report cards for every student from the uploaded marks.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-print"/></svg>A4, print-ready</li><li><svg class="i"><use href="#i-lang"/></svg>తెలుగు / English</li><li><svg class="i"><use href="#i-download"/></svg>One PDF per class</li></ul>
               </div>
-            </div>
-            <a class="ewlink" href="extra-work/"><svg class="i"><use href="#i-app"/></svg><span>Use it every morning as the <b>Extra Work</b> app</span><svg class="i ar"><use href="#i-arrow"/></svg></a>
-          </div>
-        </li>
+              <div class="ctrl">
+                <span class="lab">Card language</span>
+                <div class="seg" role="group" aria-label="Report card language"><button type="button" data-l="te" aria-pressed="false">తెలుగు</button><button type="button" data-l="en" aria-pressed="false">English</button></div>
+                <div class="lhint" role="status">First choose తెలుగు or English, then download or open.</div>
+                <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Section<select data-p="sec" class="psec"></select></label></div>
+                <div class="acts lines">
+                  <button type="button" class="src go" data-open="report-card.html?from=hub&go=pdf" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-download"/></svg></span><strong>Download PDF</strong><small>All cards of the chosen class in one PDF</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+                  <button type="button" class="src go" data-open="report-card.html?from=hub" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-eye"/></svg></span><strong>Open &amp; Select</strong><small>See the cards and pick the ones you need</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+                </div>
+              </div>
+            </li>
 
-        <li class="tool soon">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-grid"/></svg></span>
-            <div class="tt"><span class="n">Tool 07</span><h3>Time Table Generator</h3></div>
-          </div>
-          <div class="bd"><p>Build the full school time table automatically.</p><span class="badge">Coming Soon</span></div>
-        </li>
+            <li class="tool tc2 needlang" data-lang-tool="dpc">
+              <div class="info">
+                <span class="n">Tool 02 · For parents</span>
+                <span class="te">డిజిటల్ ప్రగతి పత్రాలు</span>
+                <h3>Digital Progress Cards</h3>
+                <p>A personal link for each student’s card, with audio, to send to parents on WhatsApp. Select students to download their cards.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-share"/></svg>WhatsApp link</li><li><svg class="i"><use href="#i-lang"/></svg>Audio in తెలుగు</li></ul>
+              </div>
+              <div class="ctrl">
+                <span class="lab">Card language</span>
+                <div class="seg" role="group" aria-label="Progress card language"><button type="button" data-l="te" aria-pressed="false">తెలుగు</button><button type="button" data-l="en" aria-pressed="false">English</button></div>
+                <div class="lhint" role="status">First choose తెలుగు or English, then open the parent links.</div>
+                <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Section<select data-p="sec" class="psec"></select></label></div>
+                <div class="acts lines">
+                  <button type="button" class="src go" data-open="progress-card.html?from=hub&go=links" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-share"/></svg></span><strong>Open Parent Links</strong><small>One link per student to send on WhatsApp</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+                </div>
+              </div>
+            </li>
 
-        <li class="tool soon">
-          <div class="hd">
-            <span class="tico" aria-hidden="true"><svg class="i"><use href="#i-promo"/></svg></span>
-            <div class="tt"><span class="n">Tool 08</span><h3>Student Promotion List Generator</h3></div>
-          </div>
-          <div class="bd"><p>Class-wise promotion lists from final results.</p><span class="badge">Coming Soon</span></div>
-        </li>
-      </ol>
+            <li class="tool tc3">
+              <div class="info">
+                <span class="n">Tool 03 · Classroom</span>
+                <span class="te">ర్యాంక్ జాబితా</span>
+                <h3>Rank Lists</h3>
+                <p>Class rank list for any exam, spread evenly over A4 pages to display in the classroom.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-trophy"/></svg>Top 3 highlighted</li><li><svg class="i"><use href="#i-print"/></svg>A4 pages</li></ul>
+              </div>
+              <div class="ctrl">
+                <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Exam<select data-p="exam" class="pex"></select></label></div>
+                <div class="acts lines"><button type="button" class="src go" data-open="rank-sheets.html?mode=rank" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-trophy"/></svg></span><strong>Open Rank List</strong><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button></div>
+              </div>
+            </li>
+
+            <li class="tool tc4">
+              <div class="info">
+                <span class="n">Tool 04 · Office</span>
+                <span class="te">గ్రేడింగ్ సారాంశం</span>
+                <h3>Grading Abstract</h3>
+                <p>Subject-wise grade counts for boys, girls and total, with pass percentage, on one A4 page.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-clip"/></svg>Boys · Girls · Total</li><li><svg class="i"><use href="#i-check"/></svg>Pass %</li></ul>
+              </div>
+              <div class="ctrl">
+                <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Exam<select data-p="exam" class="pex"></select></label></div>
+                <div class="acts lines"><button type="button" class="src go" data-open="rank-sheets.html?mode=abstract" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-clip"/></svg></span><strong>Open Grading Abstract</strong><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button></div>
+              </div>
+            </li>
+
+            <li class="tool tc5">
+              <div class="info">
+                <span class="n">Tool 05 · Insights</span>
+                <span class="te">విషయ విశ్లేషణ</span>
+                <h3>Subject Analysis</h3>
+                <p>All exams of one subject in one class, with a two-page PDF.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-trend"/></svg>Exam-to-exam trend</li><li><svg class="i"><use href="#i-print"/></svg>2-page PDF</li></ul>
+              </div>
+              <div class="ctrl">
+                <div class="pk" hidden><label>Class<select data-p="cls" class="pcls" data-noall="1"></select></label><label>Subject<select data-p="sub" class="psub"></select></label></div>
+                <div class="acts lines"><button type="button" class="src go" data-open="subject-analysis.html?from=hub" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-trend"/></svg></span><strong>Open Subject Analysis</strong><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button></div>
+              </div>
+            </li>
+
+            <li class="tool tc6">
+              <div class="info">
+                <span class="n">Tool 06 · Every morning</span>
+                <span class="te">ప్రత్యామ్నాయ టైమ్ టేబుల్</span>
+                <h3>Substitute Teacher Time Table</h3>
+                <p>Upload the time table once, mark absent teachers, and download the substitute time table as a PDF.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-grid"/></svg>Saved on this device</li><li><svg class="i"><use href="#i-share"/></svg>Share on WhatsApp</li></ul>
+              </div>
+              <div class="ctrl">
+                <div class="acts">
+                  <label class="src drop tt-drop mini-drop" id="dropTT">
+                    <input type="file" id="fileTT" accept=".xlsx,.xls,.xlsm,.ods">
+                    <span class="ic" aria-hidden="true"><svg class="i"><use href="#i-grid"/></svg></span>
+                    <strong>Upload Time Table (Excel)</strong>
+                    <small id="ttName">Only needed the first time, or when the time table changes</small>
+                    <span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-upload"/></svg></span>
+                  </label>
+                  <div class="gs tt1">
+                    <span class="ic" aria-hidden="true"><svg class="i"><use href="#i-link"/></svg></span>
+                    <input type="text" id="ttGsUrl" placeholder="Paste Google Sheet link" inputmode="url" aria-label="Google Sheet link for time table">
+                    <button class="tl alt" id="ttGsGo" type="button">Load</button>
+                    <button class="tl" id="ttOpen" type="button"><svg class="i"><use href="#i-screen"/></svg>Display</button>
+                  </div>
+                </div>
+                <a class="ewlink" href="extra-work/"><svg class="i"><use href="#i-app"/></svg><span>Use it every morning as the <b>Extra Work</b> app</span><svg class="i ar"><use href="#i-arrow"/></svg></a>
+              </div>
+            </li>
+
+            <li class="tool soon">
+              <div class="info">
+                <span class="n">Tool 07</span>
+                <span class="te">టైమ్ టేబుల్ తయారీ</span>
+                <h3>Time Table Generator</h3>
+                <p>Build the full school time table automatically.</p>
+              </div>
+              <div class="ctrl"><span class="badge">Coming Soon</span></div>
+            </li>
+
+            <li class="tool soon">
+              <div class="info">
+                <span class="n">Tool 08</span>
+                <span class="te">ప్రమోషన్ జాబితా</span>
+                <h3>Student Promotion List Generator</h3>
+                <p>Class-wise promotion lists from final results.</p>
+              </div>
+              <div class="ctrl"><span class="badge">Coming Soon</span></div>
+            </li>
+          </ol>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -625,7 +886,7 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
 <footer>
   <div class="container">
     <div class="fbrand">
-      <span class="brand"><span class="logo"><svg class="i"><use href="#i-cap"/></svg></span><span><b>Smart School</b><small>AI Tools</small></span></span>
+      <span class="brand"><span class="logo"><svg class="i"><use href="#i-cap"/></svg></span><span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span></span>
       <p>Less paperwork — more teaching — better results. Report cards, progress cards, rank lists and time tables from one marks sheet.</p>
     </div>
     <div class="credit">
@@ -633,11 +894,61 @@ footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:
       <span>ZPHS Gurajanapalli, Karapa (M)</span>
       <span>Kakinada District</span>
     </div>
-    <div class="fcopy">Files are read right in your browser and kept on this device.</div>
+    <div class="fcopy">“Teach a child today, and you change the world tomorrow.” · Files are read right in your browser and kept on this device.</div>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script>
+/* presentation only: tool deck + arch tilt (app logic is in the next script) */
+(function(){
+  var deck=document.getElementById('deck'); if(!deck) return;
+  var cards=[].slice.call(deck.querySelectorAll('.dk'));
+  var items=[].slice.call(document.querySelectorAll('#toolList>li'));
+  var chips=[].slice.call(document.querySelectorAll('.chips [data-jump]'));
+  var cur=0;
+  function gap(){return innerWidth<760?150:Math.min(250,innerWidth*0.2)}
+  function set(i,focus){
+    var n=cards.length;cur=((i%n)+n)%n;
+    var g=gap();
+    cards.forEach(function(c,j){
+      var d=((j-cur)%n+n)%n;if(d>n/2)d-=n;var a=Math.abs(d);
+      var pd=+c.style.getPropertyValue("--d")||0;
+      c.style.transition=Math.abs(pd-d)>2?"none":"";
+      c.style.setProperty('--d',d);c.style.setProperty('--gap',g+'px');
+      c.style.setProperty('--s',a===0?1.22:a===1?.9:.78);
+      c.style.setProperty('--z',20-a);
+      c.style.setProperty('--o',a>3?0:a===3?.5:1);
+      c.classList.toggle('on',a===0);
+      c.setAttribute('aria-selected',a===0?'true':'false');
+      c.setAttribute('aria-hidden',a>3?'true':'false');
+      c.tabIndex=a===0?0:-1;
+    });
+    items.forEach(function(li,j){li.classList.toggle('on',j===cur)});
+    chips.forEach(function(b){var k=+b.dataset.jump;var nx=chips[chips.indexOf(b)+1];var end=nx?+nx.dataset.jump:99;b.setAttribute('aria-pressed',cur>=k&&cur<end?'true':'false')});
+    try{sessionStorage.setItem('ss_tool',cur)}catch(e){}
+    if(focus)cards[cur].focus({preventScroll:true});
+  }
+  cards.forEach(function(c,j){c.addEventListener('click',function(){set(j)})});
+  chips.forEach(function(b){b.addEventListener('click',function(){set(+b.dataset.jump)})});
+  document.getElementById('dPrev').onclick=function(){set(cur-1)};
+  document.getElementById('dNext').onclick=function(){set(cur+1)};
+  deck.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){set(cur+1,1);e.preventDefault()}if(e.key==='ArrowLeft'){set(cur-1,1);e.preventDefault()}});
+  var x0=null;
+  deck.addEventListener('pointerdown',function(e){x0=e.clientX});
+  deck.addEventListener('pointerup',function(e){if(x0===null)return;var dx=e.clientX-x0;x0=null;if(Math.abs(dx)>40)set(cur+(dx<0?1:-1))});
+  addEventListener('resize',function(){set(cur)});
+  var s=0;try{s=+sessionStorage.getItem('ss_tool')||0}catch(e){}
+  set(s);
+
+  var arc=document.getElementById('arc');
+  if(arc&&matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){
+    var hero=arc.parentNode;
+    hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;arc.style.setProperty('--ty',(px*6).toFixed(2)+'deg');arc.style.setProperty('--tx',(-py*5).toFixed(2)+'deg')});
+    hero.addEventListener('pointerleave',function(){arc.style.setProperty('--ty','0deg');arc.style.setProperty('--tx','0deg')});
+  }
+})();
+</script>
 <script>function a0_0x2368(){const _0x356d30=['read','#dropUdise','&lang=','https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js','status','1629819eSsEEu','value','\x20is\x20ready\x20(added\x20','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','activeTab=\x22','dragenter','trim','get','Please\x20choose\x20an\x20Excel\x20(.xlsx\x20/\x20.xls)\x20or\x20.csv\x20file.','That\x20doesn’t\x20look\x20like\x20a\x20Google\x20Sheet\x20link.\x20It\x20should\x20contain\x20/spreadsheets/d/…','number','setAttribute','dataset','.psub','revokeObjectURL','\x20rows\x20of\x20other\x20classes\x20left\x20out.)','arrayBuffer','target','#inst','<sheet[^>]*name=\x22','✔\x20Sheet\x20ready:\x20','\x20uploaded.\x20Opening…','#ttName','Target=\x22([^\x22]+)\x22[^>]*Id=\x22','.tl','(<sheet\x20[^>]*name=\x22Class\x20','serviceWorker','ssat_rlang','button','ready','marks','animationName','\x20t=\x22inlineStr\x22><is><t\x20xml:space=\x22preserve\x22>','</option>','ABSTRACT','addEventListener','&lt;','$1\x20state=\x22hidden\x22$3','empty','SheetNames','\x22([^>]*?)(/>|>[\x5cs\x5cS]*?</c>)','#gsUrl','currentTarget','replace','download','#ttGsGo','resolve','toUpperCase','then','src','reduce','prompt','\x22[^>]*Target=\x22([^\x22]+)\x22','Paste\x20the\x20Google\x20Sheet\x20link\x20first.','<row\x20r=\x22','file','#ttGsUrl','open','drop','langTool','oncomplete','querySelectorAll','Couldn’t\x20open\x20the\x20sheet.\x20In\x20Google\x20Sheets,\x20set\x20Share\x20to\x20“Anyone\x20with\x20the\x20link:\x20Viewer”\x20and\x20try\x20again.\x20Or\x20download\x20it\x20as\x20Excel\x20and\x20upload\x20above.','Id=\x22','string','__udUrl','textContent','onupgradeneeded','smooth','.pk:not([hidden])\x20select[data-p]','beforeinstallprompt','</v></c>','cls','slice','XLSX','en-IN','\x22[^>]*>)','This\x20browser\x20could\x20not\x20keep\x20the\x20file.\x20Try\x20Chrome,\x20or\x20close\x20private\x20browsing.','✓\x20Cards\x20will\x20be\x20in\x20తెలుగు.','Installed.\x20Open\x20Smart\x20School\x20from\x20your\x20home\x20screen.','remove','First\x20upload\x20the\x20marks\x20sheet\x20(Excel\x20file\x20or\x20Google\x20Sheet\x20link).','.lhint','Reading\x20the\x20UDISE+\x20list…','[data-open]','8958446neKJLU','MacIntel','<option\x20value=\x22\x22>All\x20classes</option>','animationend','Couldn’t\x20open\x20the\x20sheet.\x20Check\x20sharing\x20settings,\x20or\x20upload\x20the\x20Excel\x20file\x20instead.','SSAT','buf','The\x20blank\x20sheet\x20could\x20not\x20be\x20loaded.\x20Check\x20the\x20internet\x20connection.','secs','firstSheet=\x22','Google\x20Sheet.xlsx','tapblink','blob','setItem','blink','This\x20browser\x20could\x20not\x20keep\x20the\x20file.\x20Try\x20Chrome.','button[data-l]','</span>','First\x20upload\x20the\x20UDISE+\x20Student\x20List.\x20The\x20sheet\x20downloads\x20by\x20itself.','needs','files','✓\x20Cards\x20will\x20be\x20in\x20English.','\x20students\x20in\x20Class\x20','sheet_to_json','#fileMarks','appendChild','onclick','\x20hidden=\x221\x22','numeric','objectStore','utils','<c\x20r=\x22','xl/','Reading\x20','https://docs.google.com/spreadsheets/d/','getItem','byteLength','length','short','head','register','[data-lang-tool]','onload','#dropMarks','#dropTT','err','Sheets','30883528GunjRE','includes','<option\x20value=\x22\x22>All\x20sections</option>','RANK\x20LIST','ssat_addr','closest','#fileTT','match','1376300kieRZc','className','No\x20students\x20of\x20Classes\x201\x20to\x2010\x20were\x20found\x20in\x20this\x20file.','click','This\x20does\x20not\x20look\x20like\x20the\x20UDISE+\x20Students\x20Details\x20file\x20(no\x20Class\x20and\x20Name\x20columns).','xl/workbook.xml','school','transaction','sw.js','4715116MTVrxP','catch','#fileUdise','tap','href','put','done','\x20has\x20more\x20than\x20100\x20students;\x20the\x20sheet\x20holds\x20100\x20per\x20class.','</t></is></c>','appinstalled','onsuccess','substitute-timetable.html?from=hub&tt=1','(prefers-reduced-motion:\x20reduce)','321248sLXYPf','6dQCFOx','forEach','Only\x20needed\x20the\x20first\x20time,\x20or\x20when\x20the\x20time\x20table\x20changes','protocol','async','hidden','change','206273SHZQHZ','sec','&amp;','disabled','#addr','input','error','push','findIndex','Loading\x20from\x20Google\x20Sheet…','<option\x20value=\x22','readonly','userAgent','querySelector','offsetWidth','In\x20Safari,\x20tap\x20Share\x20⬆,\x20then\x20“Add\x20to\x20Home\x20Screen”.','fromWorkbook','.psec','dragover','label.src,.tt-drop,.ewlink','dragleave','✓\x20Google\x20Sheet\x20loaded.\x20Opening…','readwrite','filter','lib','sort','aria-disabled','test','generateAsync','aria-pressed','(display-mode:\x20standalone)','JSZip','#udDl','matches','needlang','<option\x20value=\x22\x22>Latest\x20exam</option>','subs','map','onchange','#marksStatus','name','That\x20doesn’t\x20look\x20like\x20a\x20Google\x20Sheet\x20link.','array','ssat-sheet.js','load','.pk','\x20–\x20tap\x20to\x20download\x20again.','ssat_lang_','ssat','\x22>Class\x20','.seg','result','#school','ssat_school','script','(<row\x20r=\x22','xl/_rels/workbook.xml.rels','join','.<span\x20class=\x22udn\x22>Type\x20marks\x20in\x20it,\x20then\x20upload\x20it\x20below\x20under\x20“Upload\x20Filled\x20Marks\x20Sheet”.\x20Change\x20Roll\x20No\x20to\x20match\x20your\x20attendance\x20register.','add','classList','platform','#udMsg','createObjectStore','createElement','message','now','#toast','Class\x20','apply','center','onerror','over','#udDlNote','innerHTML','preventDefault','keys','some','noall','loadAsync','#gsGo','scrollIntoView'];a0_0x2368=function(){return _0x356d30;};return a0_0x2368();}const a0_0x4f7adb=a0_0x142d;(function(_0x397241,_0x55529b){const _0x4d8baa=a0_0x142d,_0x467bdb=_0x397241();while(!![]){try{const _0x50285e=-parseInt(_0x4d8baa(0x142))/0x1+-parseInt(_0x4d8baa(0x13a))/0x2+-parseInt(_0x4d8baa(0x199))/0x3+-parseInt(_0x4d8baa(0x22e))/0x4+parseInt(_0x4d8baa(0x225))/0x5+parseInt(_0x4d8baa(0x13b))/0x6*(-parseInt(_0x4d8baa(0x1ee))/0x7)+parseInt(_0x4d8baa(0x21d))/0x8;if(_0x50285e===_0x55529b)break;else _0x467bdb['push'](_0x467bdb['shift']());}catch(_0x3ce205){_0x467bdb['push'](_0x467bdb['shift']());}}}(a0_0x2368,0xbb3fe));const $=_0x21ccea=>document['querySelector'](_0x21ccea);let toastT;function toast(_0x290575){const _0x50b8aa=a0_0x142d,_0x2f3761=$(_0x50b8aa(0x185));_0x2f3761[_0x50b8aa(0x1db)]=_0x290575,_0x2f3761[_0x50b8aa(0x17e)][_0x50b8aa(0x17d)]('on'),clearTimeout(toastT),toastT=setTimeout(()=>_0x2f3761['classList'][_0x50b8aa(0x1e9)]('on'),0xd48);}function ls(_0x5220f1,_0x17dfcd){const _0x1878b0=a0_0x142d;try{if(_0x17dfcd===undefined)return localStorage['getItem'](_0x5220f1)||'';localStorage[_0x1878b0(0x1fb)](_0x5220f1,_0x17dfcd);}catch(_0x56428b){return'';}}function db(){return new Promise((_0x1ec963,_0x499043)=>{const _0x5eefb1=a0_0x142d,_0x5fa251=indexedDB['open'](_0x5eefb1(0x172),0x1);_0x5fa251[_0x5eefb1(0x1dc)]=()=>_0x5fa251[_0x5eefb1(0x175)][_0x5eefb1(0x181)](_0x5eefb1(0x202)),_0x5fa251[_0x5eefb1(0x137)]=()=>_0x1ec963(_0x5fa251[_0x5eefb1(0x175)]),_0x5fa251[_0x5eefb1(0x189)]=()=>_0x499043(_0x5fa251[_0x5eefb1(0x148)]);});}async function put(_0x108e20,_0xe97eb7){const _0x30b789=await db();return new Promise((_0x302958,_0x41d7ca)=>{const _0x1c5e33=a0_0x142d,_0x3aab7d=_0x30b789[_0x1c5e33(0x22c)]('files',_0x1c5e33(0x158));_0x3aab7d['objectStore']('files')[_0x1c5e33(0x132)](_0xe97eb7,_0x108e20),_0x3aab7d[_0x1c5e33(0x1d5)]=_0x302958,_0x3aab7d[_0x1c5e33(0x189)]=()=>_0x41d7ca(_0x3aab7d[_0x1c5e33(0x148)]);});}async function get(_0x102252){try{const _0x166ac4=await db();return await new Promise(_0x39e238=>{const _0x4db996=a0_0x142d,_0x36da54=_0x166ac4[_0x4db996(0x22c)](_0x4db996(0x202),_0x4db996(0x14d))[_0x4db996(0x20b)]('files')[_0x4db996(0x1a0)](_0x102252);_0x36da54['onsuccess']=()=>_0x39e238(_0x36da54[_0x4db996(0x175)]||null),_0x36da54[_0x4db996(0x189)]=()=>_0x39e238(null);});}catch(_0x5f2324){return null;}}let marks=null;const when=_0x374455=>new Date(_0x374455)['toLocaleString'](a0_0x4f7adb(0x1e4),{'day':a0_0x4f7adb(0x20a),'month':a0_0x4f7adb(0x214),'hour':'numeric','minute':'2-digit'});function showMarks(){const _0x438667=a0_0x4f7adb,_0x4d71ce=$('#marksStatus');_0x4d71ce[_0x438667(0x226)]=_0x438667(0x198),_0x4d71ce[_0x438667(0x1db)]=marks?'✓\x20'+marks[_0x438667(0x16a)]+_0x438667(0x19b)+when(marks['time'])+')':'',marks&&_0x4d71ce[_0x438667(0x17e)][_0x438667(0x17d)]('ok');}async function saveMarks(_0x3d3c3d,_0xe0409e){const _0x339981=a0_0x4f7adb;try{marks={'name':_0x3d3c3d,'buf':_0xe0409e,'time':Date[_0x339981(0x184)]()},await put('marks',marks),showMarks(),toast('Sheet\x20ready.\x20Choose\x20a\x20tool\x20below.');}catch(_0x2e8656){const _0x36707e=$(_0x339981(0x169));_0x36707e[_0x339981(0x226)]='status\x20err',_0x36707e['textContent']=_0x339981(0x1e6);}}$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)]=ls('ssat_school')||ls(a0_0x4f7adb(0x22b)),$(a0_0x4f7adb(0x146))['value']=ls(a0_0x4f7adb(0x221)),$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x147),()=>ls(a0_0x4f7adb(0x177),$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)][a0_0x4f7adb(0x19f)]())),$(a0_0x4f7adb(0x146))[a0_0x4f7adb(0x1bc)]('input',()=>ls(a0_0x4f7adb(0x221),$(a0_0x4f7adb(0x146))['value']['trim']()));if($(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)])ls('ssat_school',$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)]);function wireDrop(_0x7dd6a8,_0x59c7f5,_0x78cc96){const _0x4899c0=a0_0x4f7adb;_0x59c7f5[_0x4899c0(0x1bc)]('change',()=>{const _0x3278dc=_0x4899c0,_0x44160b=_0x59c7f5[_0x3278dc(0x202)][0x0];if(_0x44160b)_0x78cc96(_0x44160b);_0x59c7f5[_0x3278dc(0x19a)]='';}),[_0x4899c0(0x19e),_0x4899c0(0x154)][_0x4899c0(0x13c)](_0x52d8ac=>_0x7dd6a8[_0x4899c0(0x1bc)](_0x52d8ac,_0x15b2c4=>{const _0x4eb322=_0x4899c0;_0x15b2c4['preventDefault'](),_0x7dd6a8[_0x4eb322(0x17e)][_0x4eb322(0x17d)](_0x4eb322(0x18a));})),[_0x4899c0(0x156),'drop'][_0x4899c0(0x13c)](_0x2bec63=>_0x7dd6a8[_0x4899c0(0x1bc)](_0x2bec63,_0xcbb3b6=>{const _0x2c370e=_0x4899c0;_0xcbb3b6[_0x2c370e(0x18d)](),_0x7dd6a8[_0x2c370e(0x17e)]['remove'](_0x2c370e(0x18a));})),_0x7dd6a8['addEventListener'](_0x4899c0(0x1d3),_0x3f8839=>{const _0x157e33=_0x4899c0,_0x54f7af=_0x3f8839['dataTransfer'][_0x157e33(0x202)][0x0];if(_0x54f7af)_0x78cc96(_0x54f7af);});}wireDrop($(a0_0x4f7adb(0x219)),$(a0_0x4f7adb(0x206)),async _0x4f928c=>{const _0x19a3a9=a0_0x4f7adb;if(!/\.(xlsx|xls|csv)$/i[_0x19a3a9(0x15d)](_0x4f928c[_0x19a3a9(0x16a)])){toast(_0x19a3a9(0x1a1));return;}$(_0x19a3a9(0x169))[_0x19a3a9(0x226)]=_0x19a3a9(0x198),$(_0x19a3a9(0x169))[_0x19a3a9(0x1db)]=_0x19a3a9(0x20f)+_0x4f928c['name']+'…',saveMarks(_0x4f928c[_0x19a3a9(0x16a)],await _0x4f928c['arrayBuffer']());}),$(a0_0x4f7adb(0x192))[a0_0x4f7adb(0x1bc)]('click',async()=>{const _0x32f684=a0_0x4f7adb,_0x49058f=$(_0x32f684(0x1c2))['value']['trim'](),_0x33f71f=$(_0x32f684(0x169)),_0x32e1fd=_0x49058f['match'](/\/d\/([a-zA-Z0-9-_]+)/),_0x23a639=_0x32e1fd?_0x32e1fd[0x1]:/^[a-zA-Z0-9-_]{20,}$/[_0x32f684(0x15d)](_0x49058f)?_0x49058f:null;if(!_0x49058f){toast(_0x32f684(0x1ce));return;}if(!_0x23a639){_0x33f71f[_0x32f684(0x226)]='status\x20err',_0x33f71f[_0x32f684(0x1db)]=_0x32f684(0x1a2);return;}const _0x67ad9e=$('#gsGo');_0x67ad9e[_0x32f684(0x145)]=!![],_0x33f71f[_0x32f684(0x226)]=_0x32f684(0x198),_0x33f71f[_0x32f684(0x1db)]=_0x32f684(0x14b);try{const _0x21078f=await fetch(_0x32f684(0x210)+_0x23a639+'/export?format=xlsx');if(!_0x21078f['ok'])throw new Error(_0x21078f[_0x32f684(0x198)]);const _0x35c50b=await _0x21078f[_0x32f684(0x1a9)]();if(_0x35c50b[_0x32f684(0x212)]<0xc8)throw new Error(_0x32f684(0x1bf));await saveMarks(_0x32f684(0x1f8),_0x35c50b);}catch(_0x5cd149){_0x33f71f[_0x32f684(0x226)]='status\x20err',_0x33f71f[_0x32f684(0x1db)]=_0x32f684(0x1d7);}_0x67ad9e['disabled']=![];});const LIBJS={'XLSX':'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','JSZip':a0_0x4f7adb(0x197)},needLib=_0x160392=>window[_0x160392]?Promise[a0_0x4f7adb(0x1c7)]():new Promise((_0x46a9ce,_0xb0377d)=>{const _0x52b6fd=a0_0x4f7adb,_0x1795ad=document[_0x52b6fd(0x182)]('script');_0x1795ad[_0x52b6fd(0x1ca)]=LIBJS[_0x160392],_0x1795ad['onload']=_0x46a9ce,_0x1795ad[_0x52b6fd(0x189)]=()=>_0xb0377d(new Error(_0x52b6fd(0x15a))),document[_0x52b6fd(0x215)][_0x52b6fd(0x207)](_0x1795ad);}),ROM={'I':0x1,'II':0x2,'III':0x3,'IV':0x4,'V':0x5,'VI':0x6,'VII':0x7,'VIII':0x8,'IX':0x9,'X':0xa};function classNo(_0x39c762){const _0x2a12b1=a0_0x4f7adb,_0x53b313=String(_0x39c762==null?'':_0x39c762)['trim']()[_0x2a12b1(0x1c8)]()[_0x2a12b1(0x1c4)](/^(CLASS|STD|STANDARD|GRADE)\s*[-:.]?\s*/,'');if(ROM[_0x53b313])return ROM[_0x53b313];const _0x5c3162=parseInt(_0x53b313,0xa);return _0x5c3162>=0x1&&_0x5c3162<=0xa&&/^\d{1,2}$/['test'](_0x53b313)?_0x5c3162:0x0;}function readUdise(_0x19af15){const _0x8373c1=a0_0x4f7adb,_0x309b59=_0x19af15[_0x8373c1(0x14a)](_0x2147cf=>_0x2147cf&&_0x2147cf[_0x8373c1(0x18f)](_0x5b55c8=>/^name$|student\s*name/i[_0x8373c1(0x15d)](String(_0x5b55c8||'')['trim']()))&&_0x2147cf[_0x8373c1(0x18f)](_0x559b2d=>/^class$/i[_0x8373c1(0x15d)](String(_0x559b2d||'')[_0x8373c1(0x19f)]())));if(_0x309b59<0x0)throw new Error(_0x8373c1(0x229));const _0x1348d3=_0x19af15[_0x309b59][_0x8373c1(0x167)](_0x5d5df0=>String(_0x5d5df0||'')[_0x8373c1(0x19f)]()),_0x2f1976=_0x4d62e6=>_0x1348d3[_0x8373c1(0x14a)](_0x22c5f8=>_0x4d62e6[_0x8373c1(0x15d)](_0x22c5f8)),_0x2c5cd3=_0x2f1976(/^class$/i),_0x12e205=_0x2f1976(/^section$/i),_0x3a70f8=_0x2f1976(/^(student\s*)?name$/i),_0x514a8b=_0x2f1976(/^gender$/i),_0x465eca=_0x2f1976(/pen/i),_0x13060a=_0x2f1976(/^father/i),_0x4a5a4e={};let _0x248572=0x0;return _0x19af15[_0x8373c1(0x1e2)](_0x309b59+0x1)[_0x8373c1(0x13c)](_0x1dae90=>{const _0x2f5d64=_0x8373c1;if(!_0x1dae90)return;const _0x5a94c0=String(_0x1dae90[_0x3a70f8]||'')[_0x2f5d64(0x19f)]();if(!_0x5a94c0)return;const _0x58a716=classNo(_0x1dae90[_0x2c5cd3]);if(!_0x58a716){_0x248572++;return;}const _0x1dd91c=String(_0x1dae90[_0x514a8b]||'')[_0x2f5d64(0x19f)]()[_0x2f5d64(0x1c8)]();(_0x4a5a4e[_0x58a716]||(_0x4a5a4e[_0x58a716]=[]))[_0x2f5d64(0x149)]({'nm':_0x5a94c0,'g':/^(M|MALE|B|BOY)$/[_0x2f5d64(0x15d)](_0x1dd91c)?'B':/^(F|FEMALE|G|GIRL)$/['test'](_0x1dd91c)?'G':'','sec':_0x12e205>=0x0?String(_0x1dae90[_0x12e205]||'')[_0x2f5d64(0x19f)]()[_0x2f5d64(0x1c8)]()||'A':'A','pen':_0x465eca>=0x0?String(_0x1dae90[_0x465eca]||'')[_0x2f5d64(0x1c4)](/\D/g,''):'','fa':_0x13060a>=0x0?String(_0x1dae90[_0x13060a]||'')[_0x2f5d64(0x19f)]():''});}),{'by':_0x4a5a4e,'skipped':_0x248572};}const xe=_0x250063=>String(_0x250063)['replace'](/&/g,a0_0x4f7adb(0x144))[a0_0x4f7adb(0x1c4)](/</g,a0_0x4f7adb(0x1bd))[a0_0x4f7adb(0x1c4)](/>/g,'&gt;');function setCell(_0x520490,_0x49bed9,_0x23064b){const _0x1d5ab4=a0_0x4f7adb,_0x3c1e20=new RegExp(_0x1d5ab4(0x20d)+_0x49bed9+_0x1d5ab4(0x1c1)),_0x525635=_0x520490[_0x1d5ab4(0x224)](_0x3c1e20),_0x1a0dc9=_0x525635?(_0x525635[0x1]['match'](/ s="\d+"/)||[''])[0x0]:'',_0x76f0dc=typeof _0x23064b===_0x1d5ab4(0x1a3)?'<c\x20r=\x22'+_0x49bed9+'\x22'+_0x1a0dc9+'><v>'+_0x23064b+_0x1d5ab4(0x1e0):_0x1d5ab4(0x20d)+_0x49bed9+'\x22'+_0x1a0dc9+_0x1d5ab4(0x1b9)+xe(_0x23064b)+_0x1d5ab4(0x135);if(_0x525635)return _0x520490[_0x1d5ab4(0x1c4)](_0x3c1e20,_0x76f0dc);const _0x5346f2=_0x49bed9[_0x1d5ab4(0x1c4)](/[A-Z]+/,'');return _0x520490['replace'](new RegExp(_0x1d5ab4(0x179)+_0x5346f2+_0x1d5ab4(0x1e5)),'$1'+_0x76f0dc);}async function makeUdiseSheet(_0x11d9f0){const _0x421d3b=a0_0x4f7adb,_0x4072dd=$(_0x421d3b(0x180));_0x4072dd[_0x421d3b(0x226)]='status',_0x4072dd[_0x421d3b(0x1db)]=_0x421d3b(0x1ec);try{await needLib('XLSX'),await needLib(_0x421d3b(0x161));const _0x2bc534=XLSX[_0x421d3b(0x194)](await _0x11d9f0['arrayBuffer'](),{'type':'array'}),_0x1a2596=XLSX[_0x421d3b(0x20c)][_0x421d3b(0x205)](_0x2bc534[_0x421d3b(0x21c)][_0x2bc534[_0x421d3b(0x1c0)][0x0]],{'header':0x1,'defval':''}),{by:_0x39d6b7,skipped:_0x45d8e5}=readUdise(_0x1a2596),_0x353b8b=Object[_0x421d3b(0x18e)](_0x39d6b7)[_0x421d3b(0x167)](Number)[_0x421d3b(0x15b)]((_0x2332ce,_0x14508c)=>_0x2332ce-_0x14508c);if(!_0x353b8b[_0x421d3b(0x213)])throw new Error(_0x421d3b(0x227));const _0x200f0b=_0x353b8b['filter'](_0x46a78b=>_0x39d6b7[_0x46a78b][_0x421d3b(0x213)]>0x64);if(_0x200f0b['length'])throw new Error(_0x421d3b(0x186)+_0x200f0b[_0x421d3b(0x17b)](',\x20')+_0x421d3b(0x134));const _0x45284b=await fetch('models/School_Marks_Entry_Sheet.xlsx');if(!_0x45284b['ok'])throw new Error(_0x421d3b(0x1f5));const _0x47a552=await JSZip[_0x421d3b(0x191)](await _0x45284b['arrayBuffer']());let _0x265ece=await _0x47a552[_0x421d3b(0x1d0)](_0x421d3b(0x22a))[_0x421d3b(0x13f)](_0x421d3b(0x1d9));const _0x104555=await _0x47a552['file'](_0x421d3b(0x17a))[_0x421d3b(0x13f)](_0x421d3b(0x1d9)),_0x4d6841=_0x5db086=>{const _0x4c415d=_0x421d3b,_0x23f47e=_0x265ece[_0x4c415d(0x224)](new RegExp(_0x4c415d(0x1ac)+_0x5db086+'\x22[^>]*r:id=\x22(rId\x5cd+)\x22')),_0x1abc75=_0x104555[_0x4c415d(0x224)](new RegExp(_0x4c415d(0x1d8)+_0x23f47e[0x1]+_0x4c415d(0x1cd)))||_0x104555[_0x4c415d(0x224)](new RegExp(_0x4c415d(0x1b0)+_0x23f47e[0x1]+'\x22'));return _0x4c415d(0x20e)+_0x1abc75[0x1][_0x4c415d(0x1c4)](/^\/?xl\//,'');};for(const _0x43d768 of _0x353b8b){const _0x5418ed=_0x4d6841(_0x421d3b(0x186)+_0x43d768);let _0x360641=await _0x47a552['file'](_0x5418ed)[_0x421d3b(0x13f)]('string');_0x39d6b7[_0x43d768][_0x421d3b(0x13c)]((_0x1b2950,_0x5d3de8)=>{const _0xa94823=_0x421d3b,_0x3f9545=0x5+_0x5d3de8;_0x360641=setCell(_0x360641,'A'+_0x3f9545,_0x5d3de8+0x1),_0x360641=setCell(_0x360641,'B'+_0x3f9545,_0x1b2950['nm']);if(_0x1b2950['g'])_0x360641=setCell(_0x360641,'C'+_0x3f9545,_0x1b2950['g']);_0x360641=setCell(_0x360641,'E'+_0x3f9545,_0x1b2950[_0xa94823(0x143)]);if(_0x1b2950['pen'])_0x360641=setCell(_0x360641,'F'+_0x3f9545,_0x1b2950['pen']);if(_0x1b2950['fa'])_0x360641=setCell(_0x360641,'G'+_0x3f9545,_0x1b2950['fa']);});const _0x42d70f=0x4+_0x39d6b7[_0x43d768]['length'];_0x360641=_0x360641[_0x421d3b(0x1c4)](/<row r="(\d+)"([^>]*?)(\/?)>/g,(_0x53bdf0,_0x34fe51,_0x1ead65,_0x270a0d)=>+_0x34fe51>_0x42d70f&&+_0x34fe51<=0x68&&!/hidden=/[_0x421d3b(0x15d)](_0x1ead65)?_0x421d3b(0x1cf)+_0x34fe51+'\x22'+_0x1ead65+_0x421d3b(0x209)+_0x270a0d+'>':_0x53bdf0),_0x47a552['file'](_0x5418ed,_0x360641);}const _0x56d36d=$('#school')&&$(_0x421d3b(0x176))[_0x421d3b(0x19a)]['trim']()||'';for(const _0x3cc3f5 of[_0x421d3b(0x220),_0x421d3b(0x1bb)]){const _0x50b41b=_0x4d6841(_0x3cc3f5);let _0x305435=await _0x47a552[_0x421d3b(0x1d0)](_0x50b41b)['async'](_0x421d3b(0x1d9));_0x305435=setCell(_0x305435,'I1',_0x353b8b[0x0]);if(_0x56d36d&&_0x3cc3f5===_0x421d3b(0x220))_0x305435=setCell(_0x305435,'A2',_0x56d36d);_0x47a552['file'](_0x50b41b,_0x305435);}for(let _0x12f235=0x1;_0x12f235<=0xa;_0x12f235++)if(!_0x353b8b[_0x421d3b(0x21e)](_0x12f235))_0x265ece=_0x265ece[_0x421d3b(0x1c4)](new RegExp(_0x421d3b(0x1b2)+_0x12f235+'\x22[^>]*?)(\x20state=\x22\x5cw+\x22)?(\x20r:id=)'),_0x421d3b(0x1be));_0x265ece=_0x265ece[_0x421d3b(0x1c4)](/firstSheet="\d+"/,_0x421d3b(0x1f7)+(_0x353b8b[0x0]-0x1)+'\x22'),_0x265ece=_0x265ece['replace'](/activeTab="\d+"/,_0x421d3b(0x19d)+(_0x353b8b[0x0]-0x1)+'\x22'),_0x47a552[_0x421d3b(0x1d0)](_0x421d3b(0x22a),_0x265ece);const _0x3e30a6=await _0x47a552[_0x421d3b(0x15e)]({'type':_0x421d3b(0x1fa),'mimeType':_0x421d3b(0x19c)}),_0xda7a5a=(_0x11d9f0['name'][_0x421d3b(0x224)](/^\d{11}/)||[''])[0x0],_0x265aae=(_0xda7a5a?_0xda7a5a+'_':'')+'Marks_Entry_Sheet.xlsx';if(window['__udUrl'])URL[_0x421d3b(0x1a7)](window[_0x421d3b(0x1da)]);const _0x190b1c=window[_0x421d3b(0x1da)]=URL['createObjectURL'](_0x3e30a6),_0x34bd00=_0x353b8b[_0x421d3b(0x1cb)]((_0x1151cb,_0x5dd057)=>_0x1151cb+_0x39d6b7[_0x5dd057][_0x421d3b(0x213)],0x0);_0x4072dd[_0x421d3b(0x17e)][_0x421d3b(0x17d)]('ok'),_0x4072dd[_0x421d3b(0x18c)]=_0x421d3b(0x1ad)+_0x34bd00+_0x421d3b(0x204)+_0x353b8b[_0x421d3b(0x17b)](',\x20')+_0x421d3b(0x17c)+(_0x45d8e5?'\x20('+_0x45d8e5+_0x421d3b(0x1a8):'')+_0x421d3b(0x1ff);const _0x26ba2a=$(_0x421d3b(0x162));_0x26ba2a['href']=_0x190b1c,_0x26ba2a[_0x421d3b(0x1a4)](_0x421d3b(0x1c5),_0x265aae),_0x26ba2a[_0x421d3b(0x17e)][_0x421d3b(0x1e9)]('off'),_0x26ba2a['classList'][_0x421d3b(0x17d)](_0x421d3b(0x1b6)),_0x26ba2a['removeAttribute'](_0x421d3b(0x15c)),$(_0x421d3b(0x18b))[_0x421d3b(0x1db)]=_0x265aae+_0x421d3b(0x170),blink(_0x26ba2a);try{_0x26ba2a[_0x421d3b(0x228)]();}catch(_0x5445d6){}}catch(_0x361ab4){_0x4072dd[_0x421d3b(0x17e)][_0x421d3b(0x17d)](_0x421d3b(0x21b)),_0x4072dd[_0x421d3b(0x1db)]=_0x361ab4&&_0x361ab4[_0x421d3b(0x183)]&&!/^lib$/['test'](_0x361ab4['message'])?_0x361ab4['message']:'The\x20file\x20could\x20not\x20be\x20read.\x20Check\x20the\x20internet\x20connection\x20and\x20try\x20again.';}}$(a0_0x4f7adb(0x230))[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x141),_0x3fd4d8=>{const _0x52bf30=a0_0x4f7adb,_0x2ca29a=_0x3fd4d8[_0x52bf30(0x1aa)][_0x52bf30(0x202)][0x0];if(_0x2ca29a)makeUdiseSheet(_0x2ca29a);_0x3fd4d8['target'][_0x52bf30(0x19a)]='';});function blink(_0x14cdc6){const _0x547917=a0_0x4f7adb;if(!_0x14cdc6)return;_0x14cdc6[_0x547917(0x17e)]['remove'](_0x547917(0x231)),void _0x14cdc6['offsetWidth'],_0x14cdc6['classList'][_0x547917(0x17d)](_0x547917(0x231));}document[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x1f1),_0x3654bb=>{const _0x5ad661=a0_0x4f7adb;if(_0x3654bb[_0x5ad661(0x1b8)]===_0x5ad661(0x1f9))_0x3654bb['target']['classList']['remove'](_0x5ad661(0x231));});function a0_0x142d(_0x44b244,_0x3a3cc7){_0x44b244=_0x44b244-0x132;const _0x2368c4=a0_0x2368();let _0x142ddb=_0x2368c4[_0x44b244];return _0x142ddb;}const calm=matchMedia(a0_0x4f7adb(0x139))[a0_0x4f7adb(0x163)];document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x155))[a0_0x4f7adb(0x13c)](_0x185c9f=>_0x185c9f[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x228),()=>blink(_0x185c9f))),document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x1b1))[a0_0x4f7adb(0x13c)](_0x20e14c=>_0x20e14c[a0_0x4f7adb(0x1bc)]('click',()=>blink(_0x20e14c[a0_0x4f7adb(0x222)]('.gsx,.tt1')||_0x20e14c))),$(a0_0x4f7adb(0x162))[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x228),_0x5aac90=>{const _0x3beaaf=a0_0x4f7adb,_0x9cddd=_0x5aac90[_0x3beaaf(0x1c3)];if(!_0x9cddd[_0x3beaaf(0x17e)]['contains']('off')){blink(_0x9cddd);return;}_0x5aac90[_0x3beaaf(0x18d)](),blink($(_0x3beaaf(0x195))),toast(_0x3beaaf(0x200));});const LANG={},langOK={'te':a0_0x4f7adb(0x1e7),'en':a0_0x4f7adb(0x203)};document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x217))[a0_0x4f7adb(0x13c)](_0x2b8ff4=>{const _0x4598f9=a0_0x4f7adb,_0x43a416=_0x2b8ff4[_0x4598f9(0x1a5)][_0x4598f9(0x1d4)],_0x270556=_0x2b8ff4[_0x4598f9(0x14f)](_0x4598f9(0x174)),_0x2590d7=_0x2b8ff4[_0x4598f9(0x14f)](_0x4598f9(0x1eb)),_0x2d1882=_0x37d5ae=>{const _0x26ff7d=_0x4598f9;LANG[_0x43a416]=_0x37d5ae,_0x270556[_0x26ff7d(0x1d6)](_0x26ff7d(0x1b5))[_0x26ff7d(0x13c)](_0xcb22db=>_0xcb22db['setAttribute'](_0x26ff7d(0x15f),String(_0xcb22db[_0x26ff7d(0x1a5)]['l']===_0x37d5ae))),_0x2b8ff4[_0x26ff7d(0x17e)]['remove'](_0x26ff7d(0x164)),_0x2590d7['classList'][_0x26ff7d(0x17d)](_0x26ff7d(0x133)),_0x2590d7[_0x26ff7d(0x1db)]=langOK[_0x37d5ae];try{sessionStorage[_0x26ff7d(0x1fb)]('ssat_lang_'+_0x43a416,_0x37d5ae);}catch(_0x1bf117){}};_0x270556['addEventListener'](_0x4598f9(0x228),_0x142c4f=>{const _0x3966e0=_0x4598f9,_0x203408=_0x142c4f[_0x3966e0(0x1aa)][_0x3966e0(0x222)](_0x3966e0(0x1fe));if(_0x203408)_0x2d1882(_0x203408[_0x3966e0(0x1a5)]['l']);});let _0x29fdd8='';try{_0x29fdd8=sessionStorage[_0x4598f9(0x211)](_0x4598f9(0x171)+_0x43a416)||'';}catch(_0xad903d){}if(_0x29fdd8==='te'||_0x29fdd8==='en')_0x2d1882(_0x29fdd8);}),document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x1ed))['forEach'](_0x727620=>_0x727620[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x228),()=>{const _0x50c683=a0_0x4f7adb,_0x1a2b7b=_0x727620[_0x50c683(0x222)](_0x50c683(0x217));if(_0x1a2b7b&&!LANG[_0x1a2b7b[_0x50c683(0x1a5)][_0x50c683(0x1d4)]]){const _0x364305=_0x1a2b7b[_0x50c683(0x14f)](_0x50c683(0x174));_0x364305['classList'][_0x50c683(0x1e9)](_0x50c683(0x1fc)),void _0x364305[_0x50c683(0x150)],_0x364305[_0x50c683(0x17e)][_0x50c683(0x17d)](_0x50c683(0x1fc)),toast('ముందు\x20భాష\x20ఎంచుకోండి\x20–\x20choose\x20తెలుగు\x20or\x20English\x20first.'),_0x1a2b7b[_0x50c683(0x193)]({'behavior':_0x50c683(0x1dd),'block':_0x50c683(0x188)});return;}if(_0x727620[_0x50c683(0x1a5)][_0x50c683(0x201)]===_0x50c683(0x1b7)&&!marks){toast(_0x50c683(0x1ea)),$(_0x50c683(0x219))[_0x50c683(0x193)]({'behavior':'smooth','block':_0x50c683(0x188)}),blink($(_0x50c683(0x219)));return;}let _0x29adb5=_0x727620[_0x50c683(0x1a5)][_0x50c683(0x1d2)];const _0x170ca6=_0x727620[_0x50c683(0x222)]('li');if(_0x170ca6)_0x170ca6['querySelectorAll'](_0x50c683(0x1de))[_0x50c683(0x13c)](_0x4fc3a5=>{const _0x2dab63=_0x50c683;if(_0x4fc3a5[_0x2dab63(0x19a)])_0x29adb5+='&'+_0x4fc3a5['dataset']['p']+'='+encodeURIComponent(_0x4fc3a5[_0x2dab63(0x19a)]);});if(_0x1a2b7b){const _0x3ba8a3=LANG[_0x1a2b7b[_0x50c683(0x1a5)][_0x50c683(0x1d4)]];_0x29adb5+=_0x50c683(0x196)+_0x3ba8a3,ls(_0x50c683(0x1b4),_0x3ba8a3);}blink(_0x727620),setTimeout(()=>{const _0x7f29e8=_0x50c683;location[_0x7f29e8(0x232)]=_0x29adb5;},calm?0x0:0x17c);}));let ttPending=![];wireDrop($(a0_0x4f7adb(0x21a)),$(a0_0x4f7adb(0x223)),async _0x4c9883=>{const _0x21ca4c=a0_0x4f7adb;try{await put('tt',{'name':_0x4c9883['name'],'buf':await _0x4c9883[_0x21ca4c(0x1a9)](),'time':Date[_0x21ca4c(0x184)]()}),ttPending=!![],$(_0x21ca4c(0x1af))[_0x21ca4c(0x1db)]='✓\x20'+_0x4c9883[_0x21ca4c(0x16a)]+_0x21ca4c(0x1ae),location[_0x21ca4c(0x232)]=_0x21ca4c(0x138);}catch(_0x4b1f66){toast(_0x21ca4c(0x1fd));}}),$('#ttOpen')[a0_0x4f7adb(0x1bc)]('click',()=>{setTimeout(()=>{const _0x27f066=a0_0x142d;location[_0x27f066(0x232)]='substitute-timetable.html?from=hub'+(ttPending?'&tt=1':'');},calm?0x0:0x17c);}),$('#ttGsGo')['addEventListener'](a0_0x4f7adb(0x228),async()=>{const _0x156703=a0_0x4f7adb,_0x2e564c=$(_0x156703(0x1d1))[_0x156703(0x19a)]['trim'](),_0x3829fd=_0x2e564c[_0x156703(0x224)](/\/d\/([a-zA-Z0-9-_]+)/),_0x51c489=_0x3829fd?_0x3829fd[0x1]:/^[a-zA-Z0-9-_]{20,}$/['test'](_0x2e564c)?_0x2e564c:null;if(!_0x2e564c){toast('Paste\x20the\x20Google\x20Sheet\x20link\x20first.');return;}if(!_0x51c489){toast(_0x156703(0x16b));return;}const _0xc93047=$(_0x156703(0x1c6));_0xc93047['disabled']=!![],$(_0x156703(0x1af))['textContent']=_0x156703(0x14b);try{const _0x4df33c=await fetch('https://docs.google.com/spreadsheets/d/'+_0x51c489+'/export?format=xlsx');if(!_0x4df33c['ok'])throw new Error(_0x4df33c[_0x156703(0x198)]);const _0x4baff0=await _0x4df33c['arrayBuffer']();if(_0x4baff0['byteLength']<0xc8)throw new Error('empty');await put('tt',{'name':_0x156703(0x1f8),'buf':_0x4baff0,'time':Date[_0x156703(0x184)]()}),ttPending=!![],$(_0x156703(0x1af))[_0x156703(0x1db)]=_0x156703(0x157),location[_0x156703(0x232)]=_0x156703(0x138);}catch(_0x3512f9){$('#ttName')['textContent']=_0x156703(0x13d),toast(_0x156703(0x1f2));}_0xc93047['disabled']=![];});const needJs=_0xce0a84=>new Promise((_0x38ad64,_0x1917ef)=>{const _0x402d48=a0_0x4f7adb,_0x530dc4=document['createElement'](_0x402d48(0x178));_0x530dc4['src']=_0xce0a84,_0x530dc4[_0x402d48(0x218)]=_0x38ad64,_0x530dc4[_0x402d48(0x189)]=_0x1917ef,document[_0x402d48(0x215)][_0x402d48(0x207)](_0x530dc4);});let PD=null;async function fillPick(){const _0x162365=a0_0x4f7adb;if(!marks)return;try{await needLib(_0x162365(0x1e3));if(!window[_0x162365(0x1f3)])await needJs(_0x162365(0x16d));const _0xe08e48=SSAT[_0x162365(0x152)](XLSX[_0x162365(0x194)](marks[_0x162365(0x1f4)],{'type':_0x162365(0x16c)})),_0x4242fe=(_0xe08e48['meta']['classes']||[])[_0x162365(0x159)](Boolean),_0x29e653={};_0xe08e48['stu']['forEach'](_0x2eeab2=>{const _0x4b5738=_0x162365,_0x4df768=_0x2eeab2['c']||_0x4242fe[0x0]||'';_0x29e653[_0x4df768]||(_0x29e653[_0x4df768]={'secs':new Set(),'subs':new Set()});if(_0x2eeab2[_0x4b5738(0x143)])_0x29e653[_0x4df768][_0x4b5738(0x1f6)][_0x4b5738(0x17d)](_0x2eeab2[_0x4b5738(0x143)]);Object['values'](_0x2eeab2['ex']||{})[_0x4b5738(0x13c)](_0x4ea93d=>(_0x4ea93d[_0x4b5738(0x166)]||[])[_0x4b5738(0x13c)](_0x58483b=>{if(_0x58483b['m']!=='-'&&_0x58483b['m']!=='')_0x29e653[_0x4df768]['subs']['add'](_0x58483b['n']);}));}),PD={'cls':_0x4242fe,'by':_0x29e653,'ex':_0xe08e48['ex'][_0x162365(0x167)](_0x4e6572=>_0x4e6572['k'])};}catch(_0xf3918b){PD=null;}document[_0x162365(0x1d6)](_0x162365(0x16f))[_0x162365(0x13c)](_0x3ee242=>{const _0x46ef72=_0x162365;if(!PD||!PD[_0x46ef72(0x1e1)][_0x46ef72(0x213)]){_0x3ee242[_0x46ef72(0x140)]=!![];return;}const _0x4d9569=_0x3ee242[_0x46ef72(0x14f)]('.pcls'),_0xd2d582=_0x4d9569[_0x46ef72(0x1a5)][_0x46ef72(0x190)];_0x4d9569[_0x46ef72(0x18c)]=(_0xd2d582||PD[_0x46ef72(0x1e1)]['length']===0x1?'':_0x46ef72(0x1f0))+PD[_0x46ef72(0x1e1)][_0x46ef72(0x167)](_0x41900c=>_0x46ef72(0x14c)+_0x41900c+_0x46ef72(0x173)+_0x41900c+_0x46ef72(0x1ba))['join']('');const _0x4c1b57=()=>{const _0xdacacb=_0x46ef72,_0x10714e=_0x4d9569[_0xdacacb(0x19a)],_0x2aad41=PD['by'][_0x10714e],_0x27581c=_0x3ee242['querySelector'](_0xdacacb(0x153));if(_0x27581c){const _0x3bc2e2=_0x2aad41?[..._0x2aad41[_0xdacacb(0x1f6)]][_0xdacacb(0x15b)]():[];_0x27581c[_0xdacacb(0x18c)]=_0xdacacb(0x21f)+_0x3bc2e2[_0xdacacb(0x167)](_0x56b975=>_0xdacacb(0x14c)+_0x56b975+'\x22>'+_0x56b975+_0xdacacb(0x1ba))[_0xdacacb(0x17b)](''),_0x27581c[_0xdacacb(0x145)]=!_0x10714e;}const _0x27b354=_0x3ee242['querySelector'](_0xdacacb(0x1a6));if(_0x27b354){const _0x10aac9=_0x2aad41?[..._0x2aad41['subs']]:[];_0x27b354[_0xdacacb(0x18c)]=_0x10aac9[_0xdacacb(0x167)](_0x1a057f=>_0xdacacb(0x14c)+_0x1a057f+'\x22>'+_0x1a057f+_0xdacacb(0x1ba))[_0xdacacb(0x17b)]('');}},_0x2b97cb=_0x3ee242[_0x46ef72(0x14f)]('.pex');if(_0x2b97cb)_0x2b97cb['innerHTML']=_0x46ef72(0x165)+PD['ex']['map'](_0x288026=>_0x46ef72(0x14c)+_0x288026+'\x22>'+_0x288026+_0x46ef72(0x1ba))[_0x46ef72(0x17b)]('');_0x4d9569[_0x46ef72(0x168)]=_0x4c1b57,_0x4c1b57(),_0x3ee242['hidden']=![];});}const _showMarks=showMarks;showMarks=function(){const _0x29aa3d=a0_0x4f7adb;_showMarks[_0x29aa3d(0x187)](this,arguments),fillPick();},get(a0_0x4f7adb(0x1b7))[a0_0x4f7adb(0x1c9)](_0x309273=>{_0x309273&&(marks=_0x309273,showMarks());});if(a0_0x4f7adb(0x1b3)in navigator&&/^https?:$/[a0_0x4f7adb(0x15d)](location[a0_0x4f7adb(0x13e)]))addEventListener(a0_0x4f7adb(0x16e),()=>navigator[a0_0x4f7adb(0x1b3)][a0_0x4f7adb(0x216)](a0_0x4f7adb(0x22d))[a0_0x4f7adb(0x22f)](()=>{}));(function(){const _0x302d7f=a0_0x4f7adb,_0x310d78=matchMedia(_0x302d7f(0x160))[_0x302d7f(0x163)]||navigator['standalone']===!![],_0x46f01b=/iphone|ipad|ipod/i['test'](navigator[_0x302d7f(0x14e)])||navigator[_0x302d7f(0x17f)]===_0x302d7f(0x1ef)&&navigator['maxTouchPoints']>0x1;let _0x262c81=null;const _0x59ded9=$(_0x302d7f(0x1ab));if(_0x310d78)return;addEventListener(_0x302d7f(0x1df),_0x51c608=>{const _0x149800=_0x302d7f;_0x51c608[_0x149800(0x18d)](),_0x262c81=_0x51c608,_0x59ded9[_0x149800(0x140)]=![];});if(_0x46f01b)_0x59ded9[_0x302d7f(0x140)]=![];_0x59ded9[_0x302d7f(0x208)]=async()=>{const _0x2065da=_0x302d7f;if(_0x262c81){_0x262c81[_0x2065da(0x1cc)]();try{await _0x262c81['userChoice'];}catch(_0x2b1cb8){}_0x262c81=null,_0x59ded9[_0x2065da(0x140)]=!![];return;}toast(_0x46f01b?_0x2065da(0x151):'Open\x20this\x20site\x20in\x20Chrome,\x20then\x20use\x20⋮\x20menu\x20→\x20“Install\x20app”.');},addEventListener(_0x302d7f(0x136),()=>{const _0x1c117e=_0x302d7f;_0x59ded9[_0x1c117e(0x140)]=!![],toast(_0x1c117e(0x1e8));});}());</script>
 </body>
 </html>
