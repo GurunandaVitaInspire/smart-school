@@ -107,7 +107,21 @@ a.ssat-home,.ssat-home{background:transparent!important;color:#14532D!important;
 
 #setup .bar,.wrap>.bar,#dutyRows>*,.roles,.rolegrid>*{background:transparent!important;border:0!important;border-bottom:1.5px dotted rgba(110,125,140,.6)!important;border-radius:0!important;box-shadow:none!important}
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/ui.css"><script>document.documentElement.classList.add("ss","ss-rank")</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/ui.css"><script>document.documentElement.classList.add("ss","ss-rank")</script><style>[hidden]{display:none!important}</style><script>
+/* If the marks sheet has student names but no marks yet, explain it instead of showing an empty page. */
+(function(){
+  function explain(){
+    var ctl=document.getElementById("ctl"),ex=document.getElementById("exSel"),bad=document.getElementById("bad");
+    if(!bad||(ex&&ex.options.length))return;
+    if(ctl)ctl.hidden=true;
+    var pv=document.getElementById("pv");if(pv)pv.hidden=true;
+    bad.innerHTML="No marks found in this sheet yet. Type the marks for at least one exam (FA-1, SA-1 …), save the file, then upload it again on the <a href=\"index.html#how\">Home page</a>.<br><small>ఈ షీట్‌లో ఇంకా మార్కులు లేవు. కనీసం ఒక పరీక్ష మార్కులు టైప్ చేసి, మళ్ళీ అప్‌లోడ్ చేయండి.</small>";
+    bad.hidden=false;
+  }
+  addEventListener("unhandledrejection",function(){setTimeout(explain,0)});
+  addEventListener("error",function(){setTimeout(explain,0)});
+})();
+</script>
 </head>
 <body>
 <main class="wrap">
