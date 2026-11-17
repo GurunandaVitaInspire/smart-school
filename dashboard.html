@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class Dashboard – Smart School AI Tools</title>
+<meta name="description" content="Class performance overview, student-by-student analysis and exam prep plans from your marks sheet.">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#06281F">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif&family=Ramabhadra&family=Baloo+Tammudu+2:wght@600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/pages.css">
+<style>
+.stu-head{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.stu-head .av{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;font-family:var(--te);font-size:1.5rem;color:#fff;background:linear-gradient(160deg,#22D3EE,#0E7490)}
+.stu-head h2{margin:0;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1}
+.stu-head .meta{color:var(--muted);font-weight:600;font-size:.9rem}
+.stu-head .act{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+td .cmp{display:block;font-size:.72rem;font-weight:700;color:var(--muted)}
+td .cmp.up{color:var(--ok)}td .cmp.down{color:var(--err)}
+.att-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px}
+.att-grid div{border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center}
+.att-grid b{display:block;font-size:1.05rem}
+.att-grid span{font-size:.72rem;font-weight:700;color:var(--muted)}
+.att-grid .lo{border-color:color-mix(in srgb,var(--err) 40%,transparent);background:var(--err-soft)}
+.prep{border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--surface-2)}
+.prep h4{margin:0;font-size:1rem;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.prep h4 .te{font-size:.92rem;color:var(--a)}
+.prep ol,.prep ul{margin:8px 0 0;padding-left:20px}
+.prep li{margin:3px 0}
+.prep .lbl{margin-top:12px;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.days{display:grid;gap:6px;margin-top:8px}
+.days div{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:8px 10px;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:.88rem}
+.days div b{font-variant-numeric:tabular-nums}
+.days div.rv{border-color:color-mix(in srgb,var(--sun) 55%,transparent);background:var(--warn-soft)}
+.labs{display:grid;gap:8px;margin-top:8px}
+.labs .lab{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-weight:700;font-size:.88rem}
+.labs .lab span{flex:1 1 180px}
+.labs .lab a{padding:5px 11px;border-radius:999px;background:color-mix(in srgb,var(--a) 12%,transparent);color:var(--a);text-decoration:none;font-size:.8rem}
+.labs .lab a:hover{background:var(--a);color:var(--a-ink)}
+.rd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.rd-grid{grid-template-columns:1fr}}
+.search{flex:1 1 200px}
+.pdf-area{background:var(--bg)}
+.tips{margin-top:10px}.tips summary{cursor:pointer;font-weight:700;font-size:.85rem;color:var(--a)}
+#prepBody .rd-grid{margin-top:4px}
+</style>
+</head>
+<body class="p-dash">
+<header class="topbar"><div class="wrap">
+  <a href="index.html"><span class="mk" aria-hidden="true"></span>← Smart School AI Tools (Home)</a>
+  <nav class="sp" aria-label="Tools"><a href="calendar.html">Academic Calendar</a><a href="timetable-generator.html">Timetable Generator</a></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="phead">
+    <span class="kt">తరగతి డాష్‌బోర్డ్</span>
+    <h1>Class Dashboard</h1>
+    <p>How the class is doing, who needs help, and what each student should study next — all from the marks sheet you uploaded on the Home page.</p>
+  </div>
+
+  <div id="state"></div>
+
+  <div id="app" hidden>
+    <div class="toolbar">
+      <label class="field">Class<select id="fCls"></select></label>
+      <label class="field">Section<select id="fSec"></select></label>
+      <label class="field">Exam<select id="fEx"></select></label>
+      <span class="muted" id="fInfo" style="margin-left:auto;font-size:.85rem;font-weight:600"></span>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="ov">Class overview</button>
+      <button role="tab" aria-selected="false" data-tab="st">Students</button>
+      <button role="tab" aria-selected="false" data-tab="rd">Exam readiness</button>
+    </div>
+
+    <section id="tab-ov" class="section"></section>
+    <section id="tab-st" class="section" hidden></section>
+    <section id="tab-rd" class="section" hidden></section>
+  </div>
+</main>
+
+<footer class="foot"><div class="wrap"><span>Smart School AI Tools · files are read in your browser and kept on this device.</span><a href="index.html">Home</a></div></footer>
+
+<script src="assets/syllabus-data.js"></script>
+<script src="assets/school-core.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = SS.$, $$ = SS.$$, esc = SS.esc;
+  var M = null, view = null, stats = null, current = { cls: '', sec: '', ex: '' }, openStudent = null;
+  var SUBNAME = function (code) { var d = window.SS_DATA.subjects[code]; return d ? d.en : code; };
+
+  function icon(path) { return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">' + path + '</svg>'; }
+  var I_INFO = icon('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6h.01"/>');
+
+  SS.loadMarks().then(function (m) {
+    if (!m || !m.data || !m.data.stu.length) {
+      $('#state').innerHTML = '<div class="card empty"><b>No marks sheet yet</b>Upload the filled marks sheet on the <a href="index.html#how">Home page</a>, then open the dashboard again.</div>';
+      return;
+    }
+    M = m; $('#app').hidden = false;
+    var classes = (m.data.meta.classes || []).filter(Boolean);
+    var q = new URLSearchParams(location.search);
+    $('#fCls').innerHTML = classes.map(function (c) { return '<option value="' + esc(c) + '">Class ' + esc(c) + '</option>'; }).join('');
+    $('#fCls').value = classes.indexOf(q.get('cls')) >= 0 ? q.get('cls') : classes[classes.length - 1];
+    $('#fInfo').textContent = m.file + ' · ' + m.data.stu.length + ' students';
+    ['fCls', 'fSec', 'fEx'].forEach(function (id) { $('#' + id).addEventListener('change', function () { if (id === 'fCls') fillSections(); if (id !== 'fEx') fillExams(); render(); }); });
+    fillSections();
+    if (q.get('sec') && SS.sections(m.data, $('#fCls').value).indexOf(q.get('sec')) >= 0) $('#fSec').value = q.get('sec');
+    fillExams(); render();
+    if (q.get('tab')) showTab(q.get('tab'));
+  }).catch(function (e) {
+    $('#state').innerHTML = '<div class="note">' + I_INFO + '<span>' + esc(e.message || 'Could not read the marks sheet.') + '</span></div>';
+  });
+
+  function fillSections() {
+    var secs = SS.sections(M.data, $('#fCls').value);
+    $('#fSec').innerHTML = '<option value="">All sections</option>' + secs.map(function (s) { return '<option>' + esc(s) + '</option>'; }).join('');
+  }
+  function fillExams() {
+    var v = SS.classView(M.data, $('#fCls').value, $('#fSec').value), prev = $('#fEx').value;
+    $('#fEx').innerHTML = v.exams.map(function (e) { return '<option value="' + esc(e.k) + '">' + esc(e.k) + '</option>'; }).join('');
+    if (v.exams.some(function (e) { return e.k === prev; })) $('#fEx').value = prev; else if (v.exams.length) $('#fEx').value = v.exams[v.exams.length - 1].k;
+  }
+
+  $$('.tabs button').forEach(function (b) { b.addEventListener('click', function () { showTab(b.dataset.tab); }); });
+  function showTab(t) {
+    $$('.tabs button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'); });
+    ['ov', 'st', 'rd'].forEach(function (k) { $('#tab-' + k).hidden = k !== t; });
+  }
+
+  function render() {
+    current = { cls: $('#fCls').value, sec: $('#fSec').value, ex: $('#fEx').value };
+    view = SS.classView(M.data, current.cls, current.sec);
+    if (!view.exams.length) {
+      $('#tab-ov').innerHTML = $('#tab-st').innerHTML = $('#tab-rd').innerHTML = '<div class="card empty"><b>No marks in this class yet</b>Type the marks for at least one exam in the sheet and upload it again.</div>';
+      return;
+    }
+    stats = SS.classStats(view.students, view.exams, current.ex);
+    renderOverview(); renderStudents(); renderReadiness();
+  }
+
+  /* ---------------------------------------------------------------- overview */
+  function gradeBadge(g) { return '<span class="gp" style="background:' + (SS.GRADE_COLOR[g] || '#7C8A84') + '">' + esc(g || '–') + '</span>'; }
+  function renderOverview() {
+    var s = stats, prevIdx = view.exams.map(function (e) { return e.k; }).indexOf(s.key) - 1;
+    var prev = prevIdx >= 0 ? s.trend[prevIdx] : null, cur = s.trend[prevIdx + 1];
+    var delta = prev && cur && SS.isNum(prev.pct) && SS.isNum(cur.pct) ? SS.round1(cur.pct - prev.pct) : null;
+    var gradeTotal = s.grades.reduce(function (a, g) { return a + g.count; }, 0) || 1;
+    var html = '';
+    html += '<div class="grid g4">' +
+      kpi(s.total, 'Students' + (current.sec ? ' in ' + current.cls + '-' + current.sec : ' in Class ' + current.cls), s.absent ? s.absent + ' absent for ' + s.key : '') +
+      kpi(s.passPct != null ? s.passPct + '%' : '–', 'Passed ' + s.key, s.pass + ' of ' + s.graded, 'ok') +
+      kpi(s.fail, 'Failed (D2)', s.fail ? 'need extra help' : 'nobody failed', s.fail ? 'down' : 'up') +
+      kpi(s.avgAttendance != null ? s.avgAttendance + '%' : '–', 'Average attendance', s.lowAttendance.length ? s.lowAttendance.length + ' below 75%' : 'everyone above 75%', s.lowAttendance.length ? 'down' : 'up') +
+      '</div>';
+    html += '<div class="grid g2 section">' +
+      '<div class="card"><div class="hd"><h2>Grade spread · ' + esc(s.key) + '<small>గ్రేడ్ల వారీగా</small></h2></div>' +
+        '<div class="gradebar">' + s.grades.filter(function (g) { return g.count; }).map(function (g) { return '<span style="flex:' + g.count + ';background:' + SS.GRADE_COLOR[g.grade] + '" title="' + g.grade + ': ' + g.count + '">' + (g.count * 100 / gradeTotal >= 6 ? g.grade : '') + '</span>'; }).join('') + '</div>' +
+        '<div class="legend">' + s.grades.map(function (g) { return '<span><i style="background:' + SS.GRADE_COLOR[g.grade] + '"></i>' + g.grade + ' · ' + g.count + '</span>'; }).join('') + '</div></div>' +
+      '<div class="card"><div class="hd"><h2>Class average across exams<small>పరీక్షల వారీగా సగటు</small></h2>' + (delta != null ? '<span class="tag ' + (delta >= 0 ? 'ok' : 'err') + '">' + (delta >= 0 ? '▲ ' : '▼ ') + Math.abs(delta) + '% vs ' + esc(prev.exam) + '</span>' : '') + '</div>' +
+        SS.lineChart(s.trend.map(function (t) { return { label: t.exam, value: t.pct }; }), { label: 'Class average percentage per exam' }) + '</div>' +
+      '</div>';
+    html += '<div class="card section"><div class="hd"><h2>Subject averages · ' + esc(s.key) + '<small>సబ్జెక్టుల వారీగా సగటు మార్కులు</small></h2><span class="muted" style="font-size:.8rem;font-weight:600">bar = average · right = % of students at or above 35%</span></div>' +
+      SS.barList(s.subjects.map(function (x) { return { label: SUBNAME(x.subject), value: x.avg, max: x.max, color: x.pct >= 75 ? '#12A37A' : x.pct >= 50 ? '#2F80ED' : x.pct >= 35 ? '#D99A00' : '#E5484D', note: x.avg + '/' + x.max + ' · ' + x.passPct + '%' }; })) + '</div>';
+    html += '<div class="grid g3 section">' +
+      '<div class="card"><div class="hd"><h2>Top performers<small>మొదటి 5 స్థానాలు</small></h2></div><ul class="plist">' +
+        (s.top.length ? s.top.map(function (r) { return '<li><span class="no">' + r.rank + '</span><button class="nm" data-open="' + view.students.indexOf(r.s) + '">' + esc(r.s.name) + '<small>' + esc(r.s.cls) + ' · ' + r.total + '/' + r.max + '</small></button>' + gradeBadge(r.grade) + '</li>'; }).join('') : '<li class="muted">No ranks in this exam.</li>') + '</ul></div>' +
+      '<div class="card"><div class="hd"><h2>Needs attention<small>ప్రత్యేక శ్రద్ధ అవసరం</small></h2></div><ul class="plist">' +
+        (s.attention.length ? s.attention.map(function (r) { return '<li><span class="no">' + (SS.isNum(r.rank) ? r.rank : '–') + '</span><button class="nm" data-open="' + view.students.indexOf(r.s) + '">' + esc(r.s.name) + '<small>' + (r.reason === 'fail' ? 'Failed ' + esc(s.key) : 'Low grade') + ' · ' + r.total + '/' + r.max + '</small></button>' + gradeBadge(r.grade) + '</li>'; }).join('') : '<li class="muted">Nobody is failing or on a low grade. 🎉</li>') + '</ul></div>' +
+      '<div class="card"><div class="hd"><h2>Low attendance<small>హాజరు 75% కంటే తక్కువ</small></h2></div><ul class="plist">' +
+        (s.lowAttendance.length ? s.lowAttendance.slice(0, 6).map(function (r) { return '<li><button class="nm" data-open="' + view.students.indexOf(r.s) + '">' + esc(r.s.name) + '<small>' + esc(r.s.cls) + '</small></button><span class="tag err">' + r.pct + '%</span></li>'; }).join('') : '<li class="muted">Everyone is above 75%.</li>') + '</ul></div>' +
+      '</div>';
+    $('#tab-ov').innerHTML = html;
+    bindOpen($('#tab-ov'));
+  }
+  function kpi(v, label, sub, tone) { return '<div class="card kpi"><b>' + esc(v) + '</b><span>' + esc(label) + '</span>' + (sub ? '<em class="' + (tone || '') + '">' + esc(sub) + '</em>' : '') + '</div>'; }
+  function bindOpen(root) { $$('[data-open]', root).forEach(function (b) { b.addEventListener('click', function () { showTab('st'); openStudentView(view.students[+b.dataset.open]); }); }); }
+
+  /* ---------------------------------------------------------------- students */
+  function renderStudents() {
+    var key = stats.key;
+    var list = view.students.map(function (s, i) { return { s: s, i: i, e: s.ex[key], att: SS.attendancePct(s) }; });
+    list.sort(function (a, b) { var ra = a.e && SS.isNum(a.e.rk) ? a.e.rk : 1e9, rb = b.e && SS.isNum(b.e.rk) ? b.e.rk : 1e9; return ra - rb; });
+    $('#tab-st').innerHTML = '<div id="stuOne"></div><div class="card" id="stuList"><div class="hd"><h2>All students · ' + esc(key) + '<small>పేరు నొక్కి పూర్తి విశ్లేషణ చూడండి</small></h2><label class="field search">Search<input id="q" type="search" placeholder="Type a name"></label></div>' +
+      '<div class="tw"><table class="t"><thead><tr><th>Rank</th><th>Name</th><th>Sec</th><th class="n">Total</th><th class="n">%</th><th>Grade</th><th>Result</th><th class="n">Attendance</th></tr></thead><tbody>' +
+      list.map(function (r) {
+        var e = r.e;
+        return '<tr data-name="' + esc(r.s.name.toLowerCase()) + '"><td>' + (e && SS.isNum(e.rk) ? e.rk : '–') + '</td><td><button class="lnk" data-i="' + r.i + '">' + esc(r.s.name) + '</button></td><td>' + esc(r.s.sec) + '</td>' +
+          '<td class="n">' + (e ? esc(e.tm) + '/' + esc(e.tmax) : '–') + '</td><td class="n">' + (e && SS.isNum(e.tm) && e.tmax ? Math.round(e.tm * 100 / e.tmax) : '–') + '</td>' +
+          '<td>' + (e ? gradeBadge(e.tg) : '') + '</td><td>' + (e ? '<span class="tag ' + (e.res === 'PASS' ? 'ok' : e.res === 'FAIL' ? 'err' : '') + '">' + esc(e.res || '') + '</span>' : '<span class="tag">No marks</span>') + '</td>' +
+          '<td class="n">' + (r.att != null ? '<span class="' + (r.att < 75 ? 'down' : '') + '">' + r.att + '%</span>' : '–') + '</td></tr>';
+      }).join('') + '</tbody></table></div></div>';
+    $('#q').addEventListener('input', function () { var v = this.value.trim().toLowerCase(); $$('#stuList tbody tr').forEach(function (tr) { tr.hidden = v && tr.dataset.name.indexOf(v) < 0; }); });
+    $$('#stuList button.lnk').forEach(function (b) { b.addEventListener('click', function () { openStudentView(view.students[+b.dataset.i]); }); });
+    if (openStudent && view.students.indexOf(openStudent) >= 0) openStudentView(openStudent, true);
+  }
+
+  function openStudentView(s, quiet) {
+    openStudent = s;
+    var A = SS.studentAnalytics(s, view.students, view.exams);
+    var initials = (s.name || '?').trim().charAt(0);
+    var html = '<div class="card" id="stuCard"><div class="stu-head"><span class="av">' + esc(initials) + '</span><div><h2>' + esc(s.name) + '</h2><div class="meta">' + esc(s.cls) + (s.roll ? ' · Roll ' + esc(s.roll) : '') + (s.father ? ' · ' + esc(s.father) : '') + '</div></div>' +
+      '<div class="act noprint"><button class="btn sm" id="stuPdf">Download PDF</button><button class="btn sm ghost" id="stuClose">Back to list</button></div></div>';
+    html += '<div class="chips section">' +
+      A.strengths.map(function (n) { return '<span class="tag ok">Strong in ' + esc(SUBNAME(n)) + '</span>'; }).join('') +
+      A.weak.map(function (n) { return '<span class="tag warn">Needs work: ' + esc(SUBNAME(n)) + '</span>'; }).join('') +
+      A.failing.map(function (n) { return '<span class="tag err">Failed in ' + esc(SUBNAME(n)) + '</span>'; }).join('') +
+      (A.attendancePct != null ? '<span class="tag ' + (A.attendancePct < 75 ? 'err' : 'ok') + '">Attendance ' + A.attendancePct + '%</span>' : '') + '</div>';
+    /* subject x exam table with class average */
+    html += '<div class="section"><h3 style="margin:0 0 8px">Marks vs class average<small style="display:block;font-family:var(--te2);font-weight:600;color:var(--muted);font-size:.85rem">తరగతి సగటుతో పోలిక</small></h3><div class="tw"><table class="t"><thead><tr><th>Subject</th>' +
+      A.exams.map(function (k) { return '<th class="n">' + esc(k) + '</th>'; }).join('') + '<th>Trend</th></tr></thead><tbody>' +
+      A.subjects.map(function (sub) {
+        return '<tr><td><b>' + esc(SUBNAME(sub.name)) + '</b></td>' + A.exams.map(function (k) {
+          var r = sub.perExam.filter(function (x) { return x.exam === k; })[0];
+          if (!r || r.m == null) return '<td class="n">–</td>';
+          var d = r.avg != null ? SS.round1(r.m - r.avg) : null;
+          return '<td class="n">' + r.m + '/' + r.mx + ' ' + gradeBadge(r.g) + (d != null ? '<span class="cmp ' + (d >= 0 ? 'up' : 'down') + '">' + (d >= 0 ? '+' : '') + d + ' vs avg ' + r.avg + '</span>' : '') + '</td>';
+        }).join('') + '<td>' + (sub.trend === 'up' ? '<span class="tag ok">▲ Improving</span>' : sub.trend === 'down' ? '<span class="tag err">▼ Slipping</span>' : sub.trend === 'flat' ? '<span class="tag">Steady</span>' : '') + '</td></tr>';
+      }).join('') + '</tbody></table></div></div>';
+    /* rank + attendance */
+    html += '<div class="grid g2 section">' +
+      '<div class="card"><h3>Rank across exams<small>ర్యాంకు</small></h3><ul class="plist" style="margin-top:8px">' + A.rankTrend.map(function (r) { return '<li><span class="nm">' + esc(r.exam) + '<small>' + esc(r.total) + '/' + esc(r.max) + ' · ' + esc(r.res || '') + '</small></span>' + gradeBadge(r.grade) + '<span class="tag">' + (r.rank != null ? 'Rank ' + r.rank + ' of ' + view.students.length : 'No rank') + '</span></li>'; }).join('') + '</ul></div>' +
+      '<div class="card"><h3>Monthly attendance<small>నెలవారీ హాజరు</small></h3><div class="att-grid" style="margin-top:10px">' +
+        (A.attendance.length ? A.attendance.map(function (m) { var p = m.wd ? Math.round(m.at * 100 / m.wd) : null; return '<div class="' + (p != null && p < 75 ? 'lo' : '') + '"><span>' + esc(m.m) + '</span><b>' + (SS.isNum(m.at) ? m.at : '–') + '</b><span>of ' + (SS.isNum(m.wd) ? m.wd : '–') + '</span></div>'; }).join('') : '<p class="muted">No attendance in the sheet.</p>') + '</div></div>' +
+      '</div>';
+    /* prep plan */
+    html += '<div class="section" id="prepWrap"><h3 style="margin:0">Prep plan for the next exam<small style="display:block;font-family:var(--te2);font-weight:600;color:var(--muted);font-size:.85rem">తదుపరి పరీక్షకు ఏం చదవాలి</small></h3><div id="prepBody" class="stack" style="margin-top:12px"><p class="muted">Preparing…</p></div></div>';
+    html += '</div>';
+    $('#stuOne').innerHTML = html;
+    $('#stuList').hidden = true;
+    $('#stuClose').addEventListener('click', function () { openStudent = null; $('#stuOne').innerHTML = ''; $('#stuList').hidden = false; });
+    $('#stuPdf').addEventListener('click', function () {
+      var b = this; b.disabled = true; b.textContent = 'Preparing…';
+      SS.savePdf($('#stuCard'), (s.name || 'student').replace(/\W+/g, '_') + '_Analysis.pdf').then(function () { SS.toast('PDF saved.'); }, function (e) { SS.toast(e.message || 'Could not make the PDF.'); })
+        .then(function () { b.disabled = false; b.textContent = 'Download PDF'; });
+    });
+    renderPrep(s, A);
+    if (!quiet) $('#stuOne').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderPrep(s, A) {
+    var body = $('#prepBody');
+    if (String(s.c) !== '10') {
+      body.innerHTML = '<div class="note">' + I_INFO + '<span>Chapter-wise prep plans use the AP SSC Class 10 syllabus and blueprint. For Class ' + esc(s.c) + ', use the marks above to plan revision.</span></div>';
+      return;
+    }
+    var focusSubs = A.failing.concat(A.weak);
+    var why = {};
+    A.failing.forEach(function (c) { why[c] = '<span class="tag err">Failed</span>'; });
+    A.weak.forEach(function (c) { why[c] = '<span class="tag warn">Needs work</span>'; });
+    if (!focusSubs.length) {
+      /* no weak subject: the two lowest-scoring subjects of the latest exam */
+      var last = s.ex[A.exams[A.exams.length - 1]];
+      focusSubs = (last ? last.subs.slice() : []).filter(function (x) { return SS.isNum(x.m) && x.mx; })
+        .sort(function (a, b) { return a.m / a.mx - b.m / b.mx; }).slice(0, 2).map(function (x) { why[x.n] = '<span class="tag">Lowest marks</span>'; return x.n; });
+    }
+    var focuses = focusSubs.map(function (code) { return SS.examFocus(code, A.exams); }).filter(Boolean);
+    SS.labs.load().then(function () {
+      var out = '', plan = SS.studyPlan(focuses), exam = focuses[0] && focuses[0].exam;
+      if (!exam) { body.innerHTML = '<p class="muted">All exams of the year are done.</p>'; return; }
+      /* combined day-by-day plan */
+      if (!plan) {
+        out += '<div class="note noprint">' + I_INFO + '<span>Add the ' + esc(exam) + ' date in the <a href="calendar.html">Academic Calendar</a> to get a day-by-day study plan with real dates.</span></div>';
+      } else if (plan.tooLate) {
+        out += '<div class="note">' + I_INFO + '<span>' + esc(exam) + ' is on ' + SS.fmtDate(plan.examDate) + ' — no study days left to plan.</span></div>';
+      } else {
+        out += '<div class="prep avoid-break"><h4>Day-by-day study plan <span class="te">రోజువారీ చదువు ప్రణాళిక</span><span class="tag ok">' + plan.days.length + ' school days to ' + esc(exam) + ' · ' + SS.fmtDate(plan.examDate, { day: 'numeric', month: 'short' }) + '</span></h4><div class="days">' +
+          plan.days.map(function (d) {
+            var what = d.finalRevision ? 'Revise the highest-marks topics: ' + d.finalRevision.map(function (r) { return '<b>' + esc(r.subject) + '</b> – ' + esc(r.topic) + ' (' + esc(r.marks) + ' marks)'; }).join('; ')
+              : d.tasks.length ? d.tasks.map(function (t) { return '<b>' + esc(t.subject) + '</b>: ' + esc(t.chapter) + (t.kind === 'revise' ? ' <span class="muted">(revise)</span>' : ''); }).join(' · ') : '<span class="muted">Free day — practise model papers</span>';
+            return '<div class="' + (d.finalRevision ? 'rv' : '') + '"><b>' + SS.weekday(d.date) + ' ' + SS.fmtDate(d.date, { day: 'numeric', month: 'short' }) + '</b><span>' + what + '</span></div>';
+          }).join('') + '</div>' +
+          (plan.unplaced ? '<p class="muted" style="margin:8px 0 0;font-size:.82rem">' + plan.unplaced + ' chapter(s) did not fit — add study time on weekends.</p>' : '') +
+          '<p class="muted" style="margin:8px 0 0;font-size:.8rem">Holidays and weekly off-days from the Academic Calendar are skipped.</p></div>';
+      }
+      /* per-subject focus */
+      out += '<div class="rd-grid">' + focuses.map(function (F) {
+        var h = '<div class="prep avoid-break"><h4>' + esc(F.en) + ' <span class="te">' + esc(F.te) + '</span>' + (why[F.code] || '') + '</h4>';
+        h += '<div class="lbl">Likely in ' + esc(F.exam) + (F.date ? ' · ' + SS.fmtDate(F.date.start) : '') + '</div>';
+        h += F.chapters.length ? '<ol>' + F.chapters.map(function (c) { return '<li>' + esc(c.name) + (c.revise ? ' <span class="muted">(revise)</span>' : '') + '</li>'; }).join('') + '</ol>' : '<p class="muted">Chapter list not available.</p>';
+        if (F.top.length) h += '<div class="lbl">Highest-marks topics (SSC blueprint)</div><ul>' + F.top.map(function (t) { return '<li>' + esc(t.name) + ' — <b>' + t.marks + (t.choice ? '+' + t.choice : '') + '</b> marks</li>'; }).join('') + '</ul>';
+        if (F.code === 'PS') {
+          var struggling = A.failing.indexOf('PS') >= 0 || A.weak.indexOf('PS') >= 0;
+          var src = struggling && SS.labs.catalog ? SS.labs.catalog.chapters.map(function (c) { return c.title; }) : F.chapters.map(function (c) { return c.name; });
+          var seen = {}, hits = src.map(function (t) { return SS.labs.find(t); }).filter(function (x) { if (!x || seen[x.title]) return false; seen[x.title] = 1; return true; });
+          if (hits.length) h += '<div class="lbl">Smart Science Lab' + (struggling ? ' — every lab, for extra practice' : '') + '</div><div class="labs">' + hits.map(function (x) { return '<div class="lab"><span>🧪 ' + esc(x.title) + '</span><a href="' + esc(x.lab) + '" target="_blank" rel="noopener">Try the lab · ' + x.experiments + '</a><a href="' + esc(x.games) + '" target="_blank" rel="noopener">Play games · ' + x.gamesCount + '</a></div>'; }).join('') + '</div>';
+        }
+        if (F.info && F.info.tips && F.info.tips.length) h += '<details class="tips"><summary>Easy marks — exam tips</summary><ul>' + F.info.tips.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></details>';
+        return h + '</div>';
+      }).join('') + '</div>';
+      body.innerHTML = out;
+    });
+  }
+
+  /* ---------------------------------------------------------------- exam readiness (class) */
+  function renderReadiness() {
+    var cls = current.cls, done = view.exams.map(function (e) { return e.k; });
+    var plan = SS.calendar.get().examPlan, next = SS.nextExam(done, plan.fa, plan.sa);
+    var date = next ? SS.calendar.examDate(next) : null;
+    var html = '<div class="card" id="rdCard"><div class="hd"><h2>Next exam: ' + esc(next || 'none left this year') + (date ? ' · ' + SS.fmtDate(date.start) : '') + '<small>తదుపరి పరీక్షకు సిద్ధత</small></h2><button class="btn sm noprint" id="rdPdf">Download PDF</button></div>';
+    if (!date && next) html += '<div class="note noprint" style="margin-bottom:14px">' + I_INFO + '<span>No date set for ' + esc(next) + '. Add it in the <a href="calendar.html">Academic Calendar</a> to see the days left.</span></div>';
+    else if (date) { var left = SS.calendar.workingDates(SS.isoDate(new Date()), SS.addDays(date.start, -1)).length; html += '<div class="note ok" style="margin-bottom:14px">' + I_INFO + '<span><b>' + left + ' working days</b> left before ' + esc(next) + ' (holidays and weekly off-days excluded).</span></div>'; }
+    if (String(cls) !== '10') {
+      html += '<p class="muted">Chapter-wise readiness uses the AP SSC Class 10 syllabus. Subject averages for Class ' + esc(cls) + ' are on the Class overview tab.</p></div>';
+      $('#tab-rd').innerHTML = html; bindRdPdf(); return;
+    }
+    var subAvg = {}; stats.subjects.forEach(function (x) { subAvg[x.subject] = x; });
+    html += '<div class="rd-grid">' + Object.keys(window.SS_DATA.subjects).map(function (code) {
+      var F = SS.examFocus(code, done); if (!F) return '';
+      var a = subAvg[code];
+      return '<div class="prep avoid-break"><h4>' + esc(F.en) + ' <span class="te">' + esc(F.te) + '</span>' + (a ? '<span class="tag ' + (a.pct >= 60 ? 'ok' : a.pct >= 40 ? 'warn' : 'err') + '">class avg ' + a.pct + '%</span>' : '') + '</h4>' +
+        (F.chapters.length ? '<div class="lbl">Likely in ' + esc(F.exam) + '</div><ol>' + F.chapters.map(function (c) { return '<li>' + esc(c.name) + (c.revise ? ' <span class="muted">(revise)</span>' : '') + '</li>'; }).join('') + '</ol>' : '') +
+        (F.top.length ? '<div class="lbl">Highest-marks topics</div><ul>' + F.top.map(function (t) { return '<li>' + esc(t.name) + ' — <b>' + t.marks + (t.choice ? '+' + t.choice : '') + '</b></li>'; }).join('') + '</ul>' : '') +
+        (F.info ? '<div class="lbl">Paper</div><p style="margin:4px 0 0">' + esc(F.info.format) + '</p>' : '') + '</div>';
+    }).join('') + '</div>';
+    html += '<p class="muted" style="font-size:.82rem;margin:14px 0 0">Chapters are split across the year’s ' + plan.fa + ' FA + ' + plan.sa + ' SA exams in textbook order (change the exam plan in the Academic Calendar). Syllabus and blueprint: AP SSC Class 10.</p></div>';
+    $('#tab-rd').innerHTML = html; bindRdPdf();
+  }
+  function bindRdPdf() {
+    var b = $('#rdPdf'); if (!b) return;
+    b.addEventListener('click', function () {
+      b.disabled = true; b.textContent = 'Preparing…';
+      SS.savePdf($('#rdCard'), 'Exam_Readiness_Class' + current.cls + '.pdf').then(function () { SS.toast('PDF saved.'); }, function (e) { SS.toast(e.message || 'Could not make the PDF.'); })
+        .then(function () { b.disabled = false; b.textContent = 'Download PDF'; });
+    });
+  }
+})();
+</script>
+</body>
+</html>

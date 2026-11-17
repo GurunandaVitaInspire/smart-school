@@ -402,6 +402,26 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .g5{--g:linear-gradient(160deg,#FF9AA2,#EF4F64 55%,#D23452);--gc:#E5484D}
 .g6{--g:linear-gradient(160deg,#FFB27A,#F26A1B 55%,#D5520A);--gc:#EA6A1B}
 .g7,.g8{--gc:#7C8A84}
+.gd{--g:linear-gradient(160deg,#67E8F9,#0E9AB0 55%,#0E7490);--gc:#0E7490}
+.gt{--g:linear-gradient(160deg,#A5B4FC,#6366F1 55%,#4338CA);--gc:#4F46E5}
+.gc{--g:linear-gradient(160deg,#D8B4FE,#9F67F5 55%,#7C3AED);--gc:#7C3AED}
+/* mini art: dashboard tile */
+.k-dash{background:linear-gradient(165deg,#ECFEFF,#B9F1F8);flex-direction:column;padding:8cqw 7cqw 6cqw;gap:4cqw}
+.k-dash .kp{background:#fff;border-radius:4cqw;padding:3cqw 4cqw;box-shadow:0 2cqw 4cqw -2cqw rgba(14,116,144,.45)}
+.k-dash .kp b{display:block;font-family:"Instrument Serif",serif;font-weight:400;font-size:17cqw;line-height:1;color:#0E7490}
+.k-dash .kp small{font-family:var(--te2);font-weight:700;font-size:5cqw;color:#33615F}
+.k-dash .bb{flex:1;display:flex;align-items:flex-end;gap:2.4cqw;padding:3cqw;background:#fff;border-radius:4cqw}
+.k-dash .bb i{flex:1;height:calc(var(--h) * 1%);background:var(--c);border-radius:1.5cqw 1.5cqw .6cqw .6cqw}
+.k-dash .nt{font-size:4.6cqw;font-weight:800;color:#B42318;background:#FEE4E2;border-radius:9cqw;padding:1.2cqw 3cqw;align-self:flex-start}
+/* mini art: weekly timetable */
+.k-week{background:linear-gradient(165deg,#EEF2FF,#C7D2FE);flex-direction:column;padding:7cqw 6cqw;gap:3cqw}
+.k-week .kt{font-size:10cqw;color:#3730A3}
+.k-week .wk{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw;background:#fff;border-radius:4cqw;padding:2.4cqw}
+.k-week .wk i{font-style:normal;display:grid;place-items:center;border-radius:2cqw;font-size:4.2cqw;font-weight:800;color:#fff;background:var(--c)}
+.k-week small{align-self:flex-end;font-size:4.6cqw;font-weight:800;color:#166534;background:#DCFCE7;border-radius:9cqw;padding:1cqw 3cqw}
+.tool.tcd{--a:#0E7490}.tool.tcg{--a:#4F46E5}.tool.tcc{--a:#7C3AED}
+.fc.c-dash{--a:#0E7490}.fc.c-gen{--a:#4F46E5}.fc.c-cal{--a:#7C3AED}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tool.tcd,:root:not([data-theme="light"]) .fc.c-dash{--a:#67E8F9}:root:not([data-theme="light"]) .tool.tcg,:root:not([data-theme="light"]) .fc.c-gen{--a:#A5B4FC}:root:not([data-theme="light"]) .tool.tcc,:root:not([data-theme="light"]) .fc.c-cal{--a:#C4B5FD}}
 .g3 .lbl{color:color-mix(in srgb,#fff calc(var(--p) * 100%),#3A2600)}
 .g3 .meta span{color:#3A2600}
 @media (max-width:760px){
@@ -523,7 +543,7 @@ select option{color:#10201A;background:#fff}
 /* =========================================================
    ROADMAP — not built yet
    ========================================================= */
-.road{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.road{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;max-width:640px}
 @media (max-width:760px){.road{grid-template-columns:1fr}}
 .rm{position:relative;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;padding:24px;border-radius:26px;border:1.5px dashed var(--line-2);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--line) 35%,transparent) 14px 15px),var(--surface-2)}
 .rm .ico{grid-row:1/span 3;width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
@@ -732,7 +752,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
       </div>
 
       <div class="stats reveal">
-        <div><b>6</b><span>Working tools</span></div>
+        <div><b>9</b><span>Working tools</span></div>
         <div><b>2</b><span>Languages · తెలుగు &amp; English</span></div>
         <div><b>1</b><span>Marks sheet for everything</span></div>
         <div><b>A4</b><span>Print-ready PDFs</span></div>
@@ -788,7 +808,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
             <li>High-weightage chapters and a ready <b>action plan</b> — Saturday slip tests, special classes, parent meetings for D1/D2</li>
             <li>All subjects in one PDF</li>
           </ul>
-          <a class="go-to" href="#tools" data-tool="4">Open Subject Analysis<svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="go-to" href="#tools" data-tool="5">Open Subject Analysis<svg class="i"><use href="#i-arrow"/></svg></a>
         </article>
 
         <article class="fc w2 c-rk reveal">
@@ -799,7 +819,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
             <li>Top 3 with gold, silver and bronze</li>
             <li>Spread evenly over A4 — every class in one PDF</li>
           </ul>
-          <a class="go-to" href="#tools" data-tool="2">Open Rank Lists<svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="go-to" href="#tools" data-tool="3">Open Rank Lists<svg class="i"><use href="#i-arrow"/></svg></a>
         </article>
 
         <article class="fc w2 c-ab reveal" style="--rd:1">
@@ -810,7 +830,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
             <li>Pass percentage for every subject</li>
             <li>One landscape A4 page, ready to print</li>
           </ul>
-          <a class="go-to" href="#tools" data-tool="3">Open Grading Abstract<svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="go-to" href="#tools" data-tool="4">Open Grading Abstract<svg class="i"><use href="#i-arrow"/></svg></a>
         </article>
 
         <article class="fc w2 c-set reveal" style="--rd:2">
@@ -833,11 +853,46 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
             <li><b>Fair rules:</b> a class’s own teacher first, sections merged when needed (7A + 7B), least-loaded teacher first, PD never in period 1, part-timers only in their session</li>
             <li>Change any teacher by hand, add the school logo, download PDF or share on WhatsApp</li>
           </ul>
-          <a class="go-to" href="#tools" data-tool="5">Open Substitute Time Table<svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="go-to" href="#tools" data-tool="6">Open Substitute Time Table<svg class="i"><use href="#i-arrow"/></svg></a>
           <div class="fart" style="--tilt:4deg"><div class="mini k-tt"><b class="kt">టైమ్ టేబుల్</b><div class="gr"><span class="h">P1</span><span class="h">P2</span><span class="h">P3</span><span class="h">P4</span><span>9A</span><span class="x">10B</span><span>8A</span><span>7B</span><span class="n">10B</span><span>6A</span><span class="x">9B</span><span>8B</span><span>7A</span><span>10A</span><span class="n">9B</span><span>6B</span></div></div></div>
         </article>
 
-        <article class="fc w2 c-app reveal" style="--rd:1">
+        <article class="fc w3 c-dash reveal">
+          <span class="who"><svg class="i"><use href="#i-trend"/></svg>For the class teacher</span>
+          <h3><span class="te">తరగతి డాష్‌బోర్డ్</span>The whole class at a glance</h3>
+          <ul>
+            <li>Pass %, grade spread, subject averages and the <b>trend across exams</b></li>
+            <li>Top 5, <b>needs attention</b> and attendance below 75%</li>
+            <li>Every student’s marks <b>compared with the class average</b>, rank and monthly attendance</li>
+            <li>A <b>prep plan</b> per student: next exam’s chapters, highest-marks topics, a day-by-day study plan and <b>Smart Science Lab</b> links</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="2">Open Class Dashboard<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="fc w3 c-gen reveal" style="--rd:1">
+          <span class="who"><svg class="i"><use href="#i-grid"/></svg>For the headmaster</span>
+          <h3><span class="te">టైమ్ టేబుల్ తయారీ</span>Timetable for the whole school</h3>
+          <ul>
+            <li>Classes, subjects, teachers and periods a week — the timetable is built in under a second</li>
+            <li><b>No teacher in two places at once</b>; subjects spread across the week</li>
+            <li>Edit any period, download PDF or Excel</li>
+            <li>One tap sends it to the <b>Substitute Time Table</b></li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="7">Open Timetable Generator<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="fc w2 c-cal reveal">
+          <span class="who"><svg class="i"><use href="#i-cal"/></svg>For planning</span>
+          <h3><span class="te">విద్యా క్యాలెండర్</span>Academic calendar</h3>
+          <ul>
+            <li>Holidays and real exam dates on a month view</li>
+            <li>Working days for the year, month by month</li>
+            <li>Feeds the study plans and holiday warnings</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="8">Open Academic Calendar<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="fc w4 c-app reveal" style="--rd:1">
           <span class="who"><svg class="i"><use href="#i-app"/></svg>On any phone</span>
           <h3><span class="te">యాప్ లాగా</span>Installs like an app</h3>
           <ul>
@@ -935,8 +990,8 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
         <div class="show-top">
           <div class="chips" role="group" aria-label="Filter">
             <button type="button" data-jump="0" aria-pressed="true">Marks tools</button>
-            <button type="button" data-jump="5" aria-pressed="false">Time tables</button>
-            <button type="button" data-jump="6" aria-pressed="false">Coming soon</button>
+            <button type="button" data-jump="6" aria-pressed="false">Planning</button>
+            <button type="button" data-jump="9" aria-pressed="false">Coming soon</button>
           </div>
           <div class="navb"><button type="button" id="dPrev" aria-label="Previous tool"><svg class="i"><use href="#i-left"/></svg></button><button type="button" id="dNext" aria-label="Next tool"><svg class="i"><use href="#i-arrow"/></svg></button></div>
         </div>
@@ -952,30 +1007,40 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
             <span class="art" style="--tilt:6deg"><span class="mini k-phone" style="display:grid"><span class="ph" style="display:block"><span class="scr"><span class="pa">కా</span><b>కావ్య</b><small>10-A · ప్రగతి</small><span class="ring"></span><span class="wave"><i style="--h:3"></i><i style="--h:6"></i><i style="--h:4"></i><i style="--h:7"></i><i style="--h:5"></i><i style="--h:3"></i><i style="--h:6"></i></span></span></span></span></span>
             <span class="lbl"><span class="kt">డిజిటల్ ప్రగతి పత్రాలు</span><small>Digital Progress Cards</small><span class="meta"><span>WhatsApp</span><i>Tool 02</i></span></span>
           </button>
+          <button class="dk gd" role="tab" type="button" aria-label="Class Dashboard">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:5deg"><span class="mini k-dash" style="display:flex"><span class="kp"><b>88%</b><small>పాస్ · FA-3</small></span><span class="bb"><i style="--h:82;--c:#12A37A"></i><i style="--h:64;--c:#2F80ED"></i><i style="--h:91;--c:#12A37A"></i><i style="--h:47;--c:#D99A00"></i><i style="--h:73;--c:#2F80ED"></i><i style="--h:35;--c:#E5484D"></i></span><span class="nt">4 need attention</span></span></span>
+            <span class="lbl"><span class="kt">తరగతి డాష్‌బోర్డ్</span><small>Class Dashboard</small><span class="meta"><span>Prep plans</span><i>Tool 03</i></span></span>
+          </button>
           <button class="dk g3" role="tab" type="button" aria-label="Rank Lists">
             <span class="bg"></span>
             <span class="art" style="--tilt:-5deg"><span class="mini k-rank" style="display:flex"><b class="kt">ర్యాంక్ జాబితా</b><small>Class 10 · SA-1</small><span class="pod"><span class="p2"><span class="md s">2</span><i>2</i></span><span class="p1"><span class="md g">1</span><i>1</i></span><span class="p3"><span class="md bz">3</span><i>3</i></span></span></span></span>
-            <span class="lbl"><span class="kt">ర్యాంక్ జాబితా</span><small>Rank Lists</small><span class="meta"><span>Classroom wall</span><i>Tool 03</i></span></span>
+            <span class="lbl"><span class="kt">ర్యాంక్ జాబితా</span><small>Rank Lists</small><span class="meta"><span>Classroom wall</span><i>Tool 04</i></span></span>
           </button>
           <button class="dk g4" role="tab" type="button" aria-label="Grading Abstract">
             <span class="bg"></span>
             <span class="art" style="--tilt:7deg"><span class="mini k-donut" style="display:flex"><span class="ring"><span style="display:grid"><b>92%</b><small>ఉత్తీర్ణత</small></span></span><span class="lg"><span style="--c:#12A37A">A1</span><span style="--c:#2F80ED">A2</span><span style="--c:#FFC83D">B1</span></span></span></span>
-            <span class="lbl"><span class="kt">గ్రేడింగ్ సారాంశం</span><small>Grading Abstract</small><span class="meta"><span>One A4 page</span><i>Tool 04</i></span></span>
+            <span class="lbl"><span class="kt">గ్రేడింగ్ సారాంశం</span><small>Grading Abstract</small><span class="meta"><span>One A4 page</span><i>Tool 05</i></span></span>
           </button>
           <button class="dk g5" role="tab" type="button" aria-label="Subject Analysis">
             <span class="bg"></span>
             <span class="art" style="--tilt:-7deg"><span class="mini k-chart" style="display:block"><span class="cw"><b class="kt">గణితం</b><small>Subject analysis</small><svg viewBox="0 0 100 52"><path d="M0 44 L20 36 L40 38 L60 22 L80 16 L100 6" stroke="#E0344A" stroke-width="2.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/><g fill="#fff" stroke="#E0344A" stroke-width="2"><circle cx="20" cy="36" r="2.8"/><circle cx="60" cy="22" r="2.8"/><circle cx="100" cy="6" r="3.4" fill="#E0344A"/></g></svg><span class="ax"><span>FA1</span><span>SA1</span><span>SA2</span></span></span></span></span>
-            <span class="lbl"><span class="kt">విషయ విశ్లేషణ</span><small>Subject Analysis</small><span class="meta"><span>2-page PDF</span><i>Tool 05</i></span></span>
+            <span class="lbl"><span class="kt">విషయ విశ్లేషణ</span><small>Subject Analysis</small><span class="meta"><span>2-page PDF</span><i>Tool 06</i></span></span>
           </button>
           <button class="dk g6" role="tab" type="button" aria-label="Substitute Teacher Time Table">
             <span class="bg"></span>
             <span class="art" style="--tilt:6deg"><span class="mini k-tt" style="display:flex"><b class="kt">టైమ్ టేబుల్</b><span class="gr"><span class="h">P1</span><span class="h">P2</span><span class="h">P3</span><span class="h">P4</span><span>9A</span><span class="x">10B</span><span>8A</span><span>7B</span><span class="n">10B</span><span>6A</span><span class="x">9B</span><span>8B</span></span></span></span>
-            <span class="lbl"><span class="kt">ప్రత్యామ్నాయ టైమ్ టేబుల్</span><small>Substitute Time Table</small><span class="meta"><span>Every morning</span><i>Tool 06</i></span></span>
+            <span class="lbl"><span class="kt">ప్రత్యామ్నాయ టైమ్ టేబుల్</span><small>Substitute Time Table</small><span class="meta"><span>Every morning</span><i>Tool 07</i></span></span>
           </button>
-          <button class="dk g7 soon" role="tab" type="button" aria-label="Time Table Generator, coming soon">
+          <button class="dk gt" role="tab" type="button" aria-label="Timetable Generator">
             <span class="bg"></span>
-            <span class="art" style="--tilt:-6deg"><span class="mini k-cal" style="display:flex"><span class="hd2"><b class="kt">వారం</b><small>Mon–Sat</small></span><span class="gr"><i></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i></i><i></i></span></span></span>
-            <span class="lbl"><span class="kt">టైమ్ టేబుల్ తయారీ</span><small>Time Table Generator</small><span class="meta"><span>Not available yet</span><i>Soon</i></span></span>
+            <span class="art" style="--tilt:-6deg"><span class="mini k-week" style="display:flex"><b class="kt">టైమ్ టేబుల్</b><span class="wk"><i style="--c:#6C47FF">TEL</i><i style="--c:#2F80ED">MAT</i><i style="--c:#12A37A">SCI</i><i style="--c:#EA6A1B">ENG</i><i style="--c:#2F80ED">MAT</i><i style="--c:#E5484D">SOC</i><i style="--c:#12A37A">SCI</i><i style="--c:#D99A00">HIN</i><i style="--c:#EA6A1B">ENG</i><i style="--c:#6C47FF">TEL</i><i style="--c:#E5484D">SOC</i><i style="--c:#2F80ED">MAT</i></span><small>0 clashes</small></span></span>
+            <span class="lbl"><span class="kt">టైమ్ టేబుల్ తయారీ</span><small>Timetable Generator</small><span class="meta"><span>Whole school</span><i>Tool 08</i></span></span>
+          </button>
+          <button class="dk gc" role="tab" type="button" aria-label="Academic Calendar">
+            <span class="bg"></span>
+            <span class="art" style="--tilt:5deg"><span class="mini k-cal" style="display:flex"><span class="hd2"><b class="kt">క్యాలెండర్</b><small>డిసెంబర్</small></span><span class="gr"><i></i><i></i><i></i><i class="a"></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i class="a"></i><i></i><i></i><i></i><i class="h"></i></span></span></span>
+            <span class="lbl"><span class="kt">విద్యా క్యాలెండర్</span><small>Academic Calendar</small><span class="meta"><span>Holidays · exams</span><i>Tool 09</i></span></span>
           </button>
           <button class="dk g8 soon" role="tab" type="button" aria-label="Student Promotion List Generator, coming soon">
             <span class="bg"></span>
@@ -1025,9 +1090,26 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
               </div>
             </li>
 
+            <li class="tool tcd">
+              <div class="info">
+                <span class="n">Tool 03 · For the class teacher</span>
+                <span class="te">తరగతి డాష్‌బోర్డ్</span>
+                <h3>Class Dashboard</h3>
+                <p>How the class is doing, who needs help, and a personal prep plan for every student — next exam’s chapters, highest-marks topics and a day-by-day study plan.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-trend"/></svg>Pass %, grade spread, trend</li><li><svg class="i"><use href="#i-users"/></svg>Needs attention</li><li><svg class="i"><use href="#i-cal"/></svg>Day-by-day study plan</li><li><svg class="i"><use href="#i-spark"/></svg>Science Lab links</li></ul>
+              </div>
+              <div class="ctrl">
+                <div class="pk" hidden><label>Class<select data-p="cls" class="pcls" data-noall="1"></select></label><label>Section<select data-p="sec" class="psec"></select></label></div>
+                <div class="acts lines">
+                  <button type="button" class="src go" data-open="dashboard.html?from=hub" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-trend"/></svg></span><strong>Open Class Dashboard</strong><small>Overview, students and prep plans</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+                  <button type="button" class="src go" data-open="dashboard.html?from=hub&tab=rd" data-needs="marks"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-clip"/></svg></span><strong>Exam readiness</strong><small>What the next exam covers, subject by subject</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+                </div>
+              </div>
+            </li>
+
             <li class="tool tc3">
               <div class="info">
-                <span class="n">Tool 03 · Classroom</span>
+                <span class="n">Tool 04 · Classroom</span>
                 <span class="te">ర్యాంక్ జాబితా</span>
                 <h3>Rank Lists</h3>
                 <p>Class rank list for any exam, spread evenly over A4 pages to display in the classroom.</p>
@@ -1041,7 +1123,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
 
             <li class="tool tc4">
               <div class="info">
-                <span class="n">Tool 04 · Office</span>
+                <span class="n">Tool 05 · Office</span>
                 <span class="te">గ్రేడింగ్ సారాంశం</span>
                 <h3>Grading Abstract</h3>
                 <p>Subject-wise grade counts for boys, girls and total, with pass percentage, on one A4 page.</p>
@@ -1055,7 +1137,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
 
             <li class="tool tc5">
               <div class="info">
-                <span class="n">Tool 05 · Insights</span>
+                <span class="n">Tool 06 · Insights</span>
                 <span class="te">విషయ విశ్లేషణ</span>
                 <h3>Subject Analysis</h3>
                 <p>All exams of one subject in one class, with a two-page PDF.</p>
@@ -1069,7 +1151,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
 
             <li class="tool tc6">
               <div class="info">
-                <span class="n">Tool 06 · Every morning</span>
+                <span class="n">Tool 07 · Every morning</span>
                 <span class="te">ప్రత్యామ్నాయ టైమ్ టేబుల్</span>
                 <h3>Substitute Teacher Time Table</h3>
                 <p>Upload the time table once, mark absent teachers, and download the substitute time table as a PDF.</p>
@@ -1095,19 +1177,35 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
               </div>
             </li>
 
-            <li class="tool soon">
+            <li class="tool tcg">
               <div class="info">
-                <span class="n">Tool 07</span>
+                <span class="n">Tool 08 · Whole school</span>
                 <span class="te">టైమ్ టేబుల్ తయారీ</span>
-                <h3>Time Table Generator</h3>
-                <p>Build the full school time table automatically.</p>
+                <h3>Timetable Generator</h3>
+                <p>Enter classes, subjects and teachers and how many periods each subject needs — get the full school timetable with no teacher in two places at once.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-grid"/></svg>Every class, every teacher</li><li><svg class="i"><use href="#i-check"/></svg>No clashes</li><li><svg class="i"><use href="#i-print"/></svg>PDF &amp; Excel</li></ul>
               </div>
-              <div class="ctrl"><span class="badge">Not available yet · coming soon</span><p class="soon-note">This tool is not working yet. It is on the <a href="#roadmap">roadmap</a>.</p></div>
+              <div class="ctrl"><div class="acts">
+                <a class="src" href="timetable-generator.html"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-grid"/></svg></span><strong>Open Timetable Generator</strong><small>Try it with an example school first</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+              </div><p class="help"><svg class="i"><use href="#i-info"/></svg><span>One tap sends the finished timetable to the Substitute Time Table.</span></p></div>
+            </li>
+
+            <li class="tool tcc">
+              <div class="info">
+                <span class="n">Tool 09 · Planning</span>
+                <span class="te">విద్యా క్యాలెండర్</span>
+                <h3>Academic Calendar</h3>
+                <p>The school year, holidays and real exam dates in one place. Prep plans count the real study days left, and the Substitute Time Table warns you on holidays.</p>
+                <ul class="facts"><li><svg class="i"><use href="#i-cal"/></svg>Holidays &amp; exam dates</li><li><svg class="i"><use href="#i-clip"/></svg>Working days count</li><li><svg class="i"><use href="#i-share"/></svg>Share with colleagues</li></ul>
+              </div>
+              <div class="ctrl"><div class="acts">
+                <a class="src" href="calendar.html"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-cal"/></svg></span><strong>Open Academic Calendar</strong><small>Set it once for the whole year</small><span class="go-ar" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+              </div></div>
             </li>
 
             <li class="tool soon">
               <div class="info">
-                <span class="n">Tool 08</span>
+                <span class="n">Coming soon</span>
                 <span class="te">ప్రమోషన్ జాబితా</span>
                 <h3>Student Promotion List Generator</h3>
                 <p>Class-wise promotion lists from final results.</p>
@@ -1127,18 +1225,11 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
         <div>
           <span class="kicker">Roadmap</span>
           <h2 class="h2" id="roadH">Coming next. <em>Not ready yet.</em><span class="te">త్వరలో వస్తున్నవి — ఇంకా పని చేయవు</span></h2>
-          <p class="sub">These tools are planned but not built. They are shown so you know what is coming — the buttons for them do nothing today.</p>
+          <p class="sub">Planned but not built yet. It is shown so you know what is coming — its button does nothing today. (The Timetable Generator from this list is now live.)</p>
         </div>
       </div>
       <div class="road">
         <article class="rm reveal">
-          <span class="ico"><svg class="i"><use href="#i-grid"/></svg></span>
-          <span class="st2">Coming soon</span>
-          <h3><span class="te">టైమ్ టేబుల్ తయారీ</span>Time Table Generator</h3>
-          <p>Build the full school time table automatically.</p>
-          <span class="no"><svg class="i"><use href="#i-x"/></svg>Not available yet — use the Substitute Time Table with your existing time table for now.</span>
-        </article>
-        <article class="rm reveal" style="--rd:1">
           <span class="ico"><svg class="i"><use href="#i-promo"/></svg></span>
           <span class="st2">Coming soon</span>
           <h3><span class="te">ప్రమోషన్ జాబితా</span>Student Promotion List Generator</h3>
@@ -1161,17 +1252,19 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
       <h4>Tools</h4>
       <a href="#tools" data-tool="0">Report Cards</a>
       <a href="#tools" data-tool="1">Digital Progress Cards</a>
-      <a href="#tools" data-tool="2">Rank Lists</a>
-      <a href="#tools" data-tool="3">Grading Abstract</a>
-      <a href="#tools" data-tool="4">Subject Analysis</a>
-      <a href="#tools" data-tool="5">Substitute Time Table</a>
+      <a href="#tools" data-tool="2">Class Dashboard</a>
+      <a href="#tools" data-tool="3">Rank Lists</a>
+      <a href="#tools" data-tool="4">Grading Abstract</a>
+      <a href="#tools" data-tool="5">Subject Analysis</a>
+      <a href="#tools" data-tool="6">Substitute Time Table</a>
+      <a href="#tools" data-tool="7">Timetable Generator</a>
+      <a href="#tools" data-tool="8">Academic Calendar</a>
     </nav>
     <nav aria-label="More">
       <h4>More</h4>
       <a href="#features">What it does</a>
       <a href="#how">How it works</a>
       <a href="extra-work/">Extra Work app</a>
-      <a href="#roadmap">Time Table Generator<small>SOON</small></a>
       <a href="#roadmap">Promotion Lists<small>SOON</small></a>
     </nav>
     <div class="credit">
@@ -1342,7 +1435,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   var c=navigator.connection||{};
   if(c.saveData||/2g/.test(c.effectiveType||""))return;
   var go=function(){
-    ["report-card.html","progress-card.html","rank-sheets.html","subject-analysis.html","substitute-timetable.html","bridge.js","ssat-sheet.js","ssat-en.js","assets/ui.css",
+    ["report-card.html","progress-card.html","rank-sheets.html","subject-analysis.html","substitute-timetable.html","dashboard.html","calendar.html","timetable-generator.html","bridge.js","ssat-sheet.js","ssat-en.js","assets/ui.css","assets/pages.css","assets/school-core.js","assets/syllabus-data.js",
      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js",
      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js",
      "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"].forEach(function(u){

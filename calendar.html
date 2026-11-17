@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Academic Calendar – Smart School AI Tools</title>
+<meta name="description" content="Your school's academic year, holidays and exam dates — feeds the prep plans, exam readiness and substitute time table.">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#06281F">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif&family=Ramabhadra&family=Baloo+Tammudu+2:wght@600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/pages.css">
+<style>
+.cal-top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.cal-top{grid-template-columns:1fr}}
+.month-nav{display:flex;align-items:center;gap:8px}
+.month-nav h2{flex:1;margin:0;font-family:var(--serif);font-weight:400;font-size:1.8rem}
+.month-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:1.1rem}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:14px}
+.mgrid .wd{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;padding-bottom:2px}
+.day{position:relative;min-height:74px;border:1px solid var(--line);border-radius:12px;padding:6px 7px;background:var(--surface);text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:3px;transition:border-color .15s,transform .1s}
+.day:hover{border-color:var(--a)}
+.day:active{transform:scale(.98)}
+.day .dn{font-weight:800;font-size:.9rem}
+.day .ev{font-size:.68rem;font-weight:700;line-height:1.2;padding:2px 5px;border-radius:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.day.out{visibility:hidden}
+.day.off{background:repeating-linear-gradient(135deg,transparent 0 7px,color-mix(in srgb,var(--line) 70%,transparent) 7px 8px),var(--surface-2);color:var(--muted)}
+.day.hol{background:var(--err-soft);border-color:color-mix(in srgb,var(--err) 35%,transparent)}
+.day.hol .ev{background:color-mix(in srgb,var(--err) 18%,transparent);color:var(--err)}
+.day.exam{border-color:var(--a);box-shadow:inset 0 0 0 1px var(--a)}
+.day .ev.ex{background:color-mix(in srgb,var(--a) 16%,transparent);color:var(--a)}
+.day.today .dn{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg)}
+.day.outyear{opacity:.45}
+@media (max-width:640px){.day{min-height:52px;padding:4px}.day .ev{font-size:0;padding:0;height:6px;border-radius:3px}}
+.legend2{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.legend2 i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:-2px;border:1px solid var(--line)}
+.cap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cap div{border:1px solid var(--line);border-radius:14px;padding:12px}
+.cap b{display:block;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1}
+.cap span{font-size:.76rem;font-weight:700;color:var(--muted)}
+.months{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:6px;margin-top:12px}
+.months div{border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:.78rem;font-weight:700}
+.months div b{display:block;font-size:1rem}
+.form-row{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.form-row .field{flex:1 1 140px}
+.evlist{list-style:none;margin:10px 0 0;padding:0}
+.evlist li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.evlist li:first-child{border-top:0}
+.evlist .when{font-weight:800;font-variant-numeric:tabular-nums;min-width:120px;font-size:.88rem}
+.evlist .what{flex:1;min-width:0}
+.examtbl input{min-height:38px;width:100%}
+dialog{border:0;border-radius:22px;padding:0;max-width:min(440px,92vw);width:100%;background:var(--surface);color:var(--ink);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(6,21,15,.45)}
+dialog .dbody{padding:20px}
+dialog h3{margin:0 0 4px;font-size:1.15rem}
+dialog .act{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}
+</style>
+</head>
+<body class="p-cal">
+<header class="topbar"><div class="wrap">
+  <a href="index.html"><span class="mk" aria-hidden="true"></span>← Smart School AI Tools (Home)</a>
+  <nav class="sp" aria-label="Tools"><a href="dashboard.html">Class Dashboard</a><a href="timetable-generator.html">Timetable Generator</a></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="phead">
+    <span class="kt">విద్యా సంవత్సర క్యాలెండర్</span>
+    <h1>Academic Calendar</h1>
+    <p>Set the school year, holidays and real exam dates once. The Class Dashboard uses them for day-by-day revision plans and “days left” counts, and the Substitute Time Table warns you on holidays.</p>
+  </div>
+
+  <div class="cal-top section">
+    <div class="card">
+      <div class="month-nav"><button type="button" id="mPrev" aria-label="Previous month">‹</button><h2 id="mTitle"></h2><button type="button" id="mToday" class="btn sm ghost">Today</button><button type="button" id="mNext" aria-label="Next month">›</button></div>
+      <div class="mgrid" id="mGrid"></div>
+      <div class="legend2"><span><i style="background:var(--err-soft)"></i>Holiday</span><span><i style="box-shadow:inset 0 0 0 2px var(--a)"></i>Exam</span><span><i style="background:var(--surface-2)"></i>Weekly off</span><span>Tap any date to add or edit.</span></div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <div class="hd"><h2>Working capacity<small>పని దినాలు</small></h2></div>
+        <div class="cap" id="cap"></div>
+        <div class="months" id="capMonths"></div>
+      </div>
+      <div class="card">
+        <div class="hd"><h2>Academic year<small>విద్యా సంవత్సరం</small></h2></div>
+        <div class="form-row">
+          <label class="field">Starts<input type="date" id="yStart"></label>
+          <label class="field">Ends<input type="date" id="yEnd"></label>
+        </div>
+        <div class="form-row" style="margin-top:10px">
+          <label class="field">Week<select id="yPat"><option value="6-day">6-day week (Mon–Sat)</option><option value="5-day">5-day week (Mon–Fri)</option></select></label>
+          <label class="field">School day (hours)<input type="number" id="yHours" min="1" max="12" step="0.5" placeholder="optional"></label>
+        </div>
+        <p class="muted" style="font-size:.8rem;margin:8px 0 0">Working hours are shown only when you enter the length of a school day — never guessed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g2 section">
+    <div class="card">
+      <div class="hd"><h2>Exam dates<small>పరీక్షల తేదీలు</small></h2></div>
+      <div class="form-row">
+        <label class="field">Formative (FA) per year<input type="number" id="pFa" min="0" max="8"></label>
+        <label class="field">Summative (SA) per year<input type="number" id="pSa" min="0" max="4"></label>
+      </div>
+      <div class="tw" style="margin-top:12px"><table class="t examtbl"><thead><tr><th>Exam</th><th>From</th><th>To</th></tr></thead><tbody id="exRows"></tbody></table></div>
+    </div>
+
+    <div class="card">
+      <div class="hd"><h2>Holidays<small>సెలవులు</small></h2></div>
+      <div class="form-row">
+        <label class="field" style="flex:2 1 180px">Name<input id="hName" placeholder="e.g. Sankranti holidays"></label>
+        <label class="field">From<input type="date" id="hFrom"></label>
+        <label class="field">To<input type="date" id="hTo"></label>
+        <button class="btn" id="hAdd" type="button">Add</button>
+      </div>
+      <ul class="evlist" id="hList"></ul>
+    </div>
+  </div>
+
+  <div class="card section">
+    <div class="hd"><h2>Share with other teachers<small>ఇతర ఉపాధ్యాయులతో పంచుకోండి</small></h2></div>
+    <p class="muted" style="margin:0 0 12px">The calendar is saved on this device. Download it as a file and send it to colleagues; they can load it here.</p>
+    <div class="form-row"><button class="btn ghost" id="exp" type="button">Download calendar file</button><label class="btn ghost" style="cursor:pointer">Load a calendar file<input type="file" id="imp" accept=".json,application/json" hidden></label><button class="btn danger" id="reset" type="button">Clear everything</button></div>
+  </div>
+</main>
+
+<dialog id="dlg"><form method="dialog" class="dbody" id="dlgForm">
+  <h3 id="dTitle"></h3><p class="muted" id="dSub" style="margin:0 0 12px;font-size:.88rem"></p>
+  <div class="seg" role="group" aria-label="What is on this date" id="dKind"><button type="button" data-k="none" aria-pressed="true">Normal day</button><button type="button" data-k="holiday" aria-pressed="false">Holiday</button><button type="button" data-k="exam" aria-pressed="false">Exam</button></div>
+  <div id="dHol" class="form-row" style="margin-top:12px" hidden><label class="field" style="flex:1 1 100%">Holiday name<input id="dHolName" placeholder="e.g. Dasara"></label><label class="field">Until<input type="date" id="dHolTo"></label></div>
+  <div id="dEx" class="form-row" style="margin-top:12px" hidden><label class="field">Exam<select id="dExKey"></select></label><label class="field">Until<input type="date" id="dExTo"></label></div>
+  <div class="act"><button class="btn ghost" value="cancel">Cancel</button><button class="btn" id="dSave" value="save">Save</button></div>
+</form></dialog>
+
+<footer class="foot"><div class="wrap"><span>Saved on this device only.</span><a href="index.html">Home</a></div></footer>
+
+<script src="assets/school-core.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = SS.$, $$ = SS.$$, esc = SS.esc, cal = SS.calendar.get();
+  var view = (function () { var t = new Date(); return { y: t.getFullYear(), m: t.getMonth() }; })();
+  var today = SS.isoDate(new Date());
+
+  function save() { SS.calendar.save(cal); renderAll(); }
+
+  /* academic year + plan */
+  $('#yStart').value = cal.year.start; $('#yEnd').value = cal.year.end; $('#yPat').value = cal.year.pattern;
+  $('#yHours').value = cal.dayHours || ''; $('#pFa').value = cal.examPlan.fa; $('#pSa').value = cal.examPlan.sa;
+  ['yStart', 'yEnd', 'yPat', 'yHours', 'pFa', 'pSa'].forEach(function (id) {
+    $('#' + id).addEventListener('change', function () {
+      var s = $('#yStart').value, e = $('#yEnd').value;
+      if (s && e && s > e) { SS.toast('The year must end after it starts.'); return; }
+      cal.year = { start: s || cal.year.start, end: e || cal.year.end, pattern: $('#yPat').value };
+      var h = parseFloat($('#yHours').value); cal.dayHours = isFinite(h) && h > 0 ? h : null;
+      cal.examPlan = { fa: Math.max(0, Math.min(8, parseInt($('#pFa').value, 10) || 0)), sa: Math.max(0, Math.min(4, parseInt($('#pSa').value, 10) || 0)) };
+      save(); SS.toast('Saved.');
+    });
+  });
+
+  /* exam date table */
+  function examEvent(k) { return cal.events.filter(function (e) { return e.type === 'exam' && e.examKey === k; })[0]; }
+  function setExam(k, from, to) {
+    cal.events = cal.events.filter(function (e) { return !(e.type === 'exam' && e.examKey === k); });
+    if (from) cal.events.push({ id: SS.calendar.uid(), type: 'exam', examKey: k, label: k, start: from, end: to && to >= from ? to : from });
+  }
+  function renderExams() {
+    var seq = SS.examSequence(cal.examPlan.fa, cal.examPlan.sa);
+    $('#exRows').innerHTML = seq.map(function (k) {
+      var e = examEvent(k) || {};
+      return '<tr><td><b>' + esc(k) + '</b></td><td><input class="in" type="date" data-k="' + esc(k) + '" data-f="from" value="' + esc(e.start || '') + '" aria-label="' + esc(k) + ' from"></td><td><input class="in" type="date" data-k="' + esc(k) + '" data-f="to" value="' + esc(e.end || '') + '" aria-label="' + esc(k) + ' to"></td></tr>';
+    }).join('');
+    $$('#exRows input').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var k = inp.dataset.k, from = $('#exRows input[data-k="' + k + '"][data-f="from"]').value, to = $('#exRows input[data-k="' + k + '"][data-f="to"]').value;
+        setExam(k, from, to); save(); SS.toast(k + (from ? ' set to ' + SS.fmtDate(from) : ' date cleared') + '.');
+      });
+    });
+  }
+
+  /* holidays */
+  $('#hAdd').addEventListener('click', function () {
+    var n = $('#hName').value.trim(), f = $('#hFrom').value, t = $('#hTo').value || f;
+    if (!f) { SS.toast('Choose the first day of the holiday.'); return; }
+    if (t < f) { SS.toast('The holiday must end on or after it starts.'); return; }
+    cal.events.push({ id: SS.calendar.uid(), type: 'holiday', label: n || 'Holiday', start: f, end: t });
+    $('#hName').value = ''; $('#hFrom').value = ''; $('#hTo').value = '';
+    save(); SS.toast('Holiday added.');
+  });
+  function renderHolidays() {
+    var hs = cal.events.filter(function (e) { return e.type === 'holiday'; }).sort(function (a, b) { return a.start < b.start ? -1 : 1; });
+    $('#hList').innerHTML = hs.length ? hs.map(function (h) {
+      var days = SS.calendar.workingDates(h.start, h.end, Object.assign({}, cal, { events: [] })).length;
+      return '<li><span class="when">' + SS.fmtDate(h.start, { day: 'numeric', month: 'short' }) + (h.end !== h.start ? ' – ' + SS.fmtDate(h.end, { day: 'numeric', month: 'short' }) : '') + '</span><span class="what"><b>' + esc(h.label) + '</b><br><small class="muted">' + days + ' school day' + (days === 1 ? '' : 's') + ' off</small></span><button class="btn sm danger" data-del="' + esc(h.id) + '" type="button">Remove</button></li>';
+    }).join('') : '<li class="muted">No holidays added yet.</li>';
+    $$('#hList [data-del]').forEach(function (b) { b.addEventListener('click', function () { cal.events = cal.events.filter(function (e) { return e.id !== b.dataset.del; }); save(); }); });
+  }
+
+  /* capacity */
+  function renderCapacity() {
+    var c = SS.calendar.capacity(cal);
+    $('#cap').innerHTML = '<div><b>' + c.working + '</b><span>Working days</span></div><div><b>' + c.nonWorking + '</b><span>Holidays &amp; off-days</span></div><div><b>' + (c.hours != null ? c.hours : '–') + '</b><span>' + (c.hours != null ? 'Working hours' : 'Hours (set school day)') + '</span></div>';
+    var hol = SS.calendar.holidaySet(cal), byM = {};
+    var d = cal.year.start, guard = 0;
+    while (d <= cal.year.end && guard++ < 800) {
+      var k = d.slice(0, 7); byM[k] = byM[k] || 0;
+      if (SS.calendar.isWorkingWeekday(d, cal.year.pattern) && !hol[d]) byM[k]++;
+      d = SS.addDays(d, 1);
+    }
+    $('#capMonths').innerHTML = Object.keys(byM).map(function (k) { return '<div>' + SS.fmtDate(k + '-01', { month: 'short' }) + '<b>' + byM[k] + '</b></div>'; }).join('');
+  }
+
+  /* month grid */
+  function renderMonth() {
+    var first = new Date(view.y, view.m, 1), days = new Date(view.y, view.m + 1, 0).getDate();
+    $('#mTitle').textContent = first.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+    var hol = SS.calendar.holidaySet(cal), lead = (first.getDay() + 6) % 7; /* Monday first */
+    var html = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(function (w) { return '<div class="wd">' + w + '</div>'; }).join('');
+    for (var i = 0; i < lead; i++) html += '<div class="day out" aria-hidden="true"></div>';
+    for (var dd = 1; dd <= days; dd++) {
+      var iso = SS.isoDate(new Date(view.y, view.m, dd));
+      var exams = cal.events.filter(function (e) { return e.type === 'exam' && e.start <= iso && (e.end || e.start) >= iso; });
+      var cls = ['day'], evs = '';
+      if (!SS.calendar.isWorkingWeekday(iso, cal.year.pattern)) cls.push('off');
+      if (hol[iso]) { cls.push('hol'); evs += '<span class="ev">' + esc(hol[iso]) + '</span>'; }
+      if (exams.length) { cls.push('exam'); evs += exams.map(function (e) { return '<span class="ev ex">' + esc(e.examKey) + '</span>'; }).join(''); }
+      if (iso === today) cls.push('today');
+      if (iso < cal.year.start || iso > cal.year.end) cls.push('outyear');
+      html += '<button type="button" class="' + cls.join(' ') + '" data-d="' + iso + '" aria-label="' + esc(SS.fmtDate(iso, { weekday: 'long', day: 'numeric', month: 'long' })) + (hol[iso] ? ', holiday: ' + esc(hol[iso]) : '') + (exams.length ? ', exam ' + esc(exams.map(function (e) { return e.examKey; }).join(', ')) : '') + '"><span class="dn">' + dd + '</span>' + evs + '</button>';
+    }
+    $('#mGrid').innerHTML = html;
+    $$('#mGrid .day[data-d]').forEach(function (b) { b.addEventListener('click', function () { openDay(b.dataset.d); }); });
+  }
+  $('#mPrev').addEventListener('click', function () { view.m--; if (view.m < 0) { view.m = 11; view.y--; } renderMonth(); });
+  $('#mNext').addEventListener('click', function () { view.m++; if (view.m > 11) { view.m = 0; view.y++; } renderMonth(); });
+  $('#mToday').addEventListener('click', function () { var t = new Date(); view = { y: t.getFullYear(), m: t.getMonth() }; renderMonth(); });
+
+  /* day editor */
+  var dlg = $('#dlg'), editing = null, kind = 'none', coverH = null, coverX = null;
+  function setKind(k) { kind = k; $$('#dKind button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.k === k ? 'true' : 'false'); }); $('#dHol').hidden = k !== 'holiday'; $('#dEx').hidden = k !== 'exam'; }
+  $$('#dKind button').forEach(function (b) { b.addEventListener('click', function () { setKind(b.dataset.k); }); });
+  function openDay(iso) {
+    editing = iso;
+    var h = cal.events.filter(function (e) { return e.type === 'holiday' && e.start <= iso && e.end >= iso; })[0];
+    var x = cal.events.filter(function (e) { return e.type === 'exam' && e.start <= iso && (e.end || e.start) >= iso; })[0];
+    $('#dTitle').textContent = SS.fmtDate(iso, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    coverH = h || null; coverX = x || null;
+    var cover = h || x;
+    $('#dSub').textContent = cover && (cover.end || cover.start) !== cover.start ? 'Part of “' + (cover.label || cover.examKey) + '” (' + SS.fmtDate(cover.start, { day: 'numeric', month: 'short' }) + ' – ' + SS.fmtDate(cover.end, { day: 'numeric', month: 'short' }) + '). Saving replaces that whole entry.' : SS.calendar.isWorkingWeekday(iso, cal.year.pattern) ? 'A normal school day unless you change it.' : 'Weekly off-day.';
+    if (h) { $('#dHolName').value = h.label; }
+    $('#dExKey').innerHTML = SS.examSequence(cal.examPlan.fa, cal.examPlan.sa).map(function (k) { return '<option>' + k + '</option>'; }).join('');
+    $('#dHolName').value = h ? h.label : ''; $('#dHolTo').value = h ? h.end : iso;
+    if (x) { $('#dExKey').value = x.examKey; $('#dExTo').value = x.end || iso; } else $('#dExTo').value = iso;
+    setKind(h ? 'holiday' : x ? 'exam' : 'none');
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  dlg.addEventListener('close', function () {
+    if (dlg.returnValue !== 'save' || !editing) return;
+    var iso = editing;
+    /* clear what was on this date, then add the new thing */
+    cal.events = cal.events.filter(function (e) { return !(e.start <= iso && (e.end || e.start) >= iso); });
+    var hs = coverH ? coverH.start : iso, xs = coverX ? coverX.start : iso;
+    if (kind === 'holiday') { var to = $('#dHolTo').value >= hs ? $('#dHolTo').value : hs; cal.events.push({ id: SS.calendar.uid(), type: 'holiday', label: $('#dHolName').value.trim() || 'Holiday', start: hs, end: to }); }
+    if (kind === 'exam') setExam($('#dExKey').value, xs, $('#dExTo').value >= xs ? $('#dExTo').value : xs);
+    save(); SS.toast('Saved.');
+  });
+
+  /* share */
+  $('#exp').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(cal, null, 1)], { type: 'application/json' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'Academic_Calendar.json'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  });
+  $('#imp').addEventListener('change', function () {
+    var f = this.files[0]; this.value = ''; if (!f) return;
+    f.text().then(function (t) {
+      var c = JSON.parse(t);
+      if (!c || !c.year || !c.year.start || !Array.isArray(c.events)) throw new Error('bad');
+      cal = c; SS.calendar.save(cal); cal = SS.calendar.get();
+      $('#yStart').value = cal.year.start; $('#yEnd').value = cal.year.end; $('#yPat').value = cal.year.pattern; $('#yHours').value = cal.dayHours || ''; $('#pFa').value = cal.examPlan.fa; $('#pSa').value = cal.examPlan.sa;
+      renderAll(); SS.toast('Calendar loaded.');
+    }).catch(function () { SS.toast('That file is not a Smart School calendar.'); });
+  });
+  $('#reset').addEventListener('click', function () {
+    if (!confirm('Remove all holidays and exam dates from this device?')) return;
+    SS.ls('ss_calendar_v1', null); location.reload();
+  });
+
+  function renderAll() { renderMonth(); renderExams(); renderHolidays(); renderCapacity(); }
+  renderAll();
+})();
+</script>
+</body>
+</html>

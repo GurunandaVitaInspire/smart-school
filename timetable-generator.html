@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timetable Generator – Smart School AI Tools</title>
+<meta name="description" content="Build the whole school's weekly timetable from class, subject and teacher assignments — no teacher double-booked.">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#06281F">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif&family=Ramabhadra&family=Baloo+Tammudu+2:wght@600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/pages.css">
+<style>
+.steps-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0 0}
+.steps-nav button{display:flex;align-items:center;gap:10px;text-align:left;padding:12px 14px;border-radius:16px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:700}
+.steps-nav button b{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--sunk);font-size:.9rem}
+.steps-nav button small{display:block;font-weight:600;color:var(--muted);font-size:.78rem}
+.steps-nav button[aria-selected=true]{border-color:var(--a);box-shadow:0 0 0 3px color-mix(in srgb,var(--a) 16%,transparent)}
+.steps-nav button[aria-selected=true] b{background:var(--a);color:var(--a-ink)}
+@media (max-width:640px){.steps-nav{grid-template-columns:1fr}}
+.dayset{display:flex;flex-wrap:wrap;gap:6px}
+.dayset label{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:1px solid var(--line-2);font-weight:700;font-size:.86rem;cursor:pointer}
+.dayset input{accent-color:var(--a)}
+.lst{list-style:none;margin:10px 0 0;padding:0;max-height:320px;overflow:auto}
+.lst li{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--line)}
+.lst li:first-child{border-top:0}
+.lst li span{flex:1;min-width:0;font-weight:700}
+.lst li small{color:var(--muted);font-weight:600}
+.lst li button{border:0;background:none;color:var(--err);font-weight:700;cursor:pointer;padding:4px 8px;border-radius:8px}
+.addrow{display:flex;gap:8px;flex-wrap:wrap}
+.addrow input{flex:1 1 120px;min-width:0}
+.asg td{vertical-align:middle}
+.asg select,.asg input{min-height:38px;width:100%}
+.asg td.ppw{width:90px}.asg td.av{width:120px}
+.load{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.load .tag.over{background:var(--err-soft);color:var(--err)}
+.ttgrid{width:100%;border-collapse:separate;border-spacing:4px;table-layout:fixed}
+.ttgrid th{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;padding:4px}
+.ttgrid th.dn{width:64px;text-align:left}
+.ttgrid td{height:56px;border-radius:10px;padding:4px 6px;font-size:.78rem;line-height:1.2;vertical-align:top;border:1px solid var(--line);background:var(--surface);cursor:pointer;overflow:hidden}
+.ttgrid td b{display:block;font-size:.82rem}
+.ttgrid td small{color:var(--muted);font-weight:700}
+.ttgrid td.free{background:repeating-linear-gradient(135deg,transparent 0 6px,color-mix(in srgb,var(--line) 60%,transparent) 6px 7px);color:var(--muted)}
+.ttgrid td:hover{outline:2px solid var(--a)}
+.issues{list-style:none;margin:0;padding:0}
+.issues li{padding:8px 0;border-top:1px solid var(--line);font-size:.9rem}
+.issues li:first-child{border-top:0}
+dialog{border:0;border-radius:22px;padding:0;max-width:min(420px,92vw);width:100%;background:var(--surface);color:var(--ink);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(6,21,15,.45)}
+dialog .dbody{padding:20px}
+dialog .act{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}
+#pdfOut{position:absolute;left:-9999px;top:0}
+.tt-print{width:277mm;background:#fff;color:#111}
+.tt-print .pg{padding:8mm 6mm;page-break-after:always;break-after:page;font-family:"Plus Jakarta Sans",sans-serif}
+.tt-print .pg:last-child{page-break-after:auto;break-after:auto}
+.tt-print h2{margin:0;font-size:20px}
+.tt-print p{margin:2px 0 10px;font-size:12px;color:#444}
+.tt-print table{width:100%;border-collapse:collapse;table-layout:fixed}
+.tt-print th,.tt-print td{border:1px solid #9aa;padding:5px 4px;font-size:11px;text-align:center;height:40px}
+.tt-print th{background:#0F5C46;color:#fff;font-size:11px}
+.tt-print td.d{font-weight:800;background:#EEF4F1;width:46px}
+.tt-print td b{display:block;font-size:12px}
+</style>
+</head>
+<body class="p-tt">
+<header class="topbar"><div class="wrap">
+  <a href="index.html"><span class="mk" aria-hidden="true"></span>← Smart School AI Tools (Home)</a>
+  <nav class="sp" aria-label="Tools"><a href="substitute-timetable.html?from=hub">Substitute Time Table</a><a href="calendar.html">Academic Calendar</a></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="phead">
+    <span class="kt">టైమ్ టేబుల్ తయారీ</span>
+    <h1>Timetable Generator</h1>
+    <p>Enter your classes, subjects and teachers, say who teaches what and how many periods a week — and get a full school timetable where no teacher is ever in two places at once.</p>
+  </div>
+
+  <div class="steps-nav" role="tablist">
+    <button role="tab" aria-selected="true" data-step="1"><b>1</b><span>School setup<small>Days, periods, classes, teachers</small></span></button>
+    <button role="tab" aria-selected="false" data-step="2"><b>2</b><span>Assign subjects<small>Who teaches what, periods a week</small></span></button>
+    <button role="tab" aria-selected="false" data-step="3"><b>3</b><span>Timetable<small>Generate, edit, download</small></span></button>
+  </div>
+
+  <!-- STEP 1 -->
+  <section id="s1" class="section">
+    <div class="note ok noprint" id="exampleNote" hidden><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6h.01"/></svg><span>New here? <button class="btn sm" id="loadExample" type="button">Fill in an example school</button> to see how it works — you can change or clear everything after.</span></div>
+    <div class="grid g2 section">
+      <div class="card"><div class="hd"><h2>Weekly schedule<small>వారపు షెడ్యూల్</small></h2></div>
+        <div class="field">Working days<div class="dayset" id="days"></div></div>
+        <div class="addrow" style="margin-top:12px"><label class="field" style="flex:1">Periods per day<input type="number" id="periods" min="1" max="12"></label></div>
+        <p class="muted" style="margin:10px 0 0;font-size:.85rem" id="slotInfo"></p>
+      </div>
+      <div class="card"><div class="hd"><h2>Classes<small>తరగతులు</small></h2><span class="tag" id="cCount"></span></div>
+        <div class="addrow"><input class="in" id="cName" placeholder="e.g. 10A"><button class="btn" id="cAdd" type="button">Add</button></div>
+        <p class="muted" style="margin:6px 0 0;font-size:.8rem">Tip: type several at once, separated by commas — 6A, 6B, 7A</p>
+        <ul class="lst" id="cList"></ul>
+      </div>
+      <div class="card"><div class="hd"><h2>Subjects<small>సబ్జెక్టులు</small></h2><span class="tag" id="sCount"></span></div>
+        <div class="addrow"><input class="in" id="sName" placeholder="e.g. Telugu or TEL"><button class="btn" id="sAdd" type="button">Add</button></div>
+        <ul class="lst" id="sList"></ul>
+      </div>
+      <div class="card"><div class="hd"><h2>Teachers<small>ఉపాధ్యాయులు</small></h2><span class="tag" id="tCount"></span></div>
+        <div class="addrow"><input class="in" id="tName" placeholder="Name"><input class="in" id="tCode" placeholder="Code, e.g. ASN" pattern="[A-Za-z]{1,6}" maxlength="6" style="flex:0 1 140px"><button class="btn" id="tAdd" type="button">Add</button></div>
+        <p class="muted" style="margin:6px 0 0;font-size:.8rem">The short code (letters only, e.g. ASN) is what appears in the timetable and the Substitute Time Table.</p>
+        <ul class="lst" id="tList"></ul>
+      </div>
+    </div>
+    <div class="section" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><button class="btn danger" id="clearAll" type="button">Clear everything</button><button class="btn" data-go="2" type="button">Next: assign subjects →</button></div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section id="s2" class="section" hidden>
+    <div class="toolbar">
+      <label class="field">Class<select id="aCls"></select></label>
+      <button class="btn ghost sm" id="aCopy" type="button">Copy from another class…</button>
+      <span class="muted" id="aInfo" style="margin-left:auto;font-weight:700;font-size:.88rem"></span>
+    </div>
+    <div class="card section">
+      <div class="tw"><table class="t asg"><thead><tr><th>Subject</th><th>Teacher</th><th>Periods / week</th><th>Avoid periods</th><th></th></tr></thead><tbody id="aRows"></tbody></table></div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost sm" id="aAdd" type="button">+ Add subject</button></div>
+      <p class="muted" style="margin:10px 0 0;font-size:.82rem">“Avoid periods”: periods this subject should never go in, e.g. <b>1</b> or <b>7,8</b>.</p>
+    </div>
+    <div class="card section"><div class="hd"><h2>Teacher load<small>ఒక్కొక్కరికి వారానికి పీరియడ్లు</small></h2></div><div class="load" id="tLoad"></div></div>
+    <div class="section" style="display:flex;justify-content:space-between;gap:10px"><button class="btn ghost" data-go="1" type="button">← Back</button><button class="btn" data-go="3" type="button">Next: generate →</button></div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section id="s3" class="section" hidden>
+    <div class="toolbar">
+      <button class="btn" id="gen" type="button">Generate timetable</button>
+      <label class="field">Show<select id="vMode"><option value="class">By class</option><option value="teacher">By teacher</option></select></label>
+      <label class="field">Which<select id="vWho"></select></label>
+      <span style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn ghost sm" id="pdf" type="button">Download PDF</button>
+        <button class="btn ghost sm" id="xlsx" type="button">Download Excel</button>
+        <button class="btn sm" id="toSub" type="button">Use in Substitute Time Table →</button>
+      </span>
+    </div>
+    <div id="genState" class="section"></div>
+    <div class="card section" id="gridCard" hidden><div class="hd"><h2 id="gridTitle"></h2><span class="muted" style="font-size:.82rem;font-weight:600">Tap a period to change it</span></div><div style="overflow-x:auto"><table class="ttgrid" id="grid"></table></div></div>
+  </section>
+</main>
+
+<dialog id="cellDlg"><form method="dialog" class="dbody">
+  <h3 id="cdTitle" style="margin:0 0 4px"></h3><p class="muted" id="cdSub" style="margin:0 0 12px;font-size:.88rem"></p>
+  <label class="field">Subject and teacher<select id="cdPick"></select></label>
+  <div class="act"><button class="btn ghost" value="cancel">Cancel</button><button class="btn" value="save">Save</button></div>
+</form></dialog>
+<div id="pdfOut" aria-hidden="true"></div>
+
+<footer class="foot"><div class="wrap"><span>Saved on this device only. Timetable logic shared with the team’s Interactive Progress Report project.</span><a href="index.html">Home</a></div></footer>
+
+<script src="assets/school-core.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = SS.$, $$ = SS.$$, esc = SS.esc;
+  var KEY = 'ss_timetable_v1', ALL_DAYS = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  var st = load();
+  function load() {
+    var s = null; try { s = JSON.parse(SS.ls(KEY) || 'null'); } catch (e) { s = null; }
+    s = s || {};
+    s.days = s.days || ALL_DAYS.slice(); s.periods = s.periods || 8;
+    s.classes = s.classes || []; s.subjects = s.subjects || []; s.teachers = s.teachers || [];
+    s.assign = s.assign || {}; s.result = s.result || null; s.seq = s.seq || 1;
+    return s;
+  }
+  function save() { SS.ls(KEY, JSON.stringify(st)); }
+  function id() { return 'x' + (st.seq++); }
+  function byId(list, i) { return list.filter(function (x) { return x.id === i; })[0]; }
+  function tLabel(t) { return t ? (t.code || t.name) : ''; }
+
+  /* ----------------------------------------------------------- step nav */
+  function go(n) {
+    $$('.steps-nav button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.step == n ? 'true' : 'false'); });
+    [1, 2, 3].forEach(function (k) { $('#s' + k).hidden = k != n; });
+    if (n == 2) renderAssign(); if (n == 3) renderView();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  $$('.steps-nav button').forEach(function (b) { b.addEventListener('click', function () { go(b.dataset.step); }); });
+  $$('[data-go]').forEach(function (b) { b.addEventListener('click', function () { go(b.dataset.go); }); });
+
+  /* ----------------------------------------------------------- step 1 */
+  function renderSetup() {
+    $('#days').innerHTML = ALL_DAYS.map(function (d) { return '<label><input type="checkbox" value="' + d + '"' + (st.days.indexOf(d) >= 0 ? ' checked' : '') + '>' + d.slice(0, 3) + '</label>'; }).join('');
+    $$('#days input').forEach(function (c) { c.addEventListener('change', function () { st.days = $$('#days input').filter(function (x) { return x.checked; }).map(function (x) { return x.value; }); save(); renderSetup(); }); });
+    $('#periods').value = st.periods;
+    $('#slotInfo').textContent = st.days.length + ' days × ' + st.periods + ' periods = ' + (st.days.length * st.periods) + ' periods a week for every class.';
+    list('#cList', st.classes, function (c) { return esc(c.name); }, 'classes');
+    list('#sList', st.subjects, function (s) { return esc(s.name); }, 'subjects');
+    list('#tList', st.teachers, function (t) { return esc(t.name) + (t.code ? ' <small>' + esc(t.code) + '</small>' : ''); }, 'teachers');
+    $('#cCount').textContent = st.classes.length; $('#sCount').textContent = st.subjects.length; $('#tCount').textContent = st.teachers.length;
+    $('#exampleNote').hidden = !!(st.classes.length || st.teachers.length);
+  }
+  function list(sel, arr, label, kind) {
+    $(sel).innerHTML = arr.length ? arr.map(function (x) { return '<li><span>' + label(x) + '</span><button type="button" data-del="' + x.id + '" aria-label="Remove">Remove</button></li>'; }).join('') : '<li><small>None yet.</small></li>';
+    $$(sel + ' [data-del]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var i = b.dataset.del;
+        st[kind] = st[kind].filter(function (x) { return x.id !== i; });
+        if (kind === 'classes') delete st.assign[i];
+        else Object.keys(st.assign).forEach(function (c) { st.assign[c] = st.assign[c].filter(function (r) { return (kind === 'subjects' ? r.s : r.t) !== i; }); });
+        st.result = null; save(); renderSetup();
+      });
+    });
+  }
+  $('#periods').addEventListener('change', function () { var n = parseInt(this.value, 10); if (n >= 1 && n <= 12) { st.periods = n; st.result = null; save(); renderSetup(); } });
+  function addMany(input, kind, make) {
+    var parts = $(input).value.split(',').map(function (x) { return x.trim(); }).filter(Boolean), added = 0;
+    parts.forEach(function (p) {
+      if (st[kind].some(function (x) { return x.name.toLowerCase() === p.toLowerCase(); })) return;
+      st[kind].push(make(p)); added++;
+    });
+    $(input).value = ''; if (added) { save(); renderSetup(); } else if (parts.length) SS.toast('Already in the list.');
+  }
+  $('#cAdd').addEventListener('click', function () { addMany('#cName', 'classes', function (n) { return { id: id(), name: n.toUpperCase().replace(/\s+/g, '') }; }); });
+  $('#sAdd').addEventListener('click', function () { addMany('#sName', 'subjects', function (n) { return { id: id(), name: n }; }); });
+  $('#tAdd').addEventListener('click', function () {
+    var n = $('#tName').value.trim(), c = $('#tCode').value.toUpperCase().replace(/[^A-Z]/g, '');
+    if (/\d/.test($('#tCode').value)) SS.toast('Codes use letters only — numbers were removed.');
+    if (!n) { SS.toast('Type the teacher’s name.'); return; }
+    if (c && st.teachers.some(function (t) { return t.code === c; })) { SS.toast('That short code is already used.'); return; }
+    st.teachers.push({ id: id(), name: n, code: c || n.toUpperCase().split(/\s+/).map(function (w) { return w.replace(/[^A-Z]/g, '')[0] || ''; }).join('').slice(0, 4) || 'T' });
+    $('#tName').value = ''; $('#tCode').value = ''; save(); renderSetup();
+  });
+  [['#cName', '#cAdd'], ['#sName', '#sAdd'], ['#tCode', '#tAdd'], ['#tName', '#tAdd']].forEach(function (p) { $(p[0]).addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $(p[1]).click(); } }); });
+  $('#clearAll').addEventListener('click', function () { if (confirm('Remove all classes, subjects, teachers and the timetable from this device?')) { SS.ls(KEY, null); st = load(); renderSetup(); } });
+
+  /* example school (clearly labelled; replace with your own) */
+  $('#loadExample').addEventListener('click', function () {
+    st = load(); st.classes = []; st.subjects = []; st.teachers = []; st.assign = {};
+    ['6A', '7A', '8A', '9A', '10A'].forEach(function (c) { st.classes.push({ id: id(), name: c }); });
+    var subs = [['Telugu', 6], ['Hindi', 5], ['English', 6], ['Maths', 7], ['Physical Science', 4], ['Biology', 4], ['Social', 6], ['PE', 3], ['Library', 3]];
+    subs.forEach(function (s) { st.subjects.push({ id: id(), name: s[0] }); });
+    var T = [['Telugu Teacher A', 'TLA'], ['Telugu Teacher B', 'TLB'], ['Hindi Teacher', 'HIN'], ['English Teacher A', 'ENA'], ['English Teacher B', 'ENB'], ['Maths Teacher A', 'MTA'], ['Maths Teacher B', 'MTB'], ['Physical Science Teacher', 'PSC'], ['Biology Teacher', 'BIO'], ['Social Teacher A', 'SCA'], ['Social Teacher B', 'SCB'], ['Physical Director', 'PD'], ['Librarian', 'LIB']];
+    T.forEach(function (t) { st.teachers.push({ id: id(), name: t[0], code: t[1] }); });
+    var tc = function (code) { return st.teachers.filter(function (t) { return t.code === code; })[0].id; };
+    st.classes.forEach(function (c, i) {
+      var two = i >= 3; /* senior classes get the second teacher of each pair */
+      var who = { Telugu: two ? 'TLB' : 'TLA', Hindi: 'HIN', English: two ? 'ENB' : 'ENA', Maths: two ? 'MTB' : 'MTA', 'Physical Science': 'PSC', Biology: 'BIO', Social: two ? 'SCB' : 'SCA', PE: 'PD', Library: 'LIB' };
+      st.assign[c.id] = st.subjects.map(function (s, k) { return { s: s.id, t: tc(who[s.name]), ppw: subs[k][1], av: s.name === 'PE' ? '1' : '' }; });
+    });
+    save(); renderSetup(); SS.toast('Example school filled in. Change anything you like.');
+  });
+
+  /* ----------------------------------------------------------- step 2 */
+  function renderAssign() {
+    if (!st.classes.length) { $('#aRows').innerHTML = '<tr><td colspan="5" class="muted">Add your classes in step 1 first.</td></tr>'; $('#aCls').innerHTML = ''; $('#tLoad').innerHTML = ''; return; }
+    var cur = $('#aCls').value;
+    $('#aCls').innerHTML = st.classes.map(function (c) { return '<option value="' + c.id + '">' + esc(c.name) + '</option>'; }).join('');
+    if (byId(st.classes, cur)) $('#aCls').value = cur;
+    var cid = $('#aCls').value, rows = st.assign[cid] = st.assign[cid] || [];
+    var sOpt = function (v) { return '<option value="">Choose…</option>' + st.subjects.map(function (s) { return '<option value="' + s.id + '"' + (s.id === v ? ' selected' : '') + '>' + esc(s.name) + '</option>'; }).join(''); };
+    var tOpt = function (v) { return '<option value="">— unassigned —</option>' + st.teachers.map(function (t) { return '<option value="' + t.id + '"' + (t.id === v ? ' selected' : '') + '>' + esc(t.name) + ' (' + esc(t.code) + ')</option>'; }).join(''); };
+    $('#aRows').innerHTML = rows.length ? rows.map(function (r, i) {
+      return '<tr data-i="' + i + '"><td><select class="in" data-f="s">' + sOpt(r.s) + '</select></td><td><select class="in" data-f="t">' + tOpt(r.t) + '</select></td><td class="ppw"><input class="in" type="number" min="0" max="20" data-f="ppw" value="' + (r.ppw || 0) + '"></td><td class="av"><input class="in" data-f="av" value="' + esc(r.av || '') + '" placeholder="e.g. 1"></td><td><button class="btn sm danger" data-rm="' + i + '" type="button">Remove</button></td></tr>';
+    }).join('') : '<tr><td colspan="5" class="muted">No subjects for this class yet — add one below.</td></tr>';
+    $$('#aRows [data-f]').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var r = rows[+inp.closest('tr').dataset.i], f = inp.dataset.f;
+        r[f] = f === 'ppw' ? Math.max(0, parseInt(inp.value, 10) || 0) : inp.value;
+        st.result = null; save(); assignInfo();
+      });
+    });
+    $$('#aRows [data-rm]').forEach(function (b) { b.addEventListener('click', function () { rows.splice(+b.dataset.rm, 1); st.result = null; save(); renderAssign(); }); });
+    assignInfo();
+  }
+  function assignInfo() {
+    var cid = $('#aCls').value, rows = st.assign[cid] || [], tot = rows.reduce(function (n, r) { return n + (r.ppw || 0); }, 0), cap = st.days.length * st.periods;
+    $('#aInfo').innerHTML = '<span class="' + (tot > cap ? 'down' : '') + '">' + tot + ' of ' + cap + ' periods a week used</span>';
+    var load = {}; Object.keys(st.assign).forEach(function (c) { st.assign[c].forEach(function (r) { if (r.t) load[r.t] = (load[r.t] || 0) + (r.ppw || 0); }); });
+    $('#tLoad').innerHTML = st.teachers.length ? st.teachers.map(function (t) { var n = load[t.id] || 0; return '<span class="tag ' + (n > cap ? 'over' : n ? 'ok' : '') + '">' + esc(t.code) + ' · ' + n + (n > cap ? ' (more than ' + cap + '!)' : '') + '</span>'; }).join('') : '<span class="muted">Add teachers in step 1.</span>';
+  }
+  $('#aCls').addEventListener('change', renderAssign);
+  $('#aAdd').addEventListener('click', function () { var cid = $('#aCls').value; if (!cid) return; (st.assign[cid] = st.assign[cid] || []).push({ s: '', t: '', ppw: 1, av: '' }); save(); renderAssign(); });
+  $('#aCopy').addEventListener('click', function () {
+    var cid = $('#aCls').value, others = st.classes.filter(function (c) { return c.id !== cid && (st.assign[c.id] || []).length; });
+    if (!others.length) { SS.toast('No other class has subjects yet.'); return; }
+    var name = prompt('Copy the subjects from which class? (' + others.map(function (c) { return c.name; }).join(', ') + ')');
+    var from = others.filter(function (c) { return c.name.toLowerCase() === String(name || '').trim().toLowerCase(); })[0];
+    if (!from) { if (name) SS.toast('No class called ' + name + '.'); return; }
+    st.assign[cid] = st.assign[from.id].map(function (r) { return { s: r.s, t: r.t, ppw: r.ppw, av: r.av }; });
+    st.result = null; save(); renderAssign(); SS.toast('Copied from ' + from.name + '. Change the teachers if needed.');
+  });
+
+  /* ----------------------------------------------------------- generator (port of generator.py) */
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function tryGenerate(seed) {
+    var rand = rng(seed + 1), slots = [];
+    st.days.forEach(function (d) { for (var p = 1; p <= st.periods; p++) slots.push([d, p]); });
+    var teacherBusy = {}, classUsed = {}, perDay = {}, entries = [], issues = [];
+    var tasks = [];
+    st.classes.forEach(function (c) { (st.assign[c.id] || []).forEach(function (r) { if (r.s && r.ppw > 0) tasks.push({ c: c, r: r }); }); });
+    /* hardest to place first: most periods a week */
+    tasks.sort(function (a, b) { return b.r.ppw - a.r.ppw; });
+    tasks.forEach(function (task) {
+      var c = task.c, r = task.r, sub = byId(st.subjects, r.s), tch = byId(st.teachers, r.t);
+      if (!tch) { issues.push({ c: c.name, s: sub ? sub.name : '?', why: 'No teacher assigned — set one in step 2.' }); return; }
+      var avoid = String(r.av || '').split(/[\s,]+/).map(Number).filter(Boolean);
+      var sh = slots.filter(function (s) { return avoid.indexOf(s[1]) < 0; });
+      for (var i = sh.length - 1; i > 0; i--) { var j = Math.floor(rand() * (i + 1)); var tmp = sh[i]; sh[i] = sh[j]; sh[j] = tmp; }
+      var placed = 0, limits = [0, 1, 2, st.periods].filter(function (v, k, a) { return a.indexOf(v) === k; }).sort(function (a, b) { return a - b; });
+      limits.forEach(function (maxPerDay) {
+        sh.forEach(function (s) {
+          if (placed >= r.ppw) return;
+          var ck = c.id + '|' + s[0] + '|' + s[1], tk = tch.id + '|' + s[0] + '|' + s[1], dk = c.id + '|' + r.s + '|' + s[0];
+          if (classUsed[ck] || teacherBusy[tk] || (perDay[dk] || 0) > maxPerDay) return;
+          classUsed[ck] = 1; teacherBusy[tk] = 1; perDay[dk] = (perDay[dk] || 0) + 1;
+          entries.push({ c: c.id, d: s[0], p: s[1], s: r.s, t: tch.id }); placed++;
+        });
+      });
+      if (placed < r.ppw) issues.push({ c: c.name, s: sub ? sub.name : '?', why: 'Only placed ' + placed + ' of ' + r.ppw + ' periods a week — ' + tLabel(tch) + ' is probably busy with other classes, or ' + c.name + ' has no free periods left.' });
+    });
+    return { entries: entries, issues: issues };
+  }
+  function generate() {
+    if (!st.days.length || st.periods < 1) return { entries: [], issues: [{ c: '', s: '', why: 'Set the working days and periods per day in step 1.' }] };
+    var best = null;
+    for (var a = 0; a < 25; a++) {
+      var r = tryGenerate(a);
+      if (!r.issues.length) return r;
+      if (!best || r.issues.length < best.issues.length) best = r;
+    }
+    return best;
+  }
+  $('#gen').addEventListener('click', function () {
+    var tasks = st.classes.reduce(function (n, c) { return n + (st.assign[c.id] || []).filter(function (r) { return r.s && r.ppw; }).length; }, 0);
+    if (!tasks) { SS.toast('Assign subjects to your classes in step 2 first.'); return; }
+    var t0 = performance.now(), r = generate();
+    st.result = { entries: r.entries, issues: r.issues, at: Date.now() }; save();
+    SS.toast(r.issues.length ? 'Done, with ' + r.issues.length + ' problem(s) to fix.' : 'Timetable ready in ' + Math.round(performance.now() - t0) + ' ms — no clashes.');
+    renderView();
+  });
+
+  /* ----------------------------------------------------------- view + edit */
+  function renderView() {
+    var res = st.result;
+    var mode = $('#vMode').value, prev = $('#vWho').value;
+    var opts = mode === 'class' ? st.classes.map(function (c) { return [c.id, c.name]; }) : st.teachers.map(function (t) { return [t.id, t.name + ' (' + t.code + ')']; });
+    $('#vWho').innerHTML = opts.map(function (o) { return '<option value="' + o[0] + '">' + esc(o[1]) + '</option>'; }).join('');
+    if (opts.some(function (o) { return o[0] === prev; })) $('#vWho').value = prev;
+    $$('#pdf,#xlsx,#toSub').forEach(function (b) { b.disabled = !res || !res.entries.length; });
+    if (!res) { $('#genState').innerHTML = '<div class="card empty"><b>No timetable yet</b>Press <b>Generate timetable</b>. It takes less than a second.</div>'; $('#gridCard').hidden = true; return; }
+    $('#genState').innerHTML = res.issues.length ? '<div class="card"><div class="hd"><h2>' + res.issues.length + ' thing(s) to fix<small>ఇవి సరిచేయండి</small></h2></div><ul class="issues">' + res.issues.map(function (i) { return '<li><b>' + esc(i.c) + (i.s ? ' · ' + esc(i.s) : '') + '</b> — ' + esc(i.why) + '</li>'; }).join('') + '</ul></div>'
+      : '<div class="note ok"><svg class="i" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Every period placed — no teacher is in two classes at the same time.</span></div>';
+    var who = $('#vWho').value; if (!who) { $('#gridCard').hidden = true; return; }
+    $('#gridCard').hidden = false;
+    $('#gridTitle').textContent = mode === 'class' ? 'Class ' + byId(st.classes, who).name : byId(st.teachers, who).name + ' (' + byId(st.teachers, who).code + ')';
+    var head = '<tr><th class="dn"></th>' + Array.from({ length: st.periods }, function (_, i) { return '<th>P' + (i + 1) + '</th>'; }).join('') + '</tr>';
+    var body = st.days.map(function (d) {
+      return '<tr><th class="dn">' + d.slice(0, 3) + '</th>' + Array.from({ length: st.periods }, function (_, i) {
+        var p = i + 1, e = res.entries.filter(function (x) { return x.d === d && x.p === p && (mode === 'class' ? x.c === who : x.t === who); })[0];
+        if (!e) return '<td class="free" data-d="' + d + '" data-p="' + p + '">' + (mode === 'teacher' ? 'Free' : '') + '</td>';
+        var s = byId(st.subjects, e.s), t = byId(st.teachers, e.t), c = byId(st.classes, e.c);
+        return '<td data-d="' + d + '" data-p="' + p + '"><b>' + esc(mode === 'class' ? (s ? s.name : '?') : (c ? c.name : '?')) + '</b><small>' + esc(mode === 'class' ? tLabel(t) : (s ? s.name : '')) + '</small></td>';
+      }).join('') + '</tr>';
+    }).join('');
+    $('#grid').innerHTML = '<thead>' + head + '</thead><tbody>' + body + '</tbody>';
+    if (mode === 'class') $$('#grid td[data-d]').forEach(function (td) { td.addEventListener('click', function () { editCell(who, td.dataset.d, +td.dataset.p); }); });
+  }
+  $('#vMode').addEventListener('change', renderView);
+  $('#vWho').addEventListener('change', renderView);
+
+  var editing = null;
+  function editCell(cid, d, p) {
+    var rows = (st.assign[cid] || []).filter(function (r) { return r.s; });
+    var cur = st.result.entries.filter(function (x) { return x.c === cid && x.d === d && x.p === p; })[0];
+    editing = { cid: cid, d: d, p: p };
+    $('#cdTitle').textContent = byId(st.classes, cid).name + ' · ' + d.charAt(0) + d.slice(1).toLowerCase() + ' · Period ' + p;
+    $('#cdSub').textContent = 'Teachers already busy in this period are not offered.';
+    var opts = '<option value="">Free period</option>' + rows.map(function (r, i) {
+      var t = byId(st.teachers, r.t), s = byId(st.subjects, r.s);
+      var busy = t && st.result.entries.some(function (x) { return x.t === t.id && x.d === d && x.p === p && x.c !== cid; });
+      return '<option value="' + i + '"' + (busy ? ' disabled' : '') + (cur && cur.s === r.s && cur.t === r.t ? ' selected' : '') + '>' + esc(s ? s.name : '?') + ' — ' + esc(tLabel(t) || 'no teacher') + (busy ? ' (busy)' : '') + '</option>';
+    }).join('');
+    $('#cdPick').innerHTML = opts;
+    $('#cellDlg').showModal();
+  }
+  $('#cellDlg').addEventListener('close', function () {
+    if ($('#cellDlg').returnValue !== 'save' || !editing) return;
+    var e = editing, v = $('#cdPick').value;
+    st.result.entries = st.result.entries.filter(function (x) { return !(x.c === e.cid && x.d === e.d && x.p === e.p); });
+    if (v !== '') { var r = (st.assign[e.cid] || []).filter(function (r) { return r.s; })[+v]; if (r && r.t) st.result.entries.push({ c: e.cid, d: e.d, p: e.p, s: r.s, t: r.t }); }
+    save(); renderView(); SS.toast('Saved.');
+  });
+
+  /* ----------------------------------------------------------- outputs */
+  /* Excel in the layout the Substitute Time Table reads: days across the top, periods 1..n under
+     each day, then for every class a row with its name and a TEACHER row below it. */
+  function buildXlsx() {
+    return SS.need('XLSX').then(function () {
+      var res = st.result, row1 = ['CLASS'], row2 = [''], aoa, merges = [];
+      st.days.forEach(function (d, i) { row1.push(d); for (var k = 1; k < st.periods; k++) row1.push(''); merges.push({ s: { r: 0, c: 1 + i * st.periods }, e: { r: 0, c: i * st.periods + st.periods } }); for (var p = 1; p <= st.periods; p++) row2.push(p); });
+      aoa = [row1, row2];
+      st.classes.forEach(function (c) {
+        var subRow = [c.name], tRow = ['TEACHER'];
+        st.days.forEach(function (d) { for (var p = 1; p <= st.periods; p++) { var e = res.entries.filter(function (x) { return x.c === c.id && x.d === d && x.p === p; })[0]; var s = e && byId(st.subjects, e.s), t = e && byId(st.teachers, e.t); subRow.push(s ? s.name : ''); tRow.push(t ? tLabel(t) : ''); } });
+        aoa.push(subRow, tRow);
+      });
+      var ws = XLSX.utils.aoa_to_sheet(aoa); ws['!merges'] = merges;
+      var wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'Timetable');
+      return XLSX.write(wb, { type: 'array', bookType: 'xlsx' });
+    });
+  }
+  $('#xlsx').addEventListener('click', function () {
+    buildXlsx().then(function (buf) {
+      var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+      a.download = 'School_Timetable.xlsx'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    }).catch(function (e) { SS.toast(e.message || 'Could not make the Excel file.'); });
+  });
+  /* hand the timetable straight to the Substitute Time Table (same storage the Home page uses) */
+  $('#toSub').addEventListener('click', function () {
+    var b = this; b.disabled = true;
+    buildXlsx().then(function (buf) {
+      return new Promise(function (res, rej) {
+        var r = indexedDB.open('ssat', 1);
+        r.onupgradeneeded = function () { r.result.createObjectStore('files'); };
+        r.onsuccess = function () { var tx = r.result.transaction('files', 'readwrite'); tx.objectStore('files').put({ name: 'School_Timetable.xlsx', buf: buf, time: Date.now() }, 'tt'); tx.oncomplete = res; tx.onerror = function () { rej(tx.error); }; };
+        r.onerror = function () { rej(r.error); };
+      });
+    }).then(function () { location.href = 'substitute-timetable.html?from=hub&tt=1'; })
+      .catch(function () { b.disabled = false; SS.toast('This browser could not keep the file. Use Download Excel instead.'); });
+  });
+  $('#pdf').addEventListener('click', function () {
+    var b = this, res = st.result, sch = SS.school();
+    b.disabled = true; b.textContent = 'Preparing…';
+    $('#pdfOut').innerHTML = '<div class="tt-print">' + st.classes.map(function (c) {
+      return '<div class="pg"><h2>' + esc(sch.name || 'School Timetable') + ' — Class ' + esc(c.name) + '</h2><p>' + esc(sch.addr || '') + '</p><table><thead><tr><th></th>' + Array.from({ length: st.periods }, function (_, i) { return '<th>Period ' + (i + 1) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+        st.days.map(function (d) { return '<tr><td class="d">' + d.slice(0, 3) + '</td>' + Array.from({ length: st.periods }, function (_, i) { var e = res.entries.filter(function (x) { return x.c === c.id && x.d === d && x.p === i + 1; })[0]; var s = e && byId(st.subjects, e.s), t = e && byId(st.teachers, e.t); return '<td>' + (s ? '<b>' + esc(s.name) + '</b>' + esc(tLabel(t)) : '') + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+    }).join('') + '</div>';
+    SS.savePdf($('#pdfOut .tt-print'), 'School_Timetable.pdf', true).then(function () { SS.toast('PDF saved.'); }, function (e) { SS.toast(e.message || 'Could not make the PDF.'); })
+      .then(function () { b.disabled = false; b.textContent = 'Download PDF'; $('#pdfOut').innerHTML = ''; });
+  });
+
+  renderSetup();
+  if (st.result) go(3);
+})();
+</script>
+</body>
+</html>
