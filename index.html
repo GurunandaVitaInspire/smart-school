@@ -376,20 +376,22 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   box-shadow:0 2px 4px rgba(16,32,26,.08),0 30px 50px -24px color-mix(in srgb,var(--gc) 85%,transparent);transition:background .5s,box-shadow .5s}
 .dk .bg::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 20% 0%,rgba(255,255,255,.38),transparent 55%)}
 .dk .bg::after{content:"";position:absolute;left:-20%;right:-20%;bottom:-40%;height:70%;background:radial-gradient(closest-side,rgba(255,255,255,.22),transparent)}
-.dk .art{position:absolute;left:50%;top:38%;width:58%;transform:translate(-50%,-50%) rotate(var(--tilt,-6deg));transition:transform .7s cubic-bezier(.2,.8,.2,1),top .7s cubic-bezier(.2,.8,.2,1),width .7s;z-index:2;filter:drop-shadow(0 18px 18px rgba(0,0,0,.25));container-type:inline-size}
+.dk{--p:0}
+.dk .art{position:absolute;left:50%;top:calc(38% - 32% * var(--p));width:calc(58% + 8% * var(--p));transform:translate(-50%,-50%) rotate(calc(var(--tilt,-6deg) * (1 - var(--p)) - 4deg * var(--p)));transition:transform .95s cubic-bezier(.22,.85,.25,1),top .95s cubic-bezier(.22,.85,.25,1),width .95s cubic-bezier(.22,.85,.25,1);z-index:2;filter:drop-shadow(0 18px 18px rgba(0,0,0,.25));container-type:inline-size;will-change:transform,top}
 .dk .lbl{position:absolute;left:20px;right:20px;bottom:18px;z-index:3}
+.dk.soon::before{opacity:calc(var(--p) * .9)}
 .dk .lbl .kt{display:block;font-family:var(--te);font-size:1.32rem;line-height:1.15;text-shadow:0 2px 8px rgba(0,0,0,.18)}
 .dk .lbl small{display:block;font-weight:700;font-size:.8rem;opacity:.92;margin-top:3px}
 .dk .meta{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
 .dk .meta span{font-size:.72rem;font-weight:800;letter-spacing:.04em;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.22);backdrop-filter:blur(6px)}
 .dk .meta i{font-style:normal;font-size:.74rem;font-weight:700;opacity:.9}
 /* active card: dark, larger, art pops out over the top edge */
-.dk.on .bg{background:radial-gradient(120% 80% at 50% 0%,color-mix(in srgb,var(--gc) 45%,#0B2A21),#06190F 75%);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 40px 70px -26px color-mix(in srgb,var(--gc) 90%,transparent)}
-.dk.on .art{top:6%;width:66%;transform:translate(-50%,-50%) rotate(-4deg)}
+.dk::before{content:"";position:absolute;inset:0;z-index:1;border-radius:34px;pointer-events:none;opacity:var(--p);background:radial-gradient(120% 80% at 50% 0%,color-mix(in srgb,var(--gc) 45%,#0B2A21),#06190F 75%);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 40px 70px -26px color-mix(in srgb,var(--gc) 90%,transparent);transition:opacity .95s cubic-bezier(.22,.85,.25,1)}
+.deck.dragging .dk::before{transition:none}
+.dk .meta span{transition:background .5s,color .5s}
 .dk.on .meta span{background:var(--gc);color:#fff}
 .dk.soon .bg{--g:linear-gradient(160deg,#D9DFDC,#A9B5B0)}
-.dk.soon .lbl{color:#2B3A34}
-.dk.soon.on .lbl{color:#fff}
+.dk.soon .lbl{color:color-mix(in srgb,#fff calc(var(--p) * 100%),#2B3A34)}
 .g1{--g:linear-gradient(160deg,#A68BFF,#6C47FF 55%,#4A2BD8);--gc:#6C47FF}
 .g2{--g:linear-gradient(160deg,#7CC0FF,#2F80ED 55%,#1B5FC8);--gc:#2F80ED}
 .g3{--g:linear-gradient(160deg,#FFE07A,#F5B400 55%,#E09400);--gc:#E8A400}
@@ -397,8 +399,8 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .g5{--g:linear-gradient(160deg,#FF9AA2,#EF4F64 55%,#D23452);--gc:#E5484D}
 .g6{--g:linear-gradient(160deg,#FFB27A,#F26A1B 55%,#D5520A);--gc:#EA6A1B}
 .g7,.g8{--gc:#7C8A84}
-.g3 .lbl,.g3 .meta span{color:#3A2600}
-.g3.on .lbl{color:#fff}
+.g3 .lbl{color:color-mix(in srgb,#fff calc(var(--p) * 100%),#3A2600)}
+.g3 .meta span{color:#3A2600}
 @media (max-width:760px){
   .show{border-radius:26px;padding-top:18px}
   .show-top{padding:0 16px}
@@ -1211,6 +1213,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
       c.style.setProperty('--d',d.toFixed(4));c.style.setProperty('--gap',g+'px');
       c.style.setProperty('--s',s.toFixed(4));c.style.setProperty('--o',o.toFixed(3));
       c.style.setProperty('--z',Math.round(40-a*10));
+      var q=Math.max(0,1-a);c.style.setProperty('--p',(q*q*(3-2*q)).toFixed(4));
       var on=j===near;
       c.classList.toggle('on',on);
       c.setAttribute('aria-selected',on?'true':'false');
@@ -1240,10 +1243,18 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   deck.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){set(cur+1,1);e.preventDefault()}if(e.key==='ArrowLeft'){set(cur-1,1);e.preventDefault()}});
 
   /* drag with finger or mouse: cards follow, then glide to the nearest */
-  var x0=null,y0=0,p0=0,moved=false,lastX=0,lastT=0,vel=0,axis=null;
+  var x0=null,y0=0,p0=0,moved=false,lastX=0,lastT=0,vel=0,axis=null,target=0,raf=0;
+  /* the cards ease towards the finger every frame, so motion stays smooth even when touch events are uneven */
+  function follow(){
+    raf=0;
+    var diff=target-pos;
+    pos+=Math.abs(diff)<.002?diff:diff*.22;
+    render(pos,true);
+    if(x0!==null||Math.abs(target-pos)>.002)raf=requestAnimationFrame(follow);
+  }
   deck.addEventListener('pointerdown',function(e){
     if(e.button>0)return;
-    x0=e.clientX;y0=e.clientY;p0=pos;moved=false;axis=null;lastX=e.clientX;lastT=performance.now();vel=0;
+    x0=e.clientX;y0=e.clientY;if(raf){cancelAnimationFrame(raf);raf=0}p0=pos;target=pos;moved=false;axis=null;lastX=e.clientX;lastT=performance.now();vel=0;
   });
   deck.addEventListener('pointermove',function(e){
     if(x0===null)return;
@@ -1253,12 +1264,14 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
     moved=true;
     var now=performance.now(),dt=Math.max(1,now-lastT);
     vel=lerp(vel,(e.clientX-lastX)/dt,.3);lastX=e.clientX;lastT=now;
-    pos=p0-dx/gap()*DRAG;
-    render(pos,true);
+    target=p0-dx/gap()*DRAG;
+    if(!raf)raf=requestAnimationFrame(follow);
   });
   function release(){
     if(x0===null)return;x0=null;
+    if(raf){cancelAnimationFrame(raf);raf=0}
     if(!moved){axis=null;return;}
+    pos=target;
     /* a gentle flick moves at most one extra card */
     var fling=Math.max(-1,Math.min(1,-vel*0.9));
     set(Math.round(pos+fling*0.6));
