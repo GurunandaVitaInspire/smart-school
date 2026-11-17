@@ -31,7 +31,19 @@
 .day .ev.ex{background:color-mix(in srgb,var(--a) 16%,transparent);color:var(--a)}
 .day.today .dn{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg)}
 .day.outyear{opacity:.45}
-@media (max-width:640px){.day{min-height:52px;padding:4px}.day .ev{font-size:0;padding:0;height:6px;border-radius:3px}}
+@media (max-width:640px){
+  .mgrid{gap:4px}
+  .mgrid .wd{font-size:.72rem;letter-spacing:.02em}
+  .day{min-height:50px;padding:5px 4px;border-radius:10px;align-items:center}
+  .day .dn{font-size:.95rem}
+  .day .ev{font-size:0;padding:0;height:6px;width:70%;border-radius:3px}
+  .month-nav h2{font-size:1.45rem}
+  .month-nav button{width:44px;height:44px}
+  .cap{gap:8px}.cap div{padding:10px}.cap b{font-size:1.6rem}
+  .evlist .when{min-width:96px}
+  .examtbl input{min-width:132px}
+  dialog .act .btn{flex:1}
+}
 .legend2{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:.78rem;font-weight:700;color:var(--muted)}
 .legend2 i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:-2px;border:1px solid var(--line)}
 .cap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}

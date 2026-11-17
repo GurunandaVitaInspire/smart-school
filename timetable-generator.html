@@ -42,6 +42,20 @@
 .ttgrid td small{color:var(--muted);font-weight:700}
 .ttgrid td.free{background:repeating-linear-gradient(135deg,transparent 0 6px,color-mix(in srgb,var(--line) 60%,transparent) 6px 7px);color:var(--muted)}
 .ttgrid td:hover{outline:2px solid var(--a)}
+@media (max-width:640px){
+  /* phones: the week scrolls sideways, day names stay pinned */
+  .ttgrid{min-width:640px;border-spacing:3px}
+  .ttgrid th.dn{position:sticky;left:0;z-index:1;background:var(--surface);width:46px}
+  .ttgrid th{font-size:.74rem}
+  .ttgrid td{height:58px;font-size:.8rem}
+  .ttgrid td small{font-size:.74rem}
+  #gridCard .hd{flex-direction:column;gap:4px}
+  .steps-nav button{padding:12px}
+  .asg{min-width:560px}
+  .lst li{padding:10px 0}
+  .lst li button{min-height:40px;padding:8px 10px}
+  .dayset label{padding:10px 14px}
+}
 .issues{list-style:none;margin:0;padding:0}
 .issues li{padding:8px 0;border-top:1px solid var(--line);font-size:.9rem}
 .issues li:first-child{border-top:0}

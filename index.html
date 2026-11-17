@@ -593,6 +593,49 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(24px);opacity:0;z-index:90;max-width:min(92vw,520px);padding:13px 20px;border-radius:14px;background:#10201A;color:#EAFFF6;font-weight:600;font-size:.95rem;text-align:center;box-shadow:0 18px 40px -12px rgba(0,0,0,.5);pointer-events:none;transition:opacity .2s,transform .2s}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
+/* =========================================================
+   PHONES (teachers mostly use 9:16 phones)
+   ========================================================= */
+@media (max-width:760px){
+  .nav .container{min-height:58px}
+  .logo .mark{width:40px}
+  /* hero: arch + headline + button inside one 9:16 screen */
+  .arc{--cw:76px;--rx:50vw;--ry:min(290px,46vh);--cy:min(390px,60vh);height:min(410px,64vh)}
+  .hero-c{margin-top:calc(min(410px,64vh) * -.43);padding:0 18px 40px}
+  .arc-in>.ac:first-child,.arc-in>.ac:last-child{display:none}  /* bottom corners would touch the headline */
+  .tag{font-size:.86rem;padding:5px 12px 5px 5px}
+  .hero h1{font-size:clamp(2rem,9.6vw,2.55rem);margin-top:12px}
+  .hero .lead{font-size:.95rem;margin-top:10px}
+  .cta{margin-top:16px}
+  .feats{margin-top:22px}
+  .feats b{font-size:.84rem}.feats small{font-size:.76rem}
+  /* readable small labels */
+  .fc .who{font-size:.76rem}
+  .tag b{font-size:.74rem}
+  .kicker{font-size:.8rem}
+  /* deck: compact tags that never wrap */
+  .dk .meta{gap:6px}
+  .dk .meta span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;font-size:.7rem}
+  .dk .meta i{display:none}
+  .dk .lbl{left:16px;right:16px;bottom:14px}
+  /* comfortable touch targets */
+  footer nav a{padding:10px 0}
+  .totop{padding:10px 0}
+  .links a{padding:10px 13px}
+  .navb button{width:46px;height:46px}
+  .seg button{min-height:42px;padding:9px 18px}
+  .src{min-height:64px}
+  .section{padding-top:52px}
+  .h2{font-size:clamp(1.75rem,8vw,2.2rem)}
+}
+@media (max-width:760px) and (max-height:700px){
+  /* short 9:16 phones (360×640, 375×667): tighter still */
+  .arc{--cw:68px;--ry:min(250px,42vh);--cy:min(330px,55vh);height:min(345px,57vh)}
+  .hero-c{margin-top:calc(min(345px,57vh) * -.40)}
+  .hero h1{font-size:clamp(1.85rem,8.8vw,2.3rem)}
+  .hero .lead{font-size:.9rem;line-height:1.45}
+}
+
 @media (prefers-reduced-motion:no-preference){
   .rise{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
   .rise.d1{animation-delay:.35s}.rise.d2{animation-delay:.5s}.rise.d3{animation-delay:.65s}.rise.d4{animation-delay:.8s}
