@@ -90,13 +90,14 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   background:radial-gradient(60% 50% at 50% 95%,color-mix(in srgb,var(--mint) 22%,transparent),transparent 70%),
              radial-gradient(40% 40% at 15% 20%,color-mix(in srgb,#FFC83D 12%,transparent),transparent 70%),
              radial-gradient(40% 40% at 85% 25%,color-mix(in srgb,#8B5CF6 10%,transparent),transparent 70%),var(--bg)}
-.arc{--cw:clamp(98px,11.2vw,154px);--rx:min(45vw,640px);--ry:min(42vw,530px);--cy:650px;
-  position:relative;height:760px;max-width:1440px;margin:0 auto;perspective:1600px}
-.arc-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.hero{--k:1}
+.arc{--cw:clamp(calc(98px * var(--k)),calc(11.2vw * var(--k)),calc(154px * var(--k)));--rx:min(45vw,640px);--ry:min(42vw,calc(530px * var(--k)));--cy:calc(650px * var(--k));
+  position:relative;height:calc(720px * var(--k));max-width:1440px;margin:0 auto;perspective:1600px}
+.arc-in{position:absolute;inset:0}
 .ac{position:absolute;width:var(--cw);
   left:calc(50% + cos(var(--a)) * var(--rx));top:calc(var(--cy) - sin(var(--a)) * var(--ry));
   transform:translate(-50%,-50%) rotate(calc((90deg - var(--a)) * .5));
-  animation:fan 1.25s cubic-bezier(.16,.84,.24,1) both,bob 7s ease-in-out infinite;animation-delay:calc(var(--i) * 70ms),calc(1.3s + var(--i) * 300ms);
+  animation:fan 1.25s cubic-bezier(.16,.84,.24,1) both;animation-delay:calc(var(--i) * 70ms);
   transition:scale .35s cubic-bezier(.2,.8,.2,1);z-index:1;container-type:inline-size}
 .ac:hover{scale:1.08;z-index:3}
 @keyframes fan{from{left:50%;top:var(--cy);opacity:0;scale:.45}}
@@ -236,7 +237,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .k-cal .gr i.a{background:#EF4444}.k-cal .gr i.h{background:#E5E7EB}
 
 /* ---------- hero copy (inside the arch) ---------- */
-.hero-c{position:absolute;left:50%;top:268px;transform:translateX(-50%);width:min(600px,54vw);text-align:center;z-index:5}
+.hero-c{position:absolute;left:50%;top:calc(268px * var(--k));transform:translateX(-50%) scale(var(--k));transform-origin:50% 0;width:min(600px,54vw);text-align:center;z-index:5}
 .tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--te2);font-weight:700;font-size:.98rem;color:var(--ink-2)}
 .tag b{font-family:var(--font);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--brand-2);border-radius:999px;padding:4px 9px}
 .hero h1{margin:18px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,4.6vw,4.1rem);line-height:1.02;letter-spacing:-.02em;color:var(--ink)}
@@ -252,9 +253,10 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .feats b{display:block;font-weight:800;font-size:.9rem;color:var(--ink)}
 .feats small{display:block;font-size:.78rem;color:var(--muted);line-height:1.4;margin-top:2px}
 
-@media (max-width:1100px){.arc{--cy:620px;height:720px}.hero-c{top:250px}}
+@media (max-width:1100px){.arc{--cy:calc(620px * var(--k));height:calc(690px * var(--k))}.hero-c{top:calc(250px * var(--k))}}
 @media (max-width:900px){.feats{display:none}}
 @media (max-width:760px){
+  .hero{--k:1!important}
   .arc{--cw:82px;--rx:49vw;--ry:300px;--cy:400px;height:430px}
   .hero-c{position:relative;left:auto;top:auto;transform:none;width:auto;margin:-190px auto 0;padding:0 20px 56px}
   .hero h1{font-size:2.55rem}
@@ -673,7 +675,7 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
         <div class="ax"><span>FA1</span><span>FA2</span><span>SA1</span><span>FA3</span><span>SA2</span></div>
       </div></div></div>
 
-      <div class="ac" style="--i:5;--a:90deg;--cw:clamp(108px,12.4vw,172px)"><div class="mini k-chalk"><div class="board"><span>అ ఆ</span><span class="s2">ఇ ఈ ఉ</span><i class="chalk"></i></div></div></div>
+      <div class="ac" style="--i:5;--a:90deg;--cw:clamp(calc(108px * var(--k)),calc(12.4vw * var(--k)),calc(172px * var(--k)))"><div class="mini k-chalk"><div class="board"><span>అ ఆ</span><span class="s2">ఇ ఈ ఉ</span><i class="chalk"></i></div></div></div>
 
       <div class="ac" style="--i:6;--a:74deg"><div class="mini k-donut">
         <div class="ring"><div><b>92%</b><small>ఉత్తీర్ణత</small></div></div>
@@ -1299,12 +1301,16 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   pos=s;render(pos,false);
   [].slice.call(document.querySelectorAll("[data-tool]")).forEach(function(a){a.addEventListener("click",function(){set(+a.dataset.tool)})});
 
-  var arc=document.getElementById('arc');
-  if(arc&&matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){
-    var hero=arc.parentNode;
-    hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;arc.style.setProperty('--ty',(px*6).toFixed(2)+'deg');arc.style.setProperty('--tx',(-py*5).toFixed(2)+'deg')});
-    hero.addEventListener('pointerleave',function(){arc.style.setProperty('--ty','0deg');arc.style.setProperty('--tx','0deg')});
+  /* fit the whole hero (cards + headline + feature row) inside the screen height */
+  var heroEl=document.querySelector('.hero'),navEl=document.querySelector('.nav');
+  function fit(){
+    if(!heroEl)return;
+    var avail=innerHeight-(navEl?navEl.offsetHeight:0);
+    var base=innerWidth<=1100?690:720;
+    var k=innerWidth<760?1:Math.max(.62,Math.min(1,(avail-12)/base));
+    heroEl.style.setProperty('--k',k.toFixed(3));
   }
+  fit();addEventListener('resize',fit);
 })();
 (function(){
   var els=[].slice.call(document.querySelectorAll(".reveal"));
