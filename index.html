@@ -456,23 +456,108 @@ select option{color:#10201A;background:#fff}
 .ewlink b{color:var(--a);font-weight:800}
 .ewlink .ar{margin-left:auto}
 .badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:.84rem;font-weight:800;color:var(--ink-2);background:var(--sunk);border:1px solid var(--line)}
+.soon-note{margin:12px 0 0;color:var(--muted);font-size:.92rem}.soon-note a{color:var(--ink);font-weight:700}
 .badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun)}
 .tap{animation:tapblink .42s ease-in-out 2}
 @keyframes tapblink{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 0 5px color-mix(in srgb,var(--a,var(--brand-2)) 30%,transparent)}}
 
+/* =========================================================
+   WHAT IT DOES — bento of every real feature
+   ========================================================= */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.fc{--a:var(--brand-2);grid-column:span 2;position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:var(--shadow),0 4px 0 var(--lip);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.fc:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg),0 4px 0 var(--lip)}
+.fc.w3{grid-column:span 3}.fc.w4{grid-column:span 4}
+.fc .who{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--a);background:color-mix(in srgb,var(--a) 11%,transparent);padding:5px 11px 5px 6px;border-radius:999px}
+.fc .who .i{width:20px;height:20px;padding:3px;border-radius:50%;background:var(--a);color:#fff;stroke-width:2.2}
+.fc h3{margin:14px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(1.55rem,2.3vw,1.95rem);line-height:1.05;letter-spacing:-.01em;color:var(--ink)}
+.fc h3 .te{display:block;font-family:var(--te2);font-weight:700;font-size:.58em;color:var(--a);margin-bottom:4px;letter-spacing:0}
+.fc ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
+.fc li{position:relative;padding-left:26px;font-size:.92rem;line-height:1.45;color:var(--ink-2)}
+.fc li::before{content:"";position:absolute;left:0;top:2px;width:17px;height:17px;border-radius:50%;background:color-mix(in srgb,var(--a) 14%,transparent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4L18 8'/%3E%3C/svg%3E") center/11px no-repeat}
+@supports (mask:url(x)){.fc li::before{background:var(--a);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12'/%3E%3C/svg%3E") center/contain;opacity:.16}
+  .fc li::after{content:"";position:absolute;left:0;top:2px;width:17px;height:17px;background:var(--a);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6.5 12.5 3.8 3.8L17.5 9'/%3E%3C/svg%3E") center/13px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6.5 12.5 3.8 3.8L17.5 9'/%3E%3C/svg%3E") center/13px no-repeat}}
+.fc li b{color:var(--ink);font-weight:700}
+.fc .go-to{margin-top:auto;padding-top:18px;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-weight:700;font-size:.9rem;color:var(--a);text-decoration:none}
+.fc .go-to .i{width:18px;height:18px;transition:transform .2s}
+.fc .go-to:hover .i{transform:translateX(4px)}
+/* tiles with a picture beside the list */
+.fc.pic{display:grid;grid-template-columns:minmax(0,1fr) clamp(130px,15vw,190px);column-gap:26px;align-items:start}
+.fc.pic>*:not(.fart){grid-column:1}
+.fc .who,.fc .go-to{justify-self:start}
+.fc .fart{grid-column:2;grid-row:1/span 6;align-self:center;container-type:inline-size;transform:rotate(var(--tilt,4deg));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.fc:hover .fart{transform:rotate(0deg) scale(1.04)}
+/* dark voice tile */
+.fc.dark{background:radial-gradient(120% 90% at 100% 0%,#2A1F6B,#0E0A2A 70%);border-color:#2A2160;color:#E9E6FF;--a:#A78BFA}
+.fc.dark h3{color:#fff}.fc.dark li{color:#CFC9F5}.fc.dark li b{color:#fff}
+.fc.dark .who .i{color:#140F38}
+.voice{display:flex;align-items:center;gap:12px;margin-top:16px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
+.voice .mic{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#C4B5FD,#7C5CFF);color:#140F38;box-shadow:0 0 0 0 rgba(167,139,250,.6);animation:ping 2.4s infinite}
+.voice .mic .i{width:20px;height:20px;stroke-width:2.2}
+.voice .bars{display:flex;align-items:center;gap:3px;height:28px;flex:1}
+.voice .bars i{flex:1;max-width:5px;border-radius:3px;background:#A78BFA;height:calc(var(--h) * 10%);animation:eq 1.2s ease-in-out infinite;animation-delay:calc(var(--h) * -110ms)}
+.voice q{display:block;font-family:var(--te2);font-weight:600;font-size:.88rem;color:#fff;quotes:none}
+.voice small{display:block;font-size:.74rem;color:#A9A1DA}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(167,139,250,.55)}70%,100%{box-shadow:0 0 0 14px rgba(167,139,250,0)}}
+.fc.c-rc{--a:#6C47FF}.fc.c-pc{--a:#2F80ED}.fc.c-rk{--a:#C98E00}.fc.c-ab{--a:#12A37A}.fc.c-sa{--a:#E5484D}.fc.c-tt{--a:#EA6A1B}.fc.c-set{--a:#0F7A5C}.fc.c-app{--a:#0E7490}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fc.c-rk{--a:#FFC83D}:root:not([data-theme="light"]) .fc.c-set{--a:#5FE0A8}:root:not([data-theme="light"]) .fc.c-app{--a:#67E8F9}:root:not([data-theme="light"]) .fc.c-rc{--a:#A78BFA}:root:not([data-theme="light"]) .fc.c-pc{--a:#7DB3FF}:root:not([data-theme="light"]) .fc.c-sa{--a:#FF8A8E}:root:not([data-theme="light"]) .fc.c-tt{--a:#FFA66B}:root:not([data-theme="light"]) .fc.c-ab{--a:#5EE2B4}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 22px;border:1px solid var(--line);border-radius:22px;background:var(--surface);overflow:hidden}
+.stats div{padding:18px 22px}
+.stats div+div{border-left:1px solid var(--line)}
+.stats b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.4vw,2.7rem);line-height:1;color:var(--ink)}
+.stats span{display:block;margin-top:6px;font-size:.84rem;font-weight:600;color:var(--muted)}
+@media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.fc,.fc.w3,.fc.w4{grid-column:span 1}.fc.w4,.fc.pic{grid-column:1/-1}}
+@media (max-width:640px){.bento{grid-template-columns:1fr}.fc,.fc.w3,.fc.w4,.fc.pic{grid-column:1/-1}.fc{padding:20px;border-radius:22px}
+  .fc.pic{grid-template-columns:1fr}.fc .fart{grid-column:1;grid-row:auto;width:150px;justify-self:center;margin-top:18px}
+  .stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* =========================================================
+   ROADMAP — not built yet
+   ========================================================= */
+.road{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.road{grid-template-columns:1fr}}
+.rm{position:relative;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;padding:24px;border-radius:26px;border:1.5px dashed var(--line-2);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--line) 35%,transparent) 14px 15px),var(--surface-2)}
+.rm .ico{grid-row:1/span 3;width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.rm .ico .i{width:28px;height:28px}
+.rm .st2{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8A5A00;background:color-mix(in srgb,var(--sun) 28%,var(--surface));border:1px solid color-mix(in srgb,var(--sun) 55%,transparent);padding:5px 12px;border-radius:999px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .rm .st2{color:#FFD98A}}
+.rm .st2::before{content:"";width:8px;height:8px;border-radius:50%;background:#E0A400;animation:blinkdot 1.6s ease-in-out infinite}
+@keyframes blinkdot{50%{opacity:.25}}
+.rm h3{margin:4px 0 0;font-family:var(--serif);font-weight:400;font-size:1.7rem;line-height:1.1;color:var(--ink)}
+.rm h3 .te{display:block;font-family:var(--te2);font-weight:700;font-size:.55em;color:var(--muted)}
+.rm p{grid-column:2;margin:4px 0 0;color:var(--muted);font-size:.95rem}
+.rm .no{grid-column:1/-1;margin-top:12px;display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:700;color:var(--ink-2);padding-top:12px;border-top:1px dashed var(--line-2)}
+.rm .no .i{width:17px;height:17px;color:var(--err)}
+
+/* scroll reveal (only when script runs) */
+html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--rd,0) * 80ms)}
+html.js .reveal.in{opacity:1;transform:none}
+
 /* ---------- footer ---------- */
-footer{margin-top:clamp(64px,9vw,110px);background:var(--deep);color:#BFE3D4;position:relative;overflow:hidden}
-footer::before{content:"రోజుల పని, క్షణాల్లో పూర్తి";position:absolute;right:-10px;bottom:-26px;font-family:var(--te);font-size:clamp(3rem,9vw,7.5rem);line-height:1;color:rgba(127,240,192,.06);white-space:nowrap;pointer-events:none}
-footer .container{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;padding-top:48px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+footer{margin-top:clamp(72px,10vw,120px);background:var(--deep);color:#BFE3D4;position:relative;overflow:hidden;border-radius:40px 40px 0 0}
+footer::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 320px at 85% 0%,rgba(95,224,168,.16),transparent 70%),radial-gradient(600px 300px at 0% 100%,rgba(108,71,255,.14),transparent 70%);pointer-events:none}
+.fgrid{position:relative;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:36px;padding-top:60px;padding-bottom:20px}
+@media (max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr 1fr;gap:28px 20px}.fgrid .fbrand,.fgrid .credit{grid-column:1/-1}}
 footer .brand{color:#fff}
 footer .brand small{color:#9FC9B8}
 footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep)}
-.fbrand{max-width:420px}
-.fbrand p{margin:14px 0 0;font-size:.92rem;line-height:1.6;color:#9FC9B8}
-.credit{font-size:.92rem;line-height:1.7}
-.credit b{display:block;color:#fff;font-size:1rem}
-.credit span{display:block;color:#9FC9B8}
-.fcopy{flex-basis:100%;padding-top:20px;border-top:1px solid rgba(127,240,192,.12);font-size:.82rem;color:#7FA697}
+.fbrand p{margin:16px 0 0;font-size:.94rem;line-height:1.6;color:#9FC9B8;max-width:360px}
+.fbrand .fcta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:10px 12px 10px 18px;border-radius:999px;background:#EAFFF6;color:var(--deep);font-weight:700;font-size:.92rem;text-decoration:none}
+.fbrand .fcta span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--deep);color:var(--mint)}
+.fbrand .fcta .i{width:15px;height:15px;stroke-width:2.4}
+footer h4{margin:0 0 14px;font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7FD8B2}
+footer nav a{display:block;padding:5px 0;color:#D6EFE5;text-decoration:none;font-size:.94rem;transition:color .15s,transform .15s}
+footer nav a:hover{color:#fff;transform:translateX(3px)}
+footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px;letter-spacing:.04em}
+.credit b{display:block;color:#fff;font-size:1rem;line-height:1.4}
+.credit span{display:block;color:#9FC9B8;font-size:.92rem;line-height:1.7}
+.fword{position:relative;padding:10px 0 .12em;font-family:var(--te);font-size:clamp(3.2rem,12vw,10rem);line-height:1.45;text-align:center;white-space:nowrap;
+  background:linear-gradient(180deg,rgba(127,240,192,.34) 10%,rgba(127,240,192,.07) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
+.fbot{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:18px;padding-bottom:calc(26px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(127,240,192,.12);font-size:.84rem;color:#86AE9F}
+.fbot q{font-style:italic;quotes:"“" "”"}
+.totop{display:inline-flex;align-items:center;gap:6px;color:#D6EFE5;text-decoration:none;font-weight:700}
+.totop .i{width:16px;height:16px;transform:rotate(-90deg)}
 
 /* ---------- toast ---------- */
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(24px);opacity:0;z-index:90;max-width:min(92vw,520px);padding:13px 20px;border-radius:14px;background:#10201A;color:#EAFFF6;font-weight:600;font-size:.95rem;text-align:center;box-shadow:0 18px 40px -12px rgba(0,0,0,.5);pointer-events:none;transition:opacity .2s,transform .2s}
@@ -492,6 +577,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
   .gsx,.tt1{flex-wrap:wrap}
 }
 </style>
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 
@@ -516,6 +602,13 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
   <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   <symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6h.01"/></symbol>
+  <symbol id="i-promo" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M18.5 15V6M15.5 9l3-3 3 3"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.5 13.9 9l5.6 1.9-5.6 1.9L12 18.5l-1.9-5.7-5.6-1.9L10.1 9z"/><path d="M19 3.5v3M17.5 5h3"/></symbol>
+  <symbol id="i-office" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-3h4v3"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></symbol>
   <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3.5h10V8"/><rect x="3.5" y="8" width="17" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/></symbol>
 </svg>
 
@@ -526,8 +619,10 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
       <span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span>
     </a>
     <nav class="links" aria-label="Sections">
+      <a href="#features">What it does</a>
       <a href="#how">How it works</a>
       <a href="#tools">Tools</a>
+      <a href="#roadmap">Roadmap</a>
       <a href="extra-work/">Extra Work app</a>
     </nav>
     <button class="install" id="inst" type="button" hidden><svg class="i"><use href="#i-app"/></svg>Install App</button>
@@ -614,6 +709,137 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
 </section>
 
 <main>
+  <!-- ================= WHAT IT DOES ================= -->
+  <section class="section" id="features" aria-labelledby="featH">
+    <div class="container">
+      <div class="shead reveal">
+        <div>
+          <span class="kicker">What it does</span>
+          <h2 class="h2" id="featH">One marks sheet. <em>Every school paper you need.</em><span class="te">ఒక్క షీట్ — టీచర్లు, తల్లిదండ్రులు, ఆఫీసు అందరికీ</span></h2>
+          <p class="sub">Not just report cards. Here is everything the app does today, and who it helps.</p>
+        </div>
+      </div>
+
+      <div class="stats reveal">
+        <div><b>6</b><span>Working tools</span></div>
+        <div><b>2</b><span>Languages · తెలుగు &amp; English</span></div>
+        <div><b>1</b><span>Marks sheet for everything</span></div>
+        <div><b>A4</b><span>Print-ready PDFs</span></div>
+      </div>
+
+      <div class="bento">
+        <article class="fc w4 pic c-rc reveal">
+          <span class="who"><svg class="i"><use href="#i-users"/></svg>For class teachers</span>
+          <h3><span class="te">రిపోర్ట్ కార్డులు</span>Report cards that explain themselves</h3>
+          <ul>
+            <li><b>AI analysis on every card</b> — strengths, weak subjects and simple study advice, in తెలుగు or English</li>
+            <li><b>Important chapters</b> for weak subjects, from the 2026-27 SSC blueprint</li>
+            <li>FA &amp; SA marks with grades, class rank and monthly attendance</li>
+            <li>A <b>QR code</b> on each card that opens the student’s digital card</li>
+            <li>Print one card, or download every card as separate PDFs</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="0">Open Report Cards<svg class="i"><use href="#i-arrow"/></svg></a>
+          <div class="fart" style="--tilt:5deg"><div class="mini k-report"><div class="frame"></div><div class="in"><div class="rb">ప్రగతి పత్రం</div><div class="rp">SA-1 · 2025-26</div><div class="ri"><span><i>Name</i>కావ్య</span><span><i>Rank</i>2 / 42</span></div><div class="row"><span>తెలుగు</span><b>94</b><em>A1</em></div><div class="row"><span>గణితం</span><b>97</b><em>A1</em></div><div class="row"><span>సైన్స్</span><b>86</b><em class="b">A2</em></div><div class="row"><span>హాజరు</span><b>96%</b><em>✓</em></div></div></div></div>
+        </article>
+
+        <article class="fc w2 dark reveal" style="--rd:1">
+          <span class="who"><svg class="i"><use href="#i-mic"/></svg>Speak with Card</span>
+          <h3><span class="te">కార్డుతో మాట్లాడండి</span>A card you can talk to</h3>
+          <ul>
+            <li>Reads the AI analysis <b>aloud in Telugu</b> or English</li>
+            <li>Ask by voice or typing — rank, attendance, weak subjects, important chapters</li>
+            <li>Quick question buttons for parents who don’t type</li>
+          </ul>
+          <div class="voice"><span class="mic"><svg class="i"><use href="#i-mic"/></svg></span><div><q>హాజరు ఎలా ఉంది?</q><small>How is the attendance?</small></div><span class="bars" aria-hidden="true"><i style="--h:4"></i><i style="--h:8"></i><i style="--h:5"></i><i style="--h:10"></i><i style="--h:6"></i><i style="--h:3"></i><i style="--h:7"></i></span></div>
+        </article>
+
+        <article class="fc w3 pic c-pc reveal">
+          <span class="who"><svg class="i"><use href="#i-share"/></svg>For parents</span>
+          <h3><span class="te">డిజిటల్ ప్రగతి పత్రాలు</span>A private card on WhatsApp</h3>
+          <ul>
+            <li>One <b>private link per child</b> — send it to that parent only</li>
+            <li>Overall result, subject by subject, monthly attendance</li>
+            <li>Study tips and the teacher’s advice, with audio</li>
+            <li>Parents can listen, ask questions and download the PDF</li>
+            <li>Save all links as an Excel / CSV list</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="1">Open Parent Links<svg class="i"><use href="#i-arrow"/></svg></a>
+          <div class="fart" style="--tilt:-5deg"><div class="mini k-wa"><div class="wh"><i></i><div><b>కావ్య తల్లిగారు</b><small>online</small></div></div><div class="bub"><div class="lp"><div class="th">ప్రగతి పత్రం</div><b>Kavya · Class 10-A</b><small>Tap to open · with audio</small></div><div class="tx">మీ పాప ప్రగతి పత్రం చూడండి</div><span class="tm">9:41<i>✓✓</i></span></div></div></div>
+        </article>
+
+        <article class="fc w3 c-sa reveal" style="--rd:1">
+          <span class="who"><svg class="i"><use href="#i-trend"/></svg>For subject teachers</span>
+          <h3><span class="te">విషయ విశ్లేషణ</span>Subject analysis, two pages</h3>
+          <ul>
+            <li>Grade spread for every exam of one subject</li>
+            <li><b>Who moved up, who slipped</b> between exams</li>
+            <li>Toppers, and students who need support</li>
+            <li>High-weightage chapters and a ready <b>action plan</b> — Saturday slip tests, special classes, parent meetings for D1/D2</li>
+            <li>All subjects in one PDF</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="4">Open Subject Analysis<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="fc w2 c-rk reveal">
+          <span class="who"><svg class="i"><use href="#i-trophy"/></svg>For the classroom</span>
+          <h3><span class="te">ర్యాంక్ జాబితా</span>Rank lists for the wall</h3>
+          <ul>
+            <li>Any exam, any class</li>
+            <li>Top 3 with gold, silver and bronze</li>
+            <li>Spread evenly over A4 — every class in one PDF</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="2">Open Rank Lists<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="fc w2 c-ab reveal" style="--rd:1">
+          <span class="who"><svg class="i"><use href="#i-office"/></svg>For the office</span>
+          <h3><span class="te">గ్రేడింగ్ సారాంశం</span>Grading abstract</h3>
+          <ul>
+            <li>Grade counts per subject for <b>boys, girls and total</b></li>
+            <li>Pass percentage for every subject</li>
+            <li>One landscape A4 page, ready to print</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="3">Open Grading Abstract<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="fc w2 c-set reveal" style="--rd:2">
+          <span class="who"><svg class="i"><use href="#i-sheet"/></svg>Getting started</span>
+          <h3><span class="te">మార్కుల షీట్</span>The marks sheet, made for you</h3>
+          <ul>
+            <li>Give the <b>UDISE+ list</b> — get a sheet with every child’s name</li>
+            <li>One tab per class; grades, totals, results and ranks fill in by themselves</li>
+            <li>Use Excel or a Google Sheet link</li>
+          </ul>
+          <a class="go-to" href="#how">See the two steps<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="fc w4 pic c-tt reveal">
+          <span class="who"><svg class="i"><use href="#i-sun"/></svg>For the headmaster, every morning</span>
+          <h3><span class="te">ప్రత్యామ్నాయ టైమ్ టేబుల్</span>Substitute time table in a minute</h3>
+          <ul>
+            <li>Upload the school time table once — it stays saved on this device</li>
+            <li>Tap teachers on leave, and the periods others are busy with school work</li>
+            <li><b>Fair rules:</b> a class’s own teacher first, sections merged when needed (7A + 7B), least-loaded teacher first, PD never in period 1, part-timers only in their session</li>
+            <li>Change any teacher by hand, add the school logo, download PDF or share on WhatsApp</li>
+          </ul>
+          <a class="go-to" href="#tools" data-tool="5">Open Substitute Time Table<svg class="i"><use href="#i-arrow"/></svg></a>
+          <div class="fart" style="--tilt:4deg"><div class="mini k-tt"><b class="kt">టైమ్ టేబుల్</b><div class="gr"><span class="h">P1</span><span class="h">P2</span><span class="h">P3</span><span class="h">P4</span><span>9A</span><span class="x">10B</span><span>8A</span><span>7B</span><span class="n">10B</span><span>6A</span><span class="x">9B</span><span>8B</span><span>7A</span><span>10A</span><span class="n">9B</span><span>6B</span></div></div></div>
+        </article>
+
+        <article class="fc w2 c-app reveal" style="--rd:1">
+          <span class="who"><svg class="i"><use href="#i-app"/></svg>On any phone</span>
+          <h3><span class="te">యాప్ లాగా</span>Installs like an app</h3>
+          <ul>
+            <li>Add Smart School and the <b>Extra Work</b> app to the home screen</li>
+            <li>Files are read in your browser and kept on this device</li>
+            <li>Light and dark mode, Telugu and English</li>
+          </ul>
+          <a class="go-to" href="extra-work/">Open Extra Work app<svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="how" aria-labelledby="howH">
     <div class="container">
       <div class="shead">
@@ -737,12 +963,12 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
           <button class="dk g7 soon" role="tab" type="button" aria-label="Time Table Generator, coming soon">
             <span class="bg"></span>
             <span class="art" style="--tilt:-6deg"><span class="mini k-cal" style="display:flex"><span class="hd2"><b class="kt">వారం</b><small>Mon–Sat</small></span><span class="gr"><i></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="h"></i><i></i><i></i><i></i></span></span></span>
-            <span class="lbl"><span class="kt">టైమ్ టేబుల్ తయారీ</span><small>Time Table Generator</small><span class="meta"><span>Coming soon</span><i>Tool 07</i></span></span>
+            <span class="lbl"><span class="kt">టైమ్ టేబుల్ తయారీ</span><small>Time Table Generator</small><span class="meta"><span>Not available yet</span><i>Soon</i></span></span>
           </button>
           <button class="dk g8 soon" role="tab" type="button" aria-label="Student Promotion List Generator, coming soon">
             <span class="bg"></span>
             <span class="art" style="--tilt:5deg"><span class="mini k-cert" style="display:block"><span class="cf"><small>ZPHS · 2025</small><b class="kt">ప్రమోషన్</b><span class="nm">Class 9 → 10</span><i class="ln"></i><i class="ln s"></i><span class="seal"></span></span></span></span>
-            <span class="lbl"><span class="kt">ప్రమోషన్ జాబితా</span><small>Promotion Lists</small><span class="meta"><span>Coming soon</span><i>Tool 08</i></span></span>
+            <span class="lbl"><span class="kt">ప్రమోషన్ జాబితా</span><small>Promotion Lists</small><span class="meta"><span>Not available yet</span><i>Soon</i></span></span>
           </button>
         </div>
 
@@ -754,7 +980,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <span class="te">రిపోర్ట్ కార్డులు</span>
                 <h3>Student Report Cards</h3>
                 <p>Report cards for every student from the uploaded marks.</p>
-                <ul class="facts"><li><svg class="i"><use href="#i-print"/></svg>A4, print-ready</li><li><svg class="i"><use href="#i-lang"/></svg>తెలుగు / English</li><li><svg class="i"><use href="#i-download"/></svg>One PDF per class</li></ul>
+                <ul class="facts"><li><svg class="i"><use href="#i-spark"/></svg>AI analysis & study advice</li><li><svg class="i"><use href="#i-mic"/></svg>Speak with Card</li><li><svg class="i"><use href="#i-print"/></svg>A4, print-ready</li><li><svg class="i"><use href="#i-lang"/></svg>తెలుగు / English</li><li><svg class="i"><use href="#i-download"/></svg>Separate PDFs</li></ul>
               </div>
               <div class="ctrl">
                 <span class="lab">Card language</span>
@@ -774,7 +1000,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <span class="te">డిజిటల్ ప్రగతి పత్రాలు</span>
                 <h3>Digital Progress Cards</h3>
                 <p>A personal link for each student’s card, with audio, to send to parents on WhatsApp. Select students to download their cards.</p>
-                <ul class="facts"><li><svg class="i"><use href="#i-share"/></svg>WhatsApp link</li><li><svg class="i"><use href="#i-lang"/></svg>Audio in తెలుగు</li></ul>
+                <ul class="facts"><li><svg class="i"><use href="#i-share"/></svg>Private WhatsApp link</li><li><svg class="i"><use href="#i-mic"/></svg>Listen & ask questions</li><li><svg class="i"><use href="#i-sun"/></svg>Monthly attendance</li><li><svg class="i"><use href="#i-sheet"/></svg>Save links as Excel</li></ul>
               </div>
               <div class="ctrl">
                 <span class="lab">Card language</span>
@@ -793,7 +1019,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <span class="te">ర్యాంక్ జాబితా</span>
                 <h3>Rank Lists</h3>
                 <p>Class rank list for any exam, spread evenly over A4 pages to display in the classroom.</p>
-                <ul class="facts"><li><svg class="i"><use href="#i-trophy"/></svg>Top 3 highlighted</li><li><svg class="i"><use href="#i-print"/></svg>A4 pages</li></ul>
+                <ul class="facts"><li><svg class="i"><use href="#i-trophy"/></svg>Gold · silver · bronze top 3</li><li><svg class="i"><use href="#i-print"/></svg>Even A4 pages</li><li><svg class="i"><use href="#i-grid"/></svg>All classes in one PDF</li></ul>
               </div>
               <div class="ctrl">
                 <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Exam<select data-p="exam" class="pex"></select></label></div>
@@ -807,7 +1033,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <span class="te">గ్రేడింగ్ సారాంశం</span>
                 <h3>Grading Abstract</h3>
                 <p>Subject-wise grade counts for boys, girls and total, with pass percentage, on one A4 page.</p>
-                <ul class="facts"><li><svg class="i"><use href="#i-clip"/></svg>Boys · Girls · Total</li><li><svg class="i"><use href="#i-check"/></svg>Pass %</li></ul>
+                <ul class="facts"><li><svg class="i"><use href="#i-users"/></svg>Boys · Girls · Total</li><li><svg class="i"><use href="#i-check"/></svg>Pass % per subject</li><li><svg class="i"><use href="#i-print"/></svg>Landscape A4</li></ul>
               </div>
               <div class="ctrl">
                 <div class="pk" hidden><label>Class<select data-p="cls" class="pcls"></select></label><label>Exam<select data-p="exam" class="pex"></select></label></div>
@@ -821,7 +1047,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <span class="te">విషయ విశ్లేషణ</span>
                 <h3>Subject Analysis</h3>
                 <p>All exams of one subject in one class, with a two-page PDF.</p>
-                <ul class="facts"><li><svg class="i"><use href="#i-trend"/></svg>Exam-to-exam trend</li><li><svg class="i"><use href="#i-print"/></svg>2-page PDF</li></ul>
+                <ul class="facts"><li><svg class="i"><use href="#i-trend"/></svg>Who moved up or slipped</li><li><svg class="i"><use href="#i-users"/></svg>Toppers & needs support</li><li><svg class="i"><use href="#i-clip"/></svg>Teacher action plan</li><li><svg class="i"><use href="#i-print"/></svg>2-page PDF</li></ul>
               </div>
               <div class="ctrl">
                 <div class="pk" hidden><label>Class<select data-p="cls" class="pcls" data-noall="1"></select></label><label>Subject<select data-p="sub" class="psub"></select></label></div>
@@ -835,7 +1061,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <span class="te">ప్రత్యామ్నాయ టైమ్ టేబుల్</span>
                 <h3>Substitute Teacher Time Table</h3>
                 <p>Upload the time table once, mark absent teachers, and download the substitute time table as a PDF.</p>
-                <ul class="facts"><li><svg class="i"><use href="#i-grid"/></svg>Saved on this device</li><li><svg class="i"><use href="#i-share"/></svg>Share on WhatsApp</li></ul>
+                <ul class="facts"><li><svg class="i"><use href="#i-grid"/></svg>Saved on this device</li><li><svg class="i"><use href="#i-check"/></svg>Fair, rule-based choice</li><li><svg class="i"><use href="#i-share"/></svg>PDF & WhatsApp</li></ul>
               </div>
               <div class="ctrl">
                 <div class="acts">
@@ -864,7 +1090,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <h3>Time Table Generator</h3>
                 <p>Build the full school time table automatically.</p>
               </div>
-              <div class="ctrl"><span class="badge">Coming Soon</span></div>
+              <div class="ctrl"><span class="badge">Not available yet · coming soon</span><p class="soon-note">This tool is not working yet. It is on the <a href="#roadmap">roadmap</a>.</p></div>
             </li>
 
             <li class="tool soon">
@@ -874,27 +1100,79 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
                 <h3>Student Promotion List Generator</h3>
                 <p>Class-wise promotion lists from final results.</p>
               </div>
-              <div class="ctrl"><span class="badge">Coming Soon</span></div>
+              <div class="ctrl"><span class="badge">Not available yet · coming soon</span><p class="soon-note">This tool is not working yet. It is on the <a href="#roadmap">roadmap</a>.</p></div>
             </li>
           </ol>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ================= ROADMAP ================= -->
+  <section class="section" id="roadmap" aria-labelledby="roadH">
+    <div class="container">
+      <div class="shead reveal">
+        <div>
+          <span class="kicker">Roadmap</span>
+          <h2 class="h2" id="roadH">Coming next. <em>Not ready yet.</em><span class="te">త్వరలో వస్తున్నవి — ఇంకా పని చేయవు</span></h2>
+          <p class="sub">These tools are planned but not built. They are shown so you know what is coming — the buttons for them do nothing today.</p>
+        </div>
+      </div>
+      <div class="road">
+        <article class="rm reveal">
+          <span class="ico"><svg class="i"><use href="#i-grid"/></svg></span>
+          <span class="st2">Coming soon</span>
+          <h3><span class="te">టైమ్ టేబుల్ తయారీ</span>Time Table Generator</h3>
+          <p>Build the full school time table automatically.</p>
+          <span class="no"><svg class="i"><use href="#i-x"/></svg>Not available yet — use the Substitute Time Table with your existing time table for now.</span>
+        </article>
+        <article class="rm reveal" style="--rd:1">
+          <span class="ico"><svg class="i"><use href="#i-promo"/></svg></span>
+          <span class="st2">Coming soon</span>
+          <h3><span class="te">ప్రమోషన్ జాబితా</span>Student Promotion List Generator</h3>
+          <p>Class-wise promotion lists from final results.</p>
+          <span class="no"><svg class="i"><use href="#i-x"/></svg>Not available yet.</span>
+        </article>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <div class="container">
+  <div class="container fgrid">
     <div class="fbrand">
       <span class="brand"><span class="logo"><svg class="i"><use href="#i-cap"/></svg></span><span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span></span>
       <p>Less paperwork — more teaching — better results. Report cards, progress cards, rank lists and time tables from one marks sheet.</p>
+      <a class="fcta" href="#how">Start with your marks sheet<span><svg class="i"><use href="#i-arrow"/></svg></span></a>
     </div>
+    <nav aria-label="Tools">
+      <h4>Tools</h4>
+      <a href="#tools" data-tool="0">Report Cards</a>
+      <a href="#tools" data-tool="1">Digital Progress Cards</a>
+      <a href="#tools" data-tool="2">Rank Lists</a>
+      <a href="#tools" data-tool="3">Grading Abstract</a>
+      <a href="#tools" data-tool="4">Subject Analysis</a>
+      <a href="#tools" data-tool="5">Substitute Time Table</a>
+    </nav>
+    <nav aria-label="More">
+      <h4>More</h4>
+      <a href="#features">What it does</a>
+      <a href="#how">How it works</a>
+      <a href="extra-work/">Extra Work app</a>
+      <a href="#roadmap">Time Table Generator<small>SOON</small></a>
+      <a href="#roadmap">Promotion Lists<small>SOON</small></a>
+    </nav>
     <div class="credit">
+      <h4>Made by</h4>
       <b>V. V. Ramana Murthy, M.Sc., B.Ed.</b>
       <span>ZPHS Gurajanapalli, Karapa (M)</span>
       <span>Kakinada District</span>
     </div>
-    <div class="fcopy">“Teach a child today, and you change the world tomorrow.” · Files are read right in your browser and kept on this device.</div>
+  </div>
+  <div class="container"><div class="fword" aria-hidden="true">స్మార్ట్ స్కూల్</div></div>
+  <div class="container fbot">
+    <span><q>Teach a child today, and you change the world tomorrow.</q> · Files are read in your browser and kept on this device.</span>
+    <a class="totop" href="#top">Back to top<svg class="i"><use href="#i-arrow"/></svg></a>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -940,6 +1218,7 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
   addEventListener('resize',function(){set(cur)});
   var s=0;try{s=+sessionStorage.getItem('ss_tool')||0}catch(e){}
   set(s);
+  [].slice.call(document.querySelectorAll("[data-tool]")).forEach(function(a){a.addEventListener("click",function(){set(+a.dataset.tool)})});
 
   var arc=document.getElementById('arc');
   if(arc&&matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){
@@ -947,6 +1226,13 @@ footer .logo{background:linear-gradient(160deg,#C9FFE8,#5FE0A8);color:var(--deep
     hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;arc.style.setProperty('--ty',(px*6).toFixed(2)+'deg');arc.style.setProperty('--tx',(-py*5).toFixed(2)+'deg')});
     hero.addEventListener('pointerleave',function(){arc.style.setProperty('--ty','0deg');arc.style.setProperty('--tx','0deg')});
   }
+})();
+(function(){
+  var els=[].slice.call(document.querySelectorAll(".reveal"));
+  if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px",threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+  setTimeout(function(){els.forEach(function(e){e.classList.add("in")})},4000);
 })();
 </script>
 <script>function a0_0x2368(){const _0x356d30=['read','#dropUdise','&lang=','https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js','status','1629819eSsEEu','value','\x20is\x20ready\x20(added\x20','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','activeTab=\x22','dragenter','trim','get','Please\x20choose\x20an\x20Excel\x20(.xlsx\x20/\x20.xls)\x20or\x20.csv\x20file.','That\x20doesn’t\x20look\x20like\x20a\x20Google\x20Sheet\x20link.\x20It\x20should\x20contain\x20/spreadsheets/d/…','number','setAttribute','dataset','.psub','revokeObjectURL','\x20rows\x20of\x20other\x20classes\x20left\x20out.)','arrayBuffer','target','#inst','<sheet[^>]*name=\x22','✔\x20Sheet\x20ready:\x20','\x20uploaded.\x20Opening…','#ttName','Target=\x22([^\x22]+)\x22[^>]*Id=\x22','.tl','(<sheet\x20[^>]*name=\x22Class\x20','serviceWorker','ssat_rlang','button','ready','marks','animationName','\x20t=\x22inlineStr\x22><is><t\x20xml:space=\x22preserve\x22>','</option>','ABSTRACT','addEventListener','&lt;','$1\x20state=\x22hidden\x22$3','empty','SheetNames','\x22([^>]*?)(/>|>[\x5cs\x5cS]*?</c>)','#gsUrl','currentTarget','replace','download','#ttGsGo','resolve','toUpperCase','then','src','reduce','prompt','\x22[^>]*Target=\x22([^\x22]+)\x22','Paste\x20the\x20Google\x20Sheet\x20link\x20first.','<row\x20r=\x22','file','#ttGsUrl','open','drop','langTool','oncomplete','querySelectorAll','Couldn’t\x20open\x20the\x20sheet.\x20In\x20Google\x20Sheets,\x20set\x20Share\x20to\x20“Anyone\x20with\x20the\x20link:\x20Viewer”\x20and\x20try\x20again.\x20Or\x20download\x20it\x20as\x20Excel\x20and\x20upload\x20above.','Id=\x22','string','__udUrl','textContent','onupgradeneeded','smooth','.pk:not([hidden])\x20select[data-p]','beforeinstallprompt','</v></c>','cls','slice','XLSX','en-IN','\x22[^>]*>)','This\x20browser\x20could\x20not\x20keep\x20the\x20file.\x20Try\x20Chrome,\x20or\x20close\x20private\x20browsing.','✓\x20Cards\x20will\x20be\x20in\x20తెలుగు.','Installed.\x20Open\x20Smart\x20School\x20from\x20your\x20home\x20screen.','remove','First\x20upload\x20the\x20marks\x20sheet\x20(Excel\x20file\x20or\x20Google\x20Sheet\x20link).','.lhint','Reading\x20the\x20UDISE+\x20list…','[data-open]','8958446neKJLU','MacIntel','<option\x20value=\x22\x22>All\x20classes</option>','animationend','Couldn’t\x20open\x20the\x20sheet.\x20Check\x20sharing\x20settings,\x20or\x20upload\x20the\x20Excel\x20file\x20instead.','SSAT','buf','The\x20blank\x20sheet\x20could\x20not\x20be\x20loaded.\x20Check\x20the\x20internet\x20connection.','secs','firstSheet=\x22','Google\x20Sheet.xlsx','tapblink','blob','setItem','blink','This\x20browser\x20could\x20not\x20keep\x20the\x20file.\x20Try\x20Chrome.','button[data-l]','</span>','First\x20upload\x20the\x20UDISE+\x20Student\x20List.\x20The\x20sheet\x20downloads\x20by\x20itself.','needs','files','✓\x20Cards\x20will\x20be\x20in\x20English.','\x20students\x20in\x20Class\x20','sheet_to_json','#fileMarks','appendChild','onclick','\x20hidden=\x221\x22','numeric','objectStore','utils','<c\x20r=\x22','xl/','Reading\x20','https://docs.google.com/spreadsheets/d/','getItem','byteLength','length','short','head','register','[data-lang-tool]','onload','#dropMarks','#dropTT','err','Sheets','30883528GunjRE','includes','<option\x20value=\x22\x22>All\x20sections</option>','RANK\x20LIST','ssat_addr','closest','#fileTT','match','1376300kieRZc','className','No\x20students\x20of\x20Classes\x201\x20to\x2010\x20were\x20found\x20in\x20this\x20file.','click','This\x20does\x20not\x20look\x20like\x20the\x20UDISE+\x20Students\x20Details\x20file\x20(no\x20Class\x20and\x20Name\x20columns).','xl/workbook.xml','school','transaction','sw.js','4715116MTVrxP','catch','#fileUdise','tap','href','put','done','\x20has\x20more\x20than\x20100\x20students;\x20the\x20sheet\x20holds\x20100\x20per\x20class.','</t></is></c>','appinstalled','onsuccess','substitute-timetable.html?from=hub&tt=1','(prefers-reduced-motion:\x20reduce)','321248sLXYPf','6dQCFOx','forEach','Only\x20needed\x20the\x20first\x20time,\x20or\x20when\x20the\x20time\x20table\x20changes','protocol','async','hidden','change','206273SHZQHZ','sec','&amp;','disabled','#addr','input','error','push','findIndex','Loading\x20from\x20Google\x20Sheet…','<option\x20value=\x22','readonly','userAgent','querySelector','offsetWidth','In\x20Safari,\x20tap\x20Share\x20⬆,\x20then\x20“Add\x20to\x20Home\x20Screen”.','fromWorkbook','.psec','dragover','label.src,.tt-drop,.ewlink','dragleave','✓\x20Google\x20Sheet\x20loaded.\x20Opening…','readwrite','filter','lib','sort','aria-disabled','test','generateAsync','aria-pressed','(display-mode:\x20standalone)','JSZip','#udDl','matches','needlang','<option\x20value=\x22\x22>Latest\x20exam</option>','subs','map','onchange','#marksStatus','name','That\x20doesn’t\x20look\x20like\x20a\x20Google\x20Sheet\x20link.','array','ssat-sheet.js','load','.pk','\x20–\x20tap\x20to\x20download\x20again.','ssat_lang_','ssat','\x22>Class\x20','.seg','result','#school','ssat_school','script','(<row\x20r=\x22','xl/_rels/workbook.xml.rels','join','.<span\x20class=\x22udn\x22>Type\x20marks\x20in\x20it,\x20then\x20upload\x20it\x20below\x20under\x20“Upload\x20Filled\x20Marks\x20Sheet”.\x20Change\x20Roll\x20No\x20to\x20match\x20your\x20attendance\x20register.','add','classList','platform','#udMsg','createObjectStore','createElement','message','now','#toast','Class\x20','apply','center','onerror','over','#udDlNote','innerHTML','preventDefault','keys','some','noall','loadAsync','#gsGo','scrollIntoView'];a0_0x2368=function(){return _0x356d30;};return a0_0x2368();}const a0_0x4f7adb=a0_0x142d;(function(_0x397241,_0x55529b){const _0x4d8baa=a0_0x142d,_0x467bdb=_0x397241();while(!![]){try{const _0x50285e=-parseInt(_0x4d8baa(0x142))/0x1+-parseInt(_0x4d8baa(0x13a))/0x2+-parseInt(_0x4d8baa(0x199))/0x3+-parseInt(_0x4d8baa(0x22e))/0x4+parseInt(_0x4d8baa(0x225))/0x5+parseInt(_0x4d8baa(0x13b))/0x6*(-parseInt(_0x4d8baa(0x1ee))/0x7)+parseInt(_0x4d8baa(0x21d))/0x8;if(_0x50285e===_0x55529b)break;else _0x467bdb['push'](_0x467bdb['shift']());}catch(_0x3ce205){_0x467bdb['push'](_0x467bdb['shift']());}}}(a0_0x2368,0xbb3fe));const $=_0x21ccea=>document['querySelector'](_0x21ccea);let toastT;function toast(_0x290575){const _0x50b8aa=a0_0x142d,_0x2f3761=$(_0x50b8aa(0x185));_0x2f3761[_0x50b8aa(0x1db)]=_0x290575,_0x2f3761[_0x50b8aa(0x17e)][_0x50b8aa(0x17d)]('on'),clearTimeout(toastT),toastT=setTimeout(()=>_0x2f3761['classList'][_0x50b8aa(0x1e9)]('on'),0xd48);}function ls(_0x5220f1,_0x17dfcd){const _0x1878b0=a0_0x142d;try{if(_0x17dfcd===undefined)return localStorage['getItem'](_0x5220f1)||'';localStorage[_0x1878b0(0x1fb)](_0x5220f1,_0x17dfcd);}catch(_0x56428b){return'';}}function db(){return new Promise((_0x1ec963,_0x499043)=>{const _0x5eefb1=a0_0x142d,_0x5fa251=indexedDB['open'](_0x5eefb1(0x172),0x1);_0x5fa251[_0x5eefb1(0x1dc)]=()=>_0x5fa251[_0x5eefb1(0x175)][_0x5eefb1(0x181)](_0x5eefb1(0x202)),_0x5fa251[_0x5eefb1(0x137)]=()=>_0x1ec963(_0x5fa251[_0x5eefb1(0x175)]),_0x5fa251[_0x5eefb1(0x189)]=()=>_0x499043(_0x5fa251[_0x5eefb1(0x148)]);});}async function put(_0x108e20,_0xe97eb7){const _0x30b789=await db();return new Promise((_0x302958,_0x41d7ca)=>{const _0x1c5e33=a0_0x142d,_0x3aab7d=_0x30b789[_0x1c5e33(0x22c)]('files',_0x1c5e33(0x158));_0x3aab7d['objectStore']('files')[_0x1c5e33(0x132)](_0xe97eb7,_0x108e20),_0x3aab7d[_0x1c5e33(0x1d5)]=_0x302958,_0x3aab7d[_0x1c5e33(0x189)]=()=>_0x41d7ca(_0x3aab7d[_0x1c5e33(0x148)]);});}async function get(_0x102252){try{const _0x166ac4=await db();return await new Promise(_0x39e238=>{const _0x4db996=a0_0x142d,_0x36da54=_0x166ac4[_0x4db996(0x22c)](_0x4db996(0x202),_0x4db996(0x14d))[_0x4db996(0x20b)]('files')[_0x4db996(0x1a0)](_0x102252);_0x36da54['onsuccess']=()=>_0x39e238(_0x36da54[_0x4db996(0x175)]||null),_0x36da54[_0x4db996(0x189)]=()=>_0x39e238(null);});}catch(_0x5f2324){return null;}}let marks=null;const when=_0x374455=>new Date(_0x374455)['toLocaleString'](a0_0x4f7adb(0x1e4),{'day':a0_0x4f7adb(0x20a),'month':a0_0x4f7adb(0x214),'hour':'numeric','minute':'2-digit'});function showMarks(){const _0x438667=a0_0x4f7adb,_0x4d71ce=$('#marksStatus');_0x4d71ce[_0x438667(0x226)]=_0x438667(0x198),_0x4d71ce[_0x438667(0x1db)]=marks?'✓\x20'+marks[_0x438667(0x16a)]+_0x438667(0x19b)+when(marks['time'])+')':'',marks&&_0x4d71ce[_0x438667(0x17e)][_0x438667(0x17d)]('ok');}async function saveMarks(_0x3d3c3d,_0xe0409e){const _0x339981=a0_0x4f7adb;try{marks={'name':_0x3d3c3d,'buf':_0xe0409e,'time':Date[_0x339981(0x184)]()},await put('marks',marks),showMarks(),toast('Sheet\x20ready.\x20Choose\x20a\x20tool\x20below.');}catch(_0x2e8656){const _0x36707e=$(_0x339981(0x169));_0x36707e[_0x339981(0x226)]='status\x20err',_0x36707e['textContent']=_0x339981(0x1e6);}}$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)]=ls('ssat_school')||ls(a0_0x4f7adb(0x22b)),$(a0_0x4f7adb(0x146))['value']=ls(a0_0x4f7adb(0x221)),$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x147),()=>ls(a0_0x4f7adb(0x177),$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)][a0_0x4f7adb(0x19f)]())),$(a0_0x4f7adb(0x146))[a0_0x4f7adb(0x1bc)]('input',()=>ls(a0_0x4f7adb(0x221),$(a0_0x4f7adb(0x146))['value']['trim']()));if($(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)])ls('ssat_school',$(a0_0x4f7adb(0x176))[a0_0x4f7adb(0x19a)]);function wireDrop(_0x7dd6a8,_0x59c7f5,_0x78cc96){const _0x4899c0=a0_0x4f7adb;_0x59c7f5[_0x4899c0(0x1bc)]('change',()=>{const _0x3278dc=_0x4899c0,_0x44160b=_0x59c7f5[_0x3278dc(0x202)][0x0];if(_0x44160b)_0x78cc96(_0x44160b);_0x59c7f5[_0x3278dc(0x19a)]='';}),[_0x4899c0(0x19e),_0x4899c0(0x154)][_0x4899c0(0x13c)](_0x52d8ac=>_0x7dd6a8[_0x4899c0(0x1bc)](_0x52d8ac,_0x15b2c4=>{const _0x4eb322=_0x4899c0;_0x15b2c4['preventDefault'](),_0x7dd6a8[_0x4eb322(0x17e)][_0x4eb322(0x17d)](_0x4eb322(0x18a));})),[_0x4899c0(0x156),'drop'][_0x4899c0(0x13c)](_0x2bec63=>_0x7dd6a8[_0x4899c0(0x1bc)](_0x2bec63,_0xcbb3b6=>{const _0x2c370e=_0x4899c0;_0xcbb3b6[_0x2c370e(0x18d)](),_0x7dd6a8[_0x2c370e(0x17e)]['remove'](_0x2c370e(0x18a));})),_0x7dd6a8['addEventListener'](_0x4899c0(0x1d3),_0x3f8839=>{const _0x157e33=_0x4899c0,_0x54f7af=_0x3f8839['dataTransfer'][_0x157e33(0x202)][0x0];if(_0x54f7af)_0x78cc96(_0x54f7af);});}wireDrop($(a0_0x4f7adb(0x219)),$(a0_0x4f7adb(0x206)),async _0x4f928c=>{const _0x19a3a9=a0_0x4f7adb;if(!/\.(xlsx|xls|csv)$/i[_0x19a3a9(0x15d)](_0x4f928c[_0x19a3a9(0x16a)])){toast(_0x19a3a9(0x1a1));return;}$(_0x19a3a9(0x169))[_0x19a3a9(0x226)]=_0x19a3a9(0x198),$(_0x19a3a9(0x169))[_0x19a3a9(0x1db)]=_0x19a3a9(0x20f)+_0x4f928c['name']+'…',saveMarks(_0x4f928c[_0x19a3a9(0x16a)],await _0x4f928c['arrayBuffer']());}),$(a0_0x4f7adb(0x192))[a0_0x4f7adb(0x1bc)]('click',async()=>{const _0x32f684=a0_0x4f7adb,_0x49058f=$(_0x32f684(0x1c2))['value']['trim'](),_0x33f71f=$(_0x32f684(0x169)),_0x32e1fd=_0x49058f['match'](/\/d\/([a-zA-Z0-9-_]+)/),_0x23a639=_0x32e1fd?_0x32e1fd[0x1]:/^[a-zA-Z0-9-_]{20,}$/[_0x32f684(0x15d)](_0x49058f)?_0x49058f:null;if(!_0x49058f){toast(_0x32f684(0x1ce));return;}if(!_0x23a639){_0x33f71f[_0x32f684(0x226)]='status\x20err',_0x33f71f[_0x32f684(0x1db)]=_0x32f684(0x1a2);return;}const _0x67ad9e=$('#gsGo');_0x67ad9e[_0x32f684(0x145)]=!![],_0x33f71f[_0x32f684(0x226)]=_0x32f684(0x198),_0x33f71f[_0x32f684(0x1db)]=_0x32f684(0x14b);try{const _0x21078f=await fetch(_0x32f684(0x210)+_0x23a639+'/export?format=xlsx');if(!_0x21078f['ok'])throw new Error(_0x21078f[_0x32f684(0x198)]);const _0x35c50b=await _0x21078f[_0x32f684(0x1a9)]();if(_0x35c50b[_0x32f684(0x212)]<0xc8)throw new Error(_0x32f684(0x1bf));await saveMarks(_0x32f684(0x1f8),_0x35c50b);}catch(_0x5cd149){_0x33f71f[_0x32f684(0x226)]='status\x20err',_0x33f71f[_0x32f684(0x1db)]=_0x32f684(0x1d7);}_0x67ad9e['disabled']=![];});const LIBJS={'XLSX':'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','JSZip':a0_0x4f7adb(0x197)},needLib=_0x160392=>window[_0x160392]?Promise[a0_0x4f7adb(0x1c7)]():new Promise((_0x46a9ce,_0xb0377d)=>{const _0x52b6fd=a0_0x4f7adb,_0x1795ad=document[_0x52b6fd(0x182)]('script');_0x1795ad[_0x52b6fd(0x1ca)]=LIBJS[_0x160392],_0x1795ad['onload']=_0x46a9ce,_0x1795ad[_0x52b6fd(0x189)]=()=>_0xb0377d(new Error(_0x52b6fd(0x15a))),document[_0x52b6fd(0x215)][_0x52b6fd(0x207)](_0x1795ad);}),ROM={'I':0x1,'II':0x2,'III':0x3,'IV':0x4,'V':0x5,'VI':0x6,'VII':0x7,'VIII':0x8,'IX':0x9,'X':0xa};function classNo(_0x39c762){const _0x2a12b1=a0_0x4f7adb,_0x53b313=String(_0x39c762==null?'':_0x39c762)['trim']()[_0x2a12b1(0x1c8)]()[_0x2a12b1(0x1c4)](/^(CLASS|STD|STANDARD|GRADE)\s*[-:.]?\s*/,'');if(ROM[_0x53b313])return ROM[_0x53b313];const _0x5c3162=parseInt(_0x53b313,0xa);return _0x5c3162>=0x1&&_0x5c3162<=0xa&&/^\d{1,2}$/['test'](_0x53b313)?_0x5c3162:0x0;}function readUdise(_0x19af15){const _0x8373c1=a0_0x4f7adb,_0x309b59=_0x19af15[_0x8373c1(0x14a)](_0x2147cf=>_0x2147cf&&_0x2147cf[_0x8373c1(0x18f)](_0x5b55c8=>/^name$|student\s*name/i[_0x8373c1(0x15d)](String(_0x5b55c8||'')['trim']()))&&_0x2147cf[_0x8373c1(0x18f)](_0x559b2d=>/^class$/i[_0x8373c1(0x15d)](String(_0x559b2d||'')[_0x8373c1(0x19f)]())));if(_0x309b59<0x0)throw new Error(_0x8373c1(0x229));const _0x1348d3=_0x19af15[_0x309b59][_0x8373c1(0x167)](_0x5d5df0=>String(_0x5d5df0||'')[_0x8373c1(0x19f)]()),_0x2f1976=_0x4d62e6=>_0x1348d3[_0x8373c1(0x14a)](_0x22c5f8=>_0x4d62e6[_0x8373c1(0x15d)](_0x22c5f8)),_0x2c5cd3=_0x2f1976(/^class$/i),_0x12e205=_0x2f1976(/^section$/i),_0x3a70f8=_0x2f1976(/^(student\s*)?name$/i),_0x514a8b=_0x2f1976(/^gender$/i),_0x465eca=_0x2f1976(/pen/i),_0x13060a=_0x2f1976(/^father/i),_0x4a5a4e={};let _0x248572=0x0;return _0x19af15[_0x8373c1(0x1e2)](_0x309b59+0x1)[_0x8373c1(0x13c)](_0x1dae90=>{const _0x2f5d64=_0x8373c1;if(!_0x1dae90)return;const _0x5a94c0=String(_0x1dae90[_0x3a70f8]||'')[_0x2f5d64(0x19f)]();if(!_0x5a94c0)return;const _0x58a716=classNo(_0x1dae90[_0x2c5cd3]);if(!_0x58a716){_0x248572++;return;}const _0x1dd91c=String(_0x1dae90[_0x514a8b]||'')[_0x2f5d64(0x19f)]()[_0x2f5d64(0x1c8)]();(_0x4a5a4e[_0x58a716]||(_0x4a5a4e[_0x58a716]=[]))[_0x2f5d64(0x149)]({'nm':_0x5a94c0,'g':/^(M|MALE|B|BOY)$/[_0x2f5d64(0x15d)](_0x1dd91c)?'B':/^(F|FEMALE|G|GIRL)$/['test'](_0x1dd91c)?'G':'','sec':_0x12e205>=0x0?String(_0x1dae90[_0x12e205]||'')[_0x2f5d64(0x19f)]()[_0x2f5d64(0x1c8)]()||'A':'A','pen':_0x465eca>=0x0?String(_0x1dae90[_0x465eca]||'')[_0x2f5d64(0x1c4)](/\D/g,''):'','fa':_0x13060a>=0x0?String(_0x1dae90[_0x13060a]||'')[_0x2f5d64(0x19f)]():''});}),{'by':_0x4a5a4e,'skipped':_0x248572};}const xe=_0x250063=>String(_0x250063)['replace'](/&/g,a0_0x4f7adb(0x144))[a0_0x4f7adb(0x1c4)](/</g,a0_0x4f7adb(0x1bd))[a0_0x4f7adb(0x1c4)](/>/g,'&gt;');function setCell(_0x520490,_0x49bed9,_0x23064b){const _0x1d5ab4=a0_0x4f7adb,_0x3c1e20=new RegExp(_0x1d5ab4(0x20d)+_0x49bed9+_0x1d5ab4(0x1c1)),_0x525635=_0x520490[_0x1d5ab4(0x224)](_0x3c1e20),_0x1a0dc9=_0x525635?(_0x525635[0x1]['match'](/ s="\d+"/)||[''])[0x0]:'',_0x76f0dc=typeof _0x23064b===_0x1d5ab4(0x1a3)?'<c\x20r=\x22'+_0x49bed9+'\x22'+_0x1a0dc9+'><v>'+_0x23064b+_0x1d5ab4(0x1e0):_0x1d5ab4(0x20d)+_0x49bed9+'\x22'+_0x1a0dc9+_0x1d5ab4(0x1b9)+xe(_0x23064b)+_0x1d5ab4(0x135);if(_0x525635)return _0x520490[_0x1d5ab4(0x1c4)](_0x3c1e20,_0x76f0dc);const _0x5346f2=_0x49bed9[_0x1d5ab4(0x1c4)](/[A-Z]+/,'');return _0x520490['replace'](new RegExp(_0x1d5ab4(0x179)+_0x5346f2+_0x1d5ab4(0x1e5)),'$1'+_0x76f0dc);}async function makeUdiseSheet(_0x11d9f0){const _0x421d3b=a0_0x4f7adb,_0x4072dd=$(_0x421d3b(0x180));_0x4072dd[_0x421d3b(0x226)]='status',_0x4072dd[_0x421d3b(0x1db)]=_0x421d3b(0x1ec);try{await needLib('XLSX'),await needLib(_0x421d3b(0x161));const _0x2bc534=XLSX[_0x421d3b(0x194)](await _0x11d9f0['arrayBuffer'](),{'type':'array'}),_0x1a2596=XLSX[_0x421d3b(0x20c)][_0x421d3b(0x205)](_0x2bc534[_0x421d3b(0x21c)][_0x2bc534[_0x421d3b(0x1c0)][0x0]],{'header':0x1,'defval':''}),{by:_0x39d6b7,skipped:_0x45d8e5}=readUdise(_0x1a2596),_0x353b8b=Object[_0x421d3b(0x18e)](_0x39d6b7)[_0x421d3b(0x167)](Number)[_0x421d3b(0x15b)]((_0x2332ce,_0x14508c)=>_0x2332ce-_0x14508c);if(!_0x353b8b[_0x421d3b(0x213)])throw new Error(_0x421d3b(0x227));const _0x200f0b=_0x353b8b['filter'](_0x46a78b=>_0x39d6b7[_0x46a78b][_0x421d3b(0x213)]>0x64);if(_0x200f0b['length'])throw new Error(_0x421d3b(0x186)+_0x200f0b[_0x421d3b(0x17b)](',\x20')+_0x421d3b(0x134));const _0x45284b=await fetch('models/School_Marks_Entry_Sheet.xlsx');if(!_0x45284b['ok'])throw new Error(_0x421d3b(0x1f5));const _0x47a552=await JSZip[_0x421d3b(0x191)](await _0x45284b['arrayBuffer']());let _0x265ece=await _0x47a552[_0x421d3b(0x1d0)](_0x421d3b(0x22a))[_0x421d3b(0x13f)](_0x421d3b(0x1d9));const _0x104555=await _0x47a552['file'](_0x421d3b(0x17a))[_0x421d3b(0x13f)](_0x421d3b(0x1d9)),_0x4d6841=_0x5db086=>{const _0x4c415d=_0x421d3b,_0x23f47e=_0x265ece[_0x4c415d(0x224)](new RegExp(_0x4c415d(0x1ac)+_0x5db086+'\x22[^>]*r:id=\x22(rId\x5cd+)\x22')),_0x1abc75=_0x104555[_0x4c415d(0x224)](new RegExp(_0x4c415d(0x1d8)+_0x23f47e[0x1]+_0x4c415d(0x1cd)))||_0x104555[_0x4c415d(0x224)](new RegExp(_0x4c415d(0x1b0)+_0x23f47e[0x1]+'\x22'));return _0x4c415d(0x20e)+_0x1abc75[0x1][_0x4c415d(0x1c4)](/^\/?xl\//,'');};for(const _0x43d768 of _0x353b8b){const _0x5418ed=_0x4d6841(_0x421d3b(0x186)+_0x43d768);let _0x360641=await _0x47a552['file'](_0x5418ed)[_0x421d3b(0x13f)]('string');_0x39d6b7[_0x43d768][_0x421d3b(0x13c)]((_0x1b2950,_0x5d3de8)=>{const _0xa94823=_0x421d3b,_0x3f9545=0x5+_0x5d3de8;_0x360641=setCell(_0x360641,'A'+_0x3f9545,_0x5d3de8+0x1),_0x360641=setCell(_0x360641,'B'+_0x3f9545,_0x1b2950['nm']);if(_0x1b2950['g'])_0x360641=setCell(_0x360641,'C'+_0x3f9545,_0x1b2950['g']);_0x360641=setCell(_0x360641,'E'+_0x3f9545,_0x1b2950[_0xa94823(0x143)]);if(_0x1b2950['pen'])_0x360641=setCell(_0x360641,'F'+_0x3f9545,_0x1b2950['pen']);if(_0x1b2950['fa'])_0x360641=setCell(_0x360641,'G'+_0x3f9545,_0x1b2950['fa']);});const _0x42d70f=0x4+_0x39d6b7[_0x43d768]['length'];_0x360641=_0x360641[_0x421d3b(0x1c4)](/<row r="(\d+)"([^>]*?)(\/?)>/g,(_0x53bdf0,_0x34fe51,_0x1ead65,_0x270a0d)=>+_0x34fe51>_0x42d70f&&+_0x34fe51<=0x68&&!/hidden=/[_0x421d3b(0x15d)](_0x1ead65)?_0x421d3b(0x1cf)+_0x34fe51+'\x22'+_0x1ead65+_0x421d3b(0x209)+_0x270a0d+'>':_0x53bdf0),_0x47a552['file'](_0x5418ed,_0x360641);}const _0x56d36d=$('#school')&&$(_0x421d3b(0x176))[_0x421d3b(0x19a)]['trim']()||'';for(const _0x3cc3f5 of[_0x421d3b(0x220),_0x421d3b(0x1bb)]){const _0x50b41b=_0x4d6841(_0x3cc3f5);let _0x305435=await _0x47a552[_0x421d3b(0x1d0)](_0x50b41b)['async'](_0x421d3b(0x1d9));_0x305435=setCell(_0x305435,'I1',_0x353b8b[0x0]);if(_0x56d36d&&_0x3cc3f5===_0x421d3b(0x220))_0x305435=setCell(_0x305435,'A2',_0x56d36d);_0x47a552['file'](_0x50b41b,_0x305435);}for(let _0x12f235=0x1;_0x12f235<=0xa;_0x12f235++)if(!_0x353b8b[_0x421d3b(0x21e)](_0x12f235))_0x265ece=_0x265ece[_0x421d3b(0x1c4)](new RegExp(_0x421d3b(0x1b2)+_0x12f235+'\x22[^>]*?)(\x20state=\x22\x5cw+\x22)?(\x20r:id=)'),_0x421d3b(0x1be));_0x265ece=_0x265ece[_0x421d3b(0x1c4)](/firstSheet="\d+"/,_0x421d3b(0x1f7)+(_0x353b8b[0x0]-0x1)+'\x22'),_0x265ece=_0x265ece['replace'](/activeTab="\d+"/,_0x421d3b(0x19d)+(_0x353b8b[0x0]-0x1)+'\x22'),_0x47a552[_0x421d3b(0x1d0)](_0x421d3b(0x22a),_0x265ece);const _0x3e30a6=await _0x47a552[_0x421d3b(0x15e)]({'type':_0x421d3b(0x1fa),'mimeType':_0x421d3b(0x19c)}),_0xda7a5a=(_0x11d9f0['name'][_0x421d3b(0x224)](/^\d{11}/)||[''])[0x0],_0x265aae=(_0xda7a5a?_0xda7a5a+'_':'')+'Marks_Entry_Sheet.xlsx';if(window['__udUrl'])URL[_0x421d3b(0x1a7)](window[_0x421d3b(0x1da)]);const _0x190b1c=window[_0x421d3b(0x1da)]=URL['createObjectURL'](_0x3e30a6),_0x34bd00=_0x353b8b[_0x421d3b(0x1cb)]((_0x1151cb,_0x5dd057)=>_0x1151cb+_0x39d6b7[_0x5dd057][_0x421d3b(0x213)],0x0);_0x4072dd[_0x421d3b(0x17e)][_0x421d3b(0x17d)]('ok'),_0x4072dd[_0x421d3b(0x18c)]=_0x421d3b(0x1ad)+_0x34bd00+_0x421d3b(0x204)+_0x353b8b[_0x421d3b(0x17b)](',\x20')+_0x421d3b(0x17c)+(_0x45d8e5?'\x20('+_0x45d8e5+_0x421d3b(0x1a8):'')+_0x421d3b(0x1ff);const _0x26ba2a=$(_0x421d3b(0x162));_0x26ba2a['href']=_0x190b1c,_0x26ba2a[_0x421d3b(0x1a4)](_0x421d3b(0x1c5),_0x265aae),_0x26ba2a[_0x421d3b(0x17e)][_0x421d3b(0x1e9)]('off'),_0x26ba2a['classList'][_0x421d3b(0x17d)](_0x421d3b(0x1b6)),_0x26ba2a['removeAttribute'](_0x421d3b(0x15c)),$(_0x421d3b(0x18b))[_0x421d3b(0x1db)]=_0x265aae+_0x421d3b(0x170),blink(_0x26ba2a);try{_0x26ba2a[_0x421d3b(0x228)]();}catch(_0x5445d6){}}catch(_0x361ab4){_0x4072dd[_0x421d3b(0x17e)][_0x421d3b(0x17d)](_0x421d3b(0x21b)),_0x4072dd[_0x421d3b(0x1db)]=_0x361ab4&&_0x361ab4[_0x421d3b(0x183)]&&!/^lib$/['test'](_0x361ab4['message'])?_0x361ab4['message']:'The\x20file\x20could\x20not\x20be\x20read.\x20Check\x20the\x20internet\x20connection\x20and\x20try\x20again.';}}$(a0_0x4f7adb(0x230))[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x141),_0x3fd4d8=>{const _0x52bf30=a0_0x4f7adb,_0x2ca29a=_0x3fd4d8[_0x52bf30(0x1aa)][_0x52bf30(0x202)][0x0];if(_0x2ca29a)makeUdiseSheet(_0x2ca29a);_0x3fd4d8['target'][_0x52bf30(0x19a)]='';});function blink(_0x14cdc6){const _0x547917=a0_0x4f7adb;if(!_0x14cdc6)return;_0x14cdc6[_0x547917(0x17e)]['remove'](_0x547917(0x231)),void _0x14cdc6['offsetWidth'],_0x14cdc6['classList'][_0x547917(0x17d)](_0x547917(0x231));}document[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x1f1),_0x3654bb=>{const _0x5ad661=a0_0x4f7adb;if(_0x3654bb[_0x5ad661(0x1b8)]===_0x5ad661(0x1f9))_0x3654bb['target']['classList']['remove'](_0x5ad661(0x231));});function a0_0x142d(_0x44b244,_0x3a3cc7){_0x44b244=_0x44b244-0x132;const _0x2368c4=a0_0x2368();let _0x142ddb=_0x2368c4[_0x44b244];return _0x142ddb;}const calm=matchMedia(a0_0x4f7adb(0x139))[a0_0x4f7adb(0x163)];document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x155))[a0_0x4f7adb(0x13c)](_0x185c9f=>_0x185c9f[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x228),()=>blink(_0x185c9f))),document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x1b1))[a0_0x4f7adb(0x13c)](_0x20e14c=>_0x20e14c[a0_0x4f7adb(0x1bc)]('click',()=>blink(_0x20e14c[a0_0x4f7adb(0x222)]('.gsx,.tt1')||_0x20e14c))),$(a0_0x4f7adb(0x162))[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x228),_0x5aac90=>{const _0x3beaaf=a0_0x4f7adb,_0x9cddd=_0x5aac90[_0x3beaaf(0x1c3)];if(!_0x9cddd[_0x3beaaf(0x17e)]['contains']('off')){blink(_0x9cddd);return;}_0x5aac90[_0x3beaaf(0x18d)](),blink($(_0x3beaaf(0x195))),toast(_0x3beaaf(0x200));});const LANG={},langOK={'te':a0_0x4f7adb(0x1e7),'en':a0_0x4f7adb(0x203)};document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x217))[a0_0x4f7adb(0x13c)](_0x2b8ff4=>{const _0x4598f9=a0_0x4f7adb,_0x43a416=_0x2b8ff4[_0x4598f9(0x1a5)][_0x4598f9(0x1d4)],_0x270556=_0x2b8ff4[_0x4598f9(0x14f)](_0x4598f9(0x174)),_0x2590d7=_0x2b8ff4[_0x4598f9(0x14f)](_0x4598f9(0x1eb)),_0x2d1882=_0x37d5ae=>{const _0x26ff7d=_0x4598f9;LANG[_0x43a416]=_0x37d5ae,_0x270556[_0x26ff7d(0x1d6)](_0x26ff7d(0x1b5))[_0x26ff7d(0x13c)](_0xcb22db=>_0xcb22db['setAttribute'](_0x26ff7d(0x15f),String(_0xcb22db[_0x26ff7d(0x1a5)]['l']===_0x37d5ae))),_0x2b8ff4[_0x26ff7d(0x17e)]['remove'](_0x26ff7d(0x164)),_0x2590d7['classList'][_0x26ff7d(0x17d)](_0x26ff7d(0x133)),_0x2590d7[_0x26ff7d(0x1db)]=langOK[_0x37d5ae];try{sessionStorage[_0x26ff7d(0x1fb)]('ssat_lang_'+_0x43a416,_0x37d5ae);}catch(_0x1bf117){}};_0x270556['addEventListener'](_0x4598f9(0x228),_0x142c4f=>{const _0x3966e0=_0x4598f9,_0x203408=_0x142c4f[_0x3966e0(0x1aa)][_0x3966e0(0x222)](_0x3966e0(0x1fe));if(_0x203408)_0x2d1882(_0x203408[_0x3966e0(0x1a5)]['l']);});let _0x29fdd8='';try{_0x29fdd8=sessionStorage[_0x4598f9(0x211)](_0x4598f9(0x171)+_0x43a416)||'';}catch(_0xad903d){}if(_0x29fdd8==='te'||_0x29fdd8==='en')_0x2d1882(_0x29fdd8);}),document[a0_0x4f7adb(0x1d6)](a0_0x4f7adb(0x1ed))['forEach'](_0x727620=>_0x727620[a0_0x4f7adb(0x1bc)](a0_0x4f7adb(0x228),()=>{const _0x50c683=a0_0x4f7adb,_0x1a2b7b=_0x727620[_0x50c683(0x222)](_0x50c683(0x217));if(_0x1a2b7b&&!LANG[_0x1a2b7b[_0x50c683(0x1a5)][_0x50c683(0x1d4)]]){const _0x364305=_0x1a2b7b[_0x50c683(0x14f)](_0x50c683(0x174));_0x364305['classList'][_0x50c683(0x1e9)](_0x50c683(0x1fc)),void _0x364305[_0x50c683(0x150)],_0x364305[_0x50c683(0x17e)][_0x50c683(0x17d)](_0x50c683(0x1fc)),toast('ముందు\x20భాష\x20ఎంచుకోండి\x20–\x20choose\x20తెలుగు\x20or\x20English\x20first.'),_0x1a2b7b[_0x50c683(0x193)]({'behavior':_0x50c683(0x1dd),'block':_0x50c683(0x188)});return;}if(_0x727620[_0x50c683(0x1a5)][_0x50c683(0x201)]===_0x50c683(0x1b7)&&!marks){toast(_0x50c683(0x1ea)),$(_0x50c683(0x219))[_0x50c683(0x193)]({'behavior':'smooth','block':_0x50c683(0x188)}),blink($(_0x50c683(0x219)));return;}let _0x29adb5=_0x727620[_0x50c683(0x1a5)][_0x50c683(0x1d2)];const _0x170ca6=_0x727620[_0x50c683(0x222)]('li');if(_0x170ca6)_0x170ca6['querySelectorAll'](_0x50c683(0x1de))[_0x50c683(0x13c)](_0x4fc3a5=>{const _0x2dab63=_0x50c683;if(_0x4fc3a5[_0x2dab63(0x19a)])_0x29adb5+='&'+_0x4fc3a5['dataset']['p']+'='+encodeURIComponent(_0x4fc3a5[_0x2dab63(0x19a)]);});if(_0x1a2b7b){const _0x3ba8a3=LANG[_0x1a2b7b[_0x50c683(0x1a5)][_0x50c683(0x1d4)]];_0x29adb5+=_0x50c683(0x196)+_0x3ba8a3,ls(_0x50c683(0x1b4),_0x3ba8a3);}blink(_0x727620),setTimeout(()=>{const _0x7f29e8=_0x50c683;location[_0x7f29e8(0x232)]=_0x29adb5;},calm?0x0:0x17c);}));let ttPending=![];wireDrop($(a0_0x4f7adb(0x21a)),$(a0_0x4f7adb(0x223)),async _0x4c9883=>{const _0x21ca4c=a0_0x4f7adb;try{await put('tt',{'name':_0x4c9883['name'],'buf':await _0x4c9883[_0x21ca4c(0x1a9)](),'time':Date[_0x21ca4c(0x184)]()}),ttPending=!![],$(_0x21ca4c(0x1af))[_0x21ca4c(0x1db)]='✓\x20'+_0x4c9883[_0x21ca4c(0x16a)]+_0x21ca4c(0x1ae),location[_0x21ca4c(0x232)]=_0x21ca4c(0x138);}catch(_0x4b1f66){toast(_0x21ca4c(0x1fd));}}),$('#ttOpen')[a0_0x4f7adb(0x1bc)]('click',()=>{setTimeout(()=>{const _0x27f066=a0_0x142d;location[_0x27f066(0x232)]='substitute-timetable.html?from=hub'+(ttPending?'&tt=1':'');},calm?0x0:0x17c);}),$('#ttGsGo')['addEventListener'](a0_0x4f7adb(0x228),async()=>{const _0x156703=a0_0x4f7adb,_0x2e564c=$(_0x156703(0x1d1))[_0x156703(0x19a)]['trim'](),_0x3829fd=_0x2e564c[_0x156703(0x224)](/\/d\/([a-zA-Z0-9-_]+)/),_0x51c489=_0x3829fd?_0x3829fd[0x1]:/^[a-zA-Z0-9-_]{20,}$/['test'](_0x2e564c)?_0x2e564c:null;if(!_0x2e564c){toast('Paste\x20the\x20Google\x20Sheet\x20link\x20first.');return;}if(!_0x51c489){toast(_0x156703(0x16b));return;}const _0xc93047=$(_0x156703(0x1c6));_0xc93047['disabled']=!![],$(_0x156703(0x1af))['textContent']=_0x156703(0x14b);try{const _0x4df33c=await fetch('https://docs.google.com/spreadsheets/d/'+_0x51c489+'/export?format=xlsx');if(!_0x4df33c['ok'])throw new Error(_0x4df33c[_0x156703(0x198)]);const _0x4baff0=await _0x4df33c['arrayBuffer']();if(_0x4baff0['byteLength']<0xc8)throw new Error('empty');await put('tt',{'name':_0x156703(0x1f8),'buf':_0x4baff0,'time':Date[_0x156703(0x184)]()}),ttPending=!![],$(_0x156703(0x1af))[_0x156703(0x1db)]=_0x156703(0x157),location[_0x156703(0x232)]=_0x156703(0x138);}catch(_0x3512f9){$('#ttName')['textContent']=_0x156703(0x13d),toast(_0x156703(0x1f2));}_0xc93047['disabled']=![];});const needJs=_0xce0a84=>new Promise((_0x38ad64,_0x1917ef)=>{const _0x402d48=a0_0x4f7adb,_0x530dc4=document['createElement'](_0x402d48(0x178));_0x530dc4['src']=_0xce0a84,_0x530dc4[_0x402d48(0x218)]=_0x38ad64,_0x530dc4[_0x402d48(0x189)]=_0x1917ef,document[_0x402d48(0x215)][_0x402d48(0x207)](_0x530dc4);});let PD=null;async function fillPick(){const _0x162365=a0_0x4f7adb;if(!marks)return;try{await needLib(_0x162365(0x1e3));if(!window[_0x162365(0x1f3)])await needJs(_0x162365(0x16d));const _0xe08e48=SSAT[_0x162365(0x152)](XLSX[_0x162365(0x194)](marks[_0x162365(0x1f4)],{'type':_0x162365(0x16c)})),_0x4242fe=(_0xe08e48['meta']['classes']||[])[_0x162365(0x159)](Boolean),_0x29e653={};_0xe08e48['stu']['forEach'](_0x2eeab2=>{const _0x4b5738=_0x162365,_0x4df768=_0x2eeab2['c']||_0x4242fe[0x0]||'';_0x29e653[_0x4df768]||(_0x29e653[_0x4df768]={'secs':new Set(),'subs':new Set()});if(_0x2eeab2[_0x4b5738(0x143)])_0x29e653[_0x4df768][_0x4b5738(0x1f6)][_0x4b5738(0x17d)](_0x2eeab2[_0x4b5738(0x143)]);Object['values'](_0x2eeab2['ex']||{})[_0x4b5738(0x13c)](_0x4ea93d=>(_0x4ea93d[_0x4b5738(0x166)]||[])[_0x4b5738(0x13c)](_0x58483b=>{if(_0x58483b['m']!=='-'&&_0x58483b['m']!=='')_0x29e653[_0x4df768]['subs']['add'](_0x58483b['n']);}));}),PD={'cls':_0x4242fe,'by':_0x29e653,'ex':_0xe08e48['ex'][_0x162365(0x167)](_0x4e6572=>_0x4e6572['k'])};}catch(_0xf3918b){PD=null;}document[_0x162365(0x1d6)](_0x162365(0x16f))[_0x162365(0x13c)](_0x3ee242=>{const _0x46ef72=_0x162365;if(!PD||!PD[_0x46ef72(0x1e1)][_0x46ef72(0x213)]){_0x3ee242[_0x46ef72(0x140)]=!![];return;}const _0x4d9569=_0x3ee242[_0x46ef72(0x14f)]('.pcls'),_0xd2d582=_0x4d9569[_0x46ef72(0x1a5)][_0x46ef72(0x190)];_0x4d9569[_0x46ef72(0x18c)]=(_0xd2d582||PD[_0x46ef72(0x1e1)]['length']===0x1?'':_0x46ef72(0x1f0))+PD[_0x46ef72(0x1e1)][_0x46ef72(0x167)](_0x41900c=>_0x46ef72(0x14c)+_0x41900c+_0x46ef72(0x173)+_0x41900c+_0x46ef72(0x1ba))['join']('');const _0x4c1b57=()=>{const _0xdacacb=_0x46ef72,_0x10714e=_0x4d9569[_0xdacacb(0x19a)],_0x2aad41=PD['by'][_0x10714e],_0x27581c=_0x3ee242['querySelector'](_0xdacacb(0x153));if(_0x27581c){const _0x3bc2e2=_0x2aad41?[..._0x2aad41[_0xdacacb(0x1f6)]][_0xdacacb(0x15b)]():[];_0x27581c[_0xdacacb(0x18c)]=_0xdacacb(0x21f)+_0x3bc2e2[_0xdacacb(0x167)](_0x56b975=>_0xdacacb(0x14c)+_0x56b975+'\x22>'+_0x56b975+_0xdacacb(0x1ba))[_0xdacacb(0x17b)](''),_0x27581c[_0xdacacb(0x145)]=!_0x10714e;}const _0x27b354=_0x3ee242['querySelector'](_0xdacacb(0x1a6));if(_0x27b354){const _0x10aac9=_0x2aad41?[..._0x2aad41['subs']]:[];_0x27b354[_0xdacacb(0x18c)]=_0x10aac9[_0xdacacb(0x167)](_0x1a057f=>_0xdacacb(0x14c)+_0x1a057f+'\x22>'+_0x1a057f+_0xdacacb(0x1ba))[_0xdacacb(0x17b)]('');}},_0x2b97cb=_0x3ee242[_0x46ef72(0x14f)]('.pex');if(_0x2b97cb)_0x2b97cb['innerHTML']=_0x46ef72(0x165)+PD['ex']['map'](_0x288026=>_0x46ef72(0x14c)+_0x288026+'\x22>'+_0x288026+_0x46ef72(0x1ba))[_0x46ef72(0x17b)]('');_0x4d9569[_0x46ef72(0x168)]=_0x4c1b57,_0x4c1b57(),_0x3ee242['hidden']=![];});}const _showMarks=showMarks;showMarks=function(){const _0x29aa3d=a0_0x4f7adb;_showMarks[_0x29aa3d(0x187)](this,arguments),fillPick();},get(a0_0x4f7adb(0x1b7))[a0_0x4f7adb(0x1c9)](_0x309273=>{_0x309273&&(marks=_0x309273,showMarks());});if(a0_0x4f7adb(0x1b3)in navigator&&/^https?:$/[a0_0x4f7adb(0x15d)](location[a0_0x4f7adb(0x13e)]))addEventListener(a0_0x4f7adb(0x16e),()=>navigator[a0_0x4f7adb(0x1b3)][a0_0x4f7adb(0x216)](a0_0x4f7adb(0x22d))[a0_0x4f7adb(0x22f)](()=>{}));(function(){const _0x302d7f=a0_0x4f7adb,_0x310d78=matchMedia(_0x302d7f(0x160))[_0x302d7f(0x163)]||navigator['standalone']===!![],_0x46f01b=/iphone|ipad|ipod/i['test'](navigator[_0x302d7f(0x14e)])||navigator[_0x302d7f(0x17f)]===_0x302d7f(0x1ef)&&navigator['maxTouchPoints']>0x1;let _0x262c81=null;const _0x59ded9=$(_0x302d7f(0x1ab));if(_0x310d78)return;addEventListener(_0x302d7f(0x1df),_0x51c608=>{const _0x149800=_0x302d7f;_0x51c608[_0x149800(0x18d)](),_0x262c81=_0x51c608,_0x59ded9[_0x149800(0x140)]=![];});if(_0x46f01b)_0x59ded9[_0x302d7f(0x140)]=![];_0x59ded9[_0x302d7f(0x208)]=async()=>{const _0x2065da=_0x302d7f;if(_0x262c81){_0x262c81[_0x2065da(0x1cc)]();try{await _0x262c81['userChoice'];}catch(_0x2b1cb8){}_0x262c81=null,_0x59ded9[_0x2065da(0x140)]=!![];return;}toast(_0x46f01b?_0x2065da(0x151):'Open\x20this\x20site\x20in\x20Chrome,\x20then\x20use\x20⋮\x20menu\x20→\x20“Install\x20app”.');},addEventListener(_0x302d7f(0x136),()=>{const _0x1c117e=_0x302d7f;_0x59ded9[_0x1c117e(0x140)]=!![],toast(_0x1c117e(0x1e8));});}());</script>
