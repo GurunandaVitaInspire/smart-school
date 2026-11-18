@@ -247,6 +247,20 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .cta span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--mint);color:var(--deep)}
 .cta span .i{width:16px;height:16px;stroke-width:2.4}
 .cta:hover{transform:translateY(-2px)}
+.motto{margin:14px 0 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 12px;font-weight:700;font-size:1.02rem;color:var(--ink-2);letter-spacing:.01em}
+.motto i{width:5px;height:5px;border-radius:50%;background:var(--brand-2);opacity:.7}
+.aud{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.aud li{display:inline-flex;align-items:center;gap:7px;padding:7px 15px 7px 9px;border-radius:999px;font-weight:800;font-size:.9rem;border:1px solid}
+.aud li .i{width:22px;height:22px;padding:4px;border-radius:50%;color:#fff;stroke-width:2.2}
+.aud .a-t{color:#B5431C;background:#FFF0E8;border-color:#F6CDB8}.aud .a-t .i{background:#E0612F}
+.aud .a-s{color:#1F7A3A;background:#EAF7EE;border-color:#BFE3CA}.aud .a-s .i{background:#2E9A4E}
+.aud .a-p{color:#7A2A8C;background:#F6ECFA;border-color:#E0C6EA}.aud .a-p .i{background:#8E3BA3}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .aud .a-t{color:#FFB48F;background:rgba(224,97,47,.16);border-color:rgba(224,97,47,.4)}
+  :root:not([data-theme="light"]) .aud .a-s{color:#7EDC9A;background:rgba(46,154,78,.16);border-color:rgba(46,154,78,.4)}
+  :root:not([data-theme="light"]) .aud .a-p{color:#DDA6EC;background:rgba(142,59,163,.2);border-color:rgba(142,59,163,.45)}
+}
+.quote{margin:18px auto 0;max-width:460px;font-family:var(--serif);font-style:italic;font-size:1.12rem;line-height:1.35;color:var(--muted)}
 .feats{display:grid;grid-template-columns:repeat(3,1fr);margin:30px auto 0;max-width:560px}
 .feats div{padding:0 14px}
 .feats div+div{border-left:1px solid var(--line-2)}
@@ -627,6 +641,11 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   .hero h1{font-size:clamp(2rem,9.6vw,2.55rem);margin-top:12px}
   .hero .lead{font-size:.95rem;margin-top:10px}
   .cta{margin-top:16px}
+  .motto{font-size:.92rem;gap:2px 9px;margin-top:10px}
+  .aud{margin-top:12px;gap:6px}
+  .aud li{font-size:.82rem;padding:5px 11px 5px 6px;gap:5px}
+  .aud li .i{width:20px;height:20px}
+  .quote{font-size:1rem;margin-top:14px}
   .feats{margin-top:22px}
   .feats b{font-size:.84rem}.feats small{font-size:.76rem}
   /* readable small labels */
@@ -790,15 +809,16 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   </div>
 
   <div class="hero-c">
-    <span class="tag rise d1"><b>New</b>రోజుల పని, క్షణాల్లో పూర్తి</span>
-    <h1 class="rise d2">Days of school paperwork, done in <em>seconds.</em></h1>
-    <p class="lead rise d3">Report cards, digital progress cards, rank lists and time tables — all from one marks sheet, in తెలుగు and English.</p>
-    <a class="cta rise d3" href="#how">Start now<span><svg class="i"><use href="#i-arrow"/></svg></span></a>
-    <div class="feats rise d4">
-      <div><b>తెలుగు &amp; English</b><small>Every card in both languages</small></div>
-      <div><b>One marks sheet</b><small>Upload once, use everywhere</small></div>
-      <div><b>Print-ready A4</b><small>PDFs that look right on paper</small></div>
-    </div>
+    <span class="tag rise d1"><b>AI</b>Smart School AI Tools</span>
+    <h1 class="rise d2">Turning days of work into <em>seconds.</em></h1>
+    <p class="motto rise d3">Less paperwork <i></i> More teaching <i></i> Better results</p>
+    <ul class="aud rise d3" aria-label="Made for">
+      <li class="a-t"><svg class="i"><use href="#i-cap"/></svg>Teachers</li>
+      <li class="a-s"><svg class="i"><use href="#i-clip"/></svg>Students</li>
+      <li class="a-p"><svg class="i"><use href="#i-users"/></svg>Parents</li>
+    </ul>
+    <a class="cta rise d4" href="#how">Start now<span><svg class="i"><use href="#i-arrow"/></svg></span></a>
+    <p class="quote rise d4">“Teach a child today, and you change the world tomorrow.”</p>
   </div>
 </section>
 
