@@ -67,21 +67,20 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 
 /* ---------- top bar ---------- */
 .nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent);padding-top:env(safe-area-inset-top,0px)}
-.nav .container{display:flex;align-items:center;gap:18px;min-height:66px}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);margin-right:auto}
+.nav .container{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;min-height:66px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);justify-self:start}
+.nav .install{justify-self:end;grid-column:3}
+.ntitle{grid-column:2;margin:0;white-space:nowrap;font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,2.3vw,1.85rem);line-height:1;letter-spacing:-.01em;color:var(--ink)}
+.ntitle .nt-b{font-style:italic;color:var(--brand-2)}
 .logo{display:grid;place-items:center;color:var(--ink);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .logo .mark{width:44px;height:auto;display:block;fill:currentColor}
 .brand:hover .logo{transform:rotate(-6deg) scale(1.05)}
 .brand b{display:block;font-weight:800;font-size:1.04rem;letter-spacing:-.01em;line-height:1.1}
 .brand small{display:block;font-family:var(--te2);font-size:.8rem;font-weight:600;color:var(--muted);line-height:1.2}
-.links{display:flex;gap:2px}
-.links a{color:var(--ink-2);text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 13px;border-radius:999px;transition:background .15s}
-.links a:hover{background:var(--sunk)}
 .install{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:9px 16px;min-height:40px;font-weight:700;font-size:.9rem;color:#fff;cursor:pointer;background:var(--ink);transition:transform .12s}
 .install .i{width:18px;height:18px}
 .install:hover{transform:translateY(-1px)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .install{color:var(--deep)}}
-@media (max-width:860px){.links{display:none}}
 
 /* =========================================================
    HERO — an arch of real-looking school documents
@@ -90,9 +89,9 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   background:radial-gradient(60% 50% at 50% 95%,color-mix(in srgb,var(--mint) 22%,transparent),transparent 70%),
              radial-gradient(40% 40% at 15% 20%,color-mix(in srgb,#FFC83D 12%,transparent),transparent 70%),
              radial-gradient(40% 40% at 85% 25%,color-mix(in srgb,#8B5CF6 10%,transparent),transparent 70%),var(--bg)}
-.hero{--k:1}
-.arc{--cw:clamp(calc(98px * var(--k)),calc(11.2vw * var(--k)),calc(154px * var(--k)));--rx:min(45vw,640px);--ry:min(42vw,calc(530px * var(--k)));--cy:calc(650px * var(--k));
-  position:relative;height:calc(720px * var(--k));max-width:1440px;margin:0 auto;perspective:1600px}
+.hero{--k:1;--ry:min(42vw,calc(530px * var(--k)))}
+.arc{--cw:clamp(calc(98px * var(--k)),calc(11.2vw * var(--k)),calc(154px * var(--k)));--rx:min(45vw,640px);--cy:calc(var(--ry) + 120px * var(--k));
+  position:relative;height:calc(var(--cy) + 70px * var(--k));max-width:1440px;margin:0 auto;perspective:1600px}
 .arc-in{position:absolute;inset:0}
 .ac{position:absolute;width:var(--cw);
   left:calc(50% + cos(var(--a)) * var(--rx));top:calc(var(--cy) - sin(var(--a)) * var(--ry));
@@ -237,37 +236,27 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .k-cal .gr i.a{background:#EF4444}.k-cal .gr i.h{background:#E5E7EB}
 
 /* ---------- hero copy (inside the arch) ---------- */
-.hero-c{position:absolute;left:50%;top:calc(268px * var(--k));transform:translateX(-50%) scale(var(--k));transform-origin:50% 0;width:min(600px,54vw);text-align:center;z-index:5}
+.hero{padding-block:var(--pad,0px)}
+/* centred in the arch opening: same maths as .arc (--cy, --ry) so it tracks the cards at every width */
+.hero-c{position:absolute;left:50%;top:calc(var(--pad,0px) + 120px * var(--k) + .6 * var(--ry));transform:translate(-50%,-50%) scale(var(--k));transform-origin:50% 50%;width:min(720px,60vw);text-align:center;z-index:5}
 .tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--te2);font-weight:700;font-size:.98rem;color:var(--ink-2)}
 .tag b{font-family:var(--font);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--brand-2);border-radius:999px;padding:4px 9px}
-.hero h1{margin:18px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,4.6vw,4.1rem);line-height:1.02;letter-spacing:-.02em;color:var(--ink)}
+.hero h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.2vw,4.7rem);line-height:1.02;letter-spacing:-.02em;color:var(--ink)}
 .hero h1 em{font-style:italic;color:var(--brand-2)}
 .hero .lead{margin:14px auto 0;max-width:470px;font-size:1rem;color:var(--muted)}
 .cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;min-height:50px;padding:12px 14px 12px 24px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;text-decoration:none;box-shadow:0 14px 30px -14px rgba(16,32,26,.7);transition:transform .15s}
 .cta span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--mint);color:var(--deep)}
 .cta span .i{width:16px;height:16px;stroke-width:2.4}
 .cta:hover{transform:translateY(-2px)}
-.motto{margin:14px 0 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 12px;font-weight:700;font-size:1.02rem;color:var(--ink-2);letter-spacing:.01em}
-.motto i{width:5px;height:5px;border-radius:50%;background:var(--brand-2);opacity:.7}
-.aud{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-.aud li{display:inline-flex;align-items:center;gap:7px;padding:7px 15px 7px 9px;border-radius:999px;font-weight:800;font-size:.9rem;border:1px solid}
-.aud li .i{width:22px;height:22px;padding:4px;border-radius:50%;color:#fff;stroke-width:2.2}
-.aud .a-t{color:#B5431C;background:#FFF0E8;border-color:#F6CDB8}.aud .a-t .i{background:#E0612F}
-.aud .a-s{color:#1F7A3A;background:#EAF7EE;border-color:#BFE3CA}.aud .a-s .i{background:#2E9A4E}
-.aud .a-p{color:#7A2A8C;background:#F6ECFA;border-color:#E0C6EA}.aud .a-p .i{background:#8E3BA3}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .aud .a-t{color:#FFB48F;background:rgba(224,97,47,.16);border-color:rgba(224,97,47,.4)}
-  :root:not([data-theme="light"]) .aud .a-s{color:#7EDC9A;background:rgba(46,154,78,.16);border-color:rgba(46,154,78,.4)}
-  :root:not([data-theme="light"]) .aud .a-p{color:#DDA6EC;background:rgba(142,59,163,.2);border-color:rgba(142,59,163,.45)}
-}
-.quote{margin:18px auto 0;max-width:460px;font-family:var(--serif);font-style:italic;font-size:1.12rem;line-height:1.35;color:var(--muted)}
+.motto{list-style:none;margin:22px 0 0;padding:0;display:flex;justify-content:center;align-items:center;white-space:nowrap;font-weight:600;font-size:1.16rem;color:var(--ink-2);letter-spacing:.01em}
+.motto li+li::before{content:"";display:inline-block;vertical-align:middle;width:6px;height:6px;margin:0 16px;border-radius:50%;background:var(--brand-2);opacity:.75;translate:0 -1px}
 .feats{display:grid;grid-template-columns:repeat(3,1fr);margin:30px auto 0;max-width:560px}
 .feats div{padding:0 14px}
 .feats div+div{border-left:1px solid var(--line-2)}
 .feats b{display:block;font-weight:800;font-size:.9rem;color:var(--ink)}
 .feats small{display:block;font-size:.78rem;color:var(--muted);line-height:1.4;margin-top:2px}
 
-@media (max-width:1100px){.arc{--cy:calc(620px * var(--k));height:calc(690px * var(--k))}.hero-c{top:calc(250px * var(--k))}}
+@media (max-width:1100px){.hero-c{width:min(720px,52vw)}}
 @media (max-width:900px){.feats{display:none}}
 @media (max-width:760px){
   .hero{--k:1!important}
@@ -634,18 +623,18 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   .nav .container{min-height:58px}
   .logo .mark{width:40px}
   /* hero: arch + headline + button inside one 9:16 screen */
-  .arc{--cw:76px;--rx:50vw;--ry:min(290px,46vh);--cy:min(390px,60vh);height:min(410px,64vh)}
-  .hero-c{margin-top:calc(min(410px,64vh) * -.43);padding:0 18px 40px}
-  .arc-in>.ac:first-child,.arc-in>.ac:last-child{display:none}  /* bottom corners would touch the headline */
+  .arc{--cw:min(84px,22vw);--rx:46vw;--ry:min(330px,44vh);--cy:min(450px,60vh);height:min(470px,63vh)}
+  .hero-c{margin-top:calc(min(470px,63vh) * -.36);padding:0 18px 24px}
+  /* the two lowest cards on each side would sit on the headline */
+  .arc-in>.ac:nth-child(-n+2),.arc-in>.ac:nth-last-child(-n+2){display:none}
   .tag{font-size:.86rem;padding:5px 12px 5px 5px}
   .hero h1{font-size:clamp(2rem,9.6vw,2.55rem);margin-top:12px}
   .hero .lead{font-size:.95rem;margin-top:10px}
   .cta{margin-top:16px}
-  .motto{font-size:.92rem;gap:2px 9px;margin-top:10px}
-  .aud{margin-top:12px;gap:6px}
-  .aud li{font-size:.82rem;padding:5px 11px 5px 6px;gap:5px}
-  .aud li .i{width:20px;height:20px}
-  .quote{font-size:1rem;margin-top:14px}
+  .motto{font-size:clamp(.8rem,3.7vw,.95rem);margin-top:14px}
+  .motto li+li::before{width:5px;height:5px;margin:0 9px}
+  .nav .container{grid-template-columns:auto 1fr auto}
+  .ntitle{justify-self:center;font-size:clamp(1.25rem,6vw,1.5rem);margin-right:40px}
   .feats{margin-top:22px}
   .feats b{font-size:.84rem}.feats small{font-size:.76rem}
   /* readable small labels */
@@ -660,7 +649,6 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   /* comfortable touch targets */
   footer nav a{padding:10px 0}
   .totop{padding:10px 0}
-  .links a{padding:10px 13px}
   .navb button{width:46px;height:46px}
   .seg button{min-height:42px;padding:9px 18px}
   .src{min-height:64px}
@@ -669,8 +657,8 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
 }
 @media (max-width:760px) and (max-height:700px){
   /* short 9:16 phones (360×640, 375×667): tighter still */
-  .arc{--cw:68px;--ry:min(250px,42vh);--cy:min(330px,55vh);height:min(345px,57vh)}
-  .hero-c{margin-top:calc(min(345px,57vh) * -.40)}
+  .arc{--cw:72px;--ry:min(250px,42vh);--cy:min(340px,56vh);height:min(355px,58vh)}
+  .hero-c{margin-top:calc(min(355px,58vh) * -.34)}
   .hero h1{font-size:clamp(1.85rem,8.8vw,2.3rem)}
   .hero .lead{font-size:.9rem;line-height:1.45}
 }
@@ -729,15 +717,8 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   <div class="container">
     <a class="brand" href="#top" aria-label="Smart School AI Tools, home">
       <span class="logo"><svg class="mark" viewBox="0 0 313.2 261.3" aria-hidden="true"><use href="#i-logo"/></svg></span>
-      <span><b>Smart School</b><small>స్మార్ట్ స్కూల్</small></span>
     </a>
-    <nav class="links" aria-label="Sections">
-      <a href="#how">How it works</a>
-      <a href="#tools">Tools</a>
-      <a href="#features">What it does</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="extra-work/">Extra Work app</a>
-    </nav>
+    <p class="ntitle"><span class="nt-a">Smart School</span> <span class="nt-b">AI Tools</span></p>
     <button class="install" id="inst" type="button" hidden><svg class="i"><use href="#i-app"/></svg>Install App</button>
   </div>
 </header>
@@ -809,16 +790,10 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   </div>
 
   <div class="hero-c">
-    <span class="tag rise d1"><b>AI</b>Smart School AI Tools</span>
     <h1 class="rise d2">Turning days of work into <em>seconds.</em></h1>
-    <p class="motto rise d3">Less paperwork <i></i> More teaching <i></i> Better results</p>
-    <ul class="aud rise d3" aria-label="Made for">
-      <li class="a-t"><svg class="i"><use href="#i-cap"/></svg>Teachers</li>
-      <li class="a-s"><svg class="i"><use href="#i-clip"/></svg>Students</li>
-      <li class="a-p"><svg class="i"><use href="#i-users"/></svg>Parents</li>
+    <ul class="motto rise d3" aria-label="What changes">
+      <li>Less paperwork</li><li>More teaching</li><li>Better results</li>
     </ul>
-    <a class="cta rise d4" href="#how">Start now<span><svg class="i"><use href="#i-arrow"/></svg></span></a>
-    <p class="quote rise d4">“Teach a child today, and you change the world tomorrow.”</p>
   </div>
 </section>
 
@@ -1492,11 +1467,17 @@ footer nav a small{font-size:.7rem;font-weight:800;color:#FFD98A;margin-left:6px
   function fit(){
     if(!heroEl)return;
     var avail=innerHeight-(navEl?navEl.offsetHeight:0);
-    var base=innerWidth<=1100?690:720;
+    var base=Math.min(.42*innerWidth,530)+190;   /* arch height at k=1 (see .arc) */
     var k=innerWidth<760?1:Math.max(.62,Math.min(1,(avail-12)/base));
     heroEl.style.setProperty('--k',k.toFixed(3));
+    /* fill the rest of the screen evenly so no empty strip shows under the hero */
+    heroEl.style.setProperty('--pad','0px');
+    var pad=Math.max(0,Math.floor((avail-heroEl.offsetHeight)/2));
+    if(innerWidth<760)pad=Math.min(pad,20);   /* phones: keep the upload steps close, as before */
+    heroEl.style.setProperty('--pad',pad+'px');
   }
-  fit();addEventListener('resize',fit);
+  fit();addEventListener('resize',fit);addEventListener('load',fit);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 })();
 (function(){
   var els=[].slice.call(document.querySelectorAll(".reveal"));
